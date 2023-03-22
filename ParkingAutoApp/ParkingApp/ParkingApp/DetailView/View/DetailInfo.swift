@@ -26,7 +26,7 @@ struct DetailInfo: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(fetchRequest: Parking.fetchRequest0()) private
     var parking: FetchedResults<Parking>
-    var idPlace: String
+    var idPlace: String = ""
     
     //MARK: ViewModel
     @StateObject var cardDetailViewModel = CardDetailViewModel()
@@ -38,6 +38,19 @@ struct DetailInfo: View {
         
         return date
     }()
+    
+    @State private var dates: Set<DateComponents> = []
+    @State private var datesComponent: DateComponents = DateComponents()
+    
+    @Environment(\.calendar) private var calendar
+    
+    let components = Calendar.current.dateComponents([.day],
+                                                     from: Date.now)
+    
+    init(){
+        generateDate()
+        
+    }
     
     //MARK: Payment
     @State private var price = ""
@@ -73,8 +86,33 @@ extension DetailInfo{
     @ViewBuilder
     private func dateDetailView()-> some View{
         Section(header: Text("Период парковки")){
-            DatePicker("Оплачено до ", selection: $startDate, in: Date()..., displayedComponents: .date)
+            DatePicker ("Оплачено до ", selection: $startDate, in: Date()..., displayedComponents: .date)
+//            MultiDatePicker("Оплачено до ", selection: $dates)
+//            let nextDate = Calendar.current.nextDate(
+//                after: Date.now,
+//                matching: components,
+//                matchingPolicy: .nextTime,
+//                repeatedTimePolicy: .first,
+//                direction: .forward)
+            
+//            let today = Date()
+//            let date = Calendar.current.date(
+//                from: DateComponents(timeZone: TimeZone(abbreviation: "GMT"),
+//                year: 2021, month: 8, day: 2))!
+//            date.distance(to: today)
+//
+//            let _ = print(date)
         }
+    }
+    
+    func generateDate() -> () {
+        let today = Date()
+        let date = Calendar.current.date(
+            from: DateComponents(timeZone: TimeZone(abbreviation: "GMT"),
+            year: 2023, month: 03, day: 25))!
+        let tim = date.distance(to: today)
+        
+        let _ = print(date)
     }
     
     @ViewBuilder

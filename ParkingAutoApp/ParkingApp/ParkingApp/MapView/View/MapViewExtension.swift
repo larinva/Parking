@@ -22,7 +22,7 @@ extension MapView{
                     let _ = print("Место занято!!!")
                 }
             }
-            DetailInfo(idPlace: parsesMapViewModel.nodeTag)
+            DetailInfo()
                 //.environment(\.managedObjectContext, viewContext)
         }
     }
