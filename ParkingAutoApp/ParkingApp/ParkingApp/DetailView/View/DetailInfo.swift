@@ -4,6 +4,7 @@
 //
 //  Created by vacheslavBook on 21.01.2023.
 //
+// клонирование на GitHub первое приложение
 
 import SwiftUI
 
