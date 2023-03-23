@@ -48,8 +48,13 @@ struct DetailInfo: View {
                                                      from: Date.now)
     
     init(){
-        generateDate()
-        
+        //generateDate()
+        let compon = DateComponents()
+        compon.year = 2023
+        compon.day = 25
+        compon.month = 03
+        let date = calendar.current.dateComponents([.day], from: startDate, to: compon)
+        print(date)
     }
     
     //MARK: Payment
