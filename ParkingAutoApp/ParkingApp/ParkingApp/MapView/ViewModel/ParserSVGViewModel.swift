@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import SVGView
+import SVGView
 
 class ParserSVGViewModel: NSObject, ObservableObject {
     @Published var nodeDict: [NodeId] = [NodeId]()

@@ -26,7 +26,7 @@ struct DetailInfo: View {
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(fetchRequest: Parking.fetchRequest0()) private
     var parking: FetchedResults<Parking>
-    var idPlace: String = ""
+    var idPlace: String
     
     //MARK: ViewModel
     @StateObject var cardDetailViewModel = CardDetailViewModel()
@@ -43,19 +43,7 @@ struct DetailInfo: View {
     @State private var datesComponent: DateComponents = DateComponents()
     
     @Environment(\.calendar) private var calendar
-    
-    let components = Calendar.current.dateComponents([.day],
-                                                     from: Date.now)
-    
-    init(){
-        //generateDate()
-        let compon = DateComponents()
-        compon.year = 2023
-        compon.day = 25
-        compon.month = 03
-        let date = calendar.current.dateComponents([.day], from: startDate, to: compon)
-        print(date)
-    }
+   
     
     //MARK: Payment
     @State private var price = ""
@@ -92,32 +80,26 @@ extension DetailInfo{
     private func dateDetailView()-> some View{
         Section(header: Text("Период парковки")){
             DatePicker ("Оплачено до ", selection: $startDate, in: Date()..., displayedComponents: .date)
-//            MultiDatePicker("Оплачено до ", selection: $dates)
-//            let nextDate = Calendar.current.nextDate(
-//                after: Date.now,
-//                matching: components,
-//                matchingPolicy: .nextTime,
-//                repeatedTimePolicy: .first,
-//                direction: .forward)
-            
-//            let today = Date()
-//            let date = Calendar.current.date(
-//                from: DateComponents(timeZone: TimeZone(abbreviation: "GMT"),
-//                year: 2021, month: 8, day: 2))!
-//            date.distance(to: today)
-//
-//            let _ = print(date)
+                .onChange(of: startDate) { newValue in
+//                    print(newValue)
+                    generateDate(dateStart: Date.now, dateEnd: newValue)
+//                    print(startDate)
+                    print(newValue)
+                }
+//            let _ = print(startDate)
         }
     }
     
-    func generateDate() -> () {
-        let today = Date()
-        let date = Calendar.current.date(
-            from: DateComponents(timeZone: TimeZone(abbreviation: "GMT"),
-            year: 2023, month: 03, day: 25))!
-        let tim = date.distance(to: today)
+    func generateDate(dateStart: Date, dateEnd: Date) -> () {
+//        var diffs = Calendar.current.dateComponents([.day], from: dateStart, to: dateEnd)
+        var diffs = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
+//        print(dateStart)
+        diffs.timeZone = .current
+
+        let _ = print((diffs.day ?? 0) + 2)
         
-        let _ = print(date)
+//        let s = dateStart.distance(to: dateEnd)
+//        let _ = print(diffs)
     }
     
     @ViewBuilder
