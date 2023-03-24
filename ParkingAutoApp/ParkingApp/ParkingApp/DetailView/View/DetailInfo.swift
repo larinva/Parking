@@ -3,12 +3,6 @@
 //  ParkingApp
 //
 //  Created by vacheslavBook on 21.01.2023.
-//
-// клонирование на GitHub первое приложение
-// второй репозиторий для тестирования гитхаба
-// третье обновление репозиторя для теста
-// четвертое обновление
-// пятое обновление
 
 import SwiftUI
 
@@ -22,6 +16,7 @@ func filterPlaceId(idPlace: String, parking: FetchedResults<Parking>)-> [Fetched
 
 struct DetailInfo: View {
     @Environment(\.dismiss) private var dismiss
+    
     //Core Data
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(fetchRequest: Parking.fetchRequest0()) private
@@ -32,18 +27,14 @@ struct DetailInfo: View {
     @StateObject var cardDetailViewModel = CardDetailViewModel()
     
     //MARK: Date
-    @State private var startDate = Date.now
-    @State private var endDate = {
-        var date = Calendar.current.date(byAdding: .day, value: 30, to: Date())
-        
-        return date
-    }()
-    
-    @State private var dates: Set<DateComponents> = []
-    @State private var datesComponent: DateComponents = DateComponents()
-    
     @Environment(\.calendar) private var calendar
-   
+    @State private var startDate = Date.now
+     private var endDate: Date{
+        let end = cardDetailViewModel.data.dateEnd
+        return end
+    }
+    
+
     
     //MARK: Payment
     @State private var price = ""
@@ -79,27 +70,30 @@ extension DetailInfo{
     @ViewBuilder
     private func dateDetailView()-> some View{
         Section(header: Text("Период парковки")){
-            DatePicker ("Оплачено до ", selection: $startDate, in: Date()..., displayedComponents: .date)
+            DatePicker ("Оплачено c ", selection: $startDate, in: Date()..., displayedComponents: .date)
                 .onChange(of: startDate) { newValue in
-//                    print(newValue)
-                    generateDate(dateStart: Date.now, dateEnd: newValue)
-//                    print(startDate)
-                    print(newValue)
+                    cardDetailViewModel.data.date = newValue
                 }
-//            let _ = print(startDate)
+            
+            DatePicker ("Оплачено до ", selection: $cardDetailViewModel.data.dateEnd, in: Date()..., displayedComponents: .date)
+                .onChange(of: endDate) { newValue in
+                    //endDate = newValue
+                    //print(newValue)
+                    let _ = print("\(endDate)")
+                    cardDetailViewModel.data.dateEnd = newValue
+                    generateDate(dateStart: calendar.startOfDay(for: startDate), dateEnd: newValue)
+                }
         }
     }
     
     func generateDate(dateStart: Date, dateEnd: Date) -> () {
-//        var diffs = Calendar.current.dateComponents([.day], from: dateStart, to: dateEnd)
         var diffs = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
-//        print(dateStart)
         diffs.timeZone = .current
 
-        let _ = print((diffs.day ?? 0) + 2)
+        let _ = print((diffs.day ?? 0))
         
-//        let s = dateStart.distance(to: dateEnd)
-//        let _ = print(diffs)
+        let monyDay = ((diffs.day ?? 0))
+        price = String((monyDay) * 100)
     }
     
     @ViewBuilder

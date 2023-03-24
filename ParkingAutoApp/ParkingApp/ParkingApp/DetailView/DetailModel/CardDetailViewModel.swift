@@ -11,10 +11,20 @@ import CoreData
 
 
 class CardDetailViewModel: ObservableObject {
+    @Environment (\.calendar) private var calendar
     @Published var data = CardDetailModel()
 }
 
 extension CardDetailViewModel{
+    func generateDate(dateStart: Date, dateEnd: Date) -> () {
+        var diffs = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
+        diffs.timeZone = .current
+
+        let _ = print((diffs.day ?? 0))
+        
+        let monyDay = ((diffs.day ?? 0))
+        //price = String((monyDay) * 100)
+    }
     
     func loadArendaPlace(idplace: String ,place: FetchedResults<Parking>){
         for item in filterPlaceId(idPlace: idplace, parking: place){
@@ -23,6 +33,8 @@ extension CardDetailViewModel{
                 data.numberFone = item.numberFone
                 data.carBrand = item.carBrand
                 data.numberAuto = item.numberAuto
+                data.date = item.date ?? Date()
+                data.dateEnd = item.dateEnd ?? Date()
             }
         }
     }
@@ -46,6 +58,7 @@ extension CardDetailViewModel{
         parkingItem.carBrand = detailViewModel.data.carBrand
         parkingItem.numberAuto = detailViewModel.data.numberAuto
         parkingItem.date = detailViewModel.data.date
+        parkingItem.dateEnd = detailViewModel.data.dateEnd
         
         parkingItem.places = Places(context: context)
         parkingItem.places.isArenda = true

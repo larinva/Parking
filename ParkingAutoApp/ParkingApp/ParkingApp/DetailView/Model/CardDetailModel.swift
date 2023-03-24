@@ -13,4 +13,5 @@ struct CardDetailModel{
     var carBrand = ""
     var numberAuto = ""
     var date = Date()
+    var dateEnd = Date()
 }

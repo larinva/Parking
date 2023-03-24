@@ -24,6 +24,7 @@ struct AutoView: View {
                         Text("\(String(describing: item.numberAuto))")
                         Text("\(String(describing: item.isArenda))")
                         Text("\(String(describing: item.date?.formatted(date: .long, time: .omitted)))")
+                        Text("\(String(describing: item.dateEnd?.formatted(date: .long, time: .omitted)))")
                     }
                 }.onDelete(perform: deleteItem(index:))
             }

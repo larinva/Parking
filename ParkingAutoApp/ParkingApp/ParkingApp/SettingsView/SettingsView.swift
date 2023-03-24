@@ -32,6 +32,7 @@ struct SettingsView: View {
                     ForEach(places) { place in
                         Text(String(describing: place.idPlace))
                         Text(String(describing: place.isArenda))
+                        Text(String(describing: place.parking_?.date))
                     }
                     .onDelete(perform: deleteItem(index: ))
                 }
