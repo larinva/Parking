@@ -10,16 +10,21 @@ import SwiftUI
 struct PaymentDetailView: View {
     
     //MARK:
-    @State private var picker: Bool = false
+    @State private var isPicker: Bool = false
     
     //MARK: Payment
-    var price: String = "100"
+    var price: String = ""
     
     var body: some View {
         Section(header: Text("Оплата")){
             Text("\(price)")
-            Toggle(isOn: $picker){
-                let _ = print("picker")
+            
+            if isPicker{
+                Text("\(price)")
+            }
+            Toggle(isOn: $isPicker){
+                Text("Оплата за месяц")
+                
             }
         }
     }

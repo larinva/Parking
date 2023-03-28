@@ -26,34 +26,19 @@ struct DetailInfo: View {
     //MARK: ViewModel
     @StateObject var cardDetailViewModel = CardDetailViewModel()
     
-//    //MARK: Date
-//    @Environment(\.calendar) private var calendar
-//    @State private var startDate = Date.now
-//     private var endDate: Date{
-//        let end = cardDetailViewModel.data.dateEnd
-//        return end
-//    }
-    
-
-    
-//    //MARK: Payment
-//    @State private var price = ""
-    
     var body: some View{
             Form{
                 ProfileFotoView(title: idPlace)
-                cardDetailView()
-//                dateDetailView()
+                CardDetailView()
                 DatePickerView(model: cardDetailViewModel)
-//                PaymentDetailView()
             }
-        writeCardDetailView()
+        WriteCardDetailView()
     }
 }
 
 extension DetailInfo{
     @ViewBuilder
-    private func cardDetailView()-> some View{
+    private func CardDetailView()-> some View{
         Section(header: Text("Карточка клиента")){
             TextField("Имя владельца", text: $cardDetailViewModel.data.ovnerAuto)
             TextField("Номер телефона", text: $cardDetailViewModel.data.numberFone)
@@ -68,44 +53,8 @@ extension DetailInfo{
         }
     }
     
-//    @ViewBuilder
-//    private func dateDetailView()-> some View{
-//        Section(header: Text("Период парковки")){
-//            DatePicker ("Оплачено c ", selection: $startDate, in: Date()..., displayedComponents: .date)
-//                .onChange(of: startDate) { newValue in
-//                    cardDetailViewModel.data.date = newValue
-//                }
-//            
-//            DatePicker ("Оплачено до ", selection: $cardDetailViewModel.data.dateEnd, in: Date()..., displayedComponents: .date)
-//                .onChange(of: endDate) { newValue in
-//                    //endDate = newValue
-//                    //print(newValue)
-//                    let _ = print("\(endDate)")
-//                    cardDetailViewModel.data.dateEnd = newValue
-//                    generateDate(dateStart: calendar.startOfDay(for: startDate), dateEnd: newValue)
-//                }
-//        }
-//    }
-//    
-//    func generateDate(dateStart: Date, dateEnd: Date) -> () {
-//        var diffs = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
-//        diffs.timeZone = .current
-//
-//        let _ = print((diffs.day ?? 0))
-//        
-//        let monyDay = ((diffs.day ?? 0))
-//        price = String((monyDay) * 100)
-//    }
-    
-//    @ViewBuilder
-//    private func paymentDetailView()-> some View{
-//        Section(header: Text("Оплата")){
-//            TextField("Стоимость", text: $price)
-//        }
-//    }
-    
     @ViewBuilder
-    private func writeCardDetailView()->some View{
+    private func WriteCardDetailView()->some View{
         HStack{
             Button{
                 filterPlace(isArenda: false)

@@ -38,7 +38,6 @@ struct DatePickerView: View {
             
             DatePicker ("Оплачено до ", selection: $model.data.dateEnd, in: Date()..., displayedComponents: .date)
                 .onChange(of: endDate) { newValue in
-//                    let _ = print("\(cardDetailViewModel.data.dateEnd)")
                     model.data.dateEnd = newValue
                     generateDate(dateStart: calendar.startOfDay(for: startDate), dateEnd: newValue)
                 }
@@ -50,12 +49,10 @@ struct DatePickerView: View {
 
 extension DatePickerView{
     func generateDate(dateStart: Date, dateEnd: Date) -> () {
-        var diffs = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
-        diffs.timeZone = .current
+        var dateComponent = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
+        dateComponent.timeZone = .current
 
-//        let _ = print((diffs.day ?? 0))
-        
-        let monyDay = ((diffs.day ?? 0))
+        let monyDay = ((dateComponent.day ?? 0))
         price = String((monyDay) * 100)
     }
 }
