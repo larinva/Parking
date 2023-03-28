@@ -16,15 +16,6 @@ class CardDetailViewModel: ObservableObject {
 }
 
 extension CardDetailViewModel{
-    func generateDate(dateStart: Date, dateEnd: Date) -> () {
-        var diffs = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
-        diffs.timeZone = .current
-
-        let _ = print((diffs.day ?? 0))
-        
-        let monyDay = ((diffs.day ?? 0))
-        //price = String((monyDay) * 100)
-    }
     
     func loadArendaPlace(idplace: String ,place: FetchedResults<Parking>){
         for item in filterPlaceId(idPlace: idplace, parking: place){
