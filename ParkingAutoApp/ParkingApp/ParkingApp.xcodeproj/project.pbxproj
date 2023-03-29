@@ -14,7 +14,7 @@
 		8067944B299504B400C784B1 /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067944A299504B400C784B1 /* CoreDataExtensions.swift */; };
 		807F2840299DF867003E9B9D /* ParkingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92DF899629915BED0036CBEA /* ParkingApp.xcdatamodeld */; };
 		92A6926529CEF7DF00F22E39 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6926429CEF7DF00F22E39 /* DatePickerView.swift */; };
-		92A6926729CEFC8A00F22E39 /* PaymentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6926629CEFC8A00F22E39 /* PaymentDetailView.swift */; };
+		92A6926729CEFC8A00F22E39 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6926629CEFC8A00F22E39 /* PaymentView.swift */; };
 		92DF898C29915BEC0036CBEA /* ParkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF898B29915BEC0036CBEA /* ParkingApp.swift */; };
 		92DF899029915BED0036CBEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92DF898F29915BED0036CBEA /* Assets.xcassets */; };
 		92DF899329915BED0036CBEA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92DF899229915BED0036CBEA /* Preview Assets.xcassets */; };
@@ -40,7 +40,7 @@
 		80244EE0299CFE6500E9AC96 /* ParserSVGViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserSVGViewModel.swift; sourceTree = "<group>"; };
 		8067944A299504B400C784B1 /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		92A6926429CEF7DF00F22E39 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
-		92A6926629CEFC8A00F22E39 /* PaymentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDetailView.swift; sourceTree = "<group>"; };
+		92A6926629CEFC8A00F22E39 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		92DF898829915BEC0036CBEA /* ParkingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DF898B29915BEC0036CBEA /* ParkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingApp.swift; sourceTree = "<group>"; };
 		92DF898F29915BED0036CBEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,7 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				92DF89AA29915C3B0036CBEA /* DetailInfo.swift */,
-				92A6926629CEFC8A00F22E39 /* PaymentDetailView.swift */,
+				92A6926629CEFC8A00F22E39 /* PaymentView.swift */,
 				92A6926429CEF7DF00F22E39 /* DatePickerView.swift */,
 				92DF89AD29915C3B0036CBEA /* ProfileFotoView.swift */,
 			);
@@ -332,7 +332,7 @@
 			files = (
 				800F95D829C2E61D001DCBED /* CardDetailViewModel.swift in Sources */,
 				8067944B299504B400C784B1 /* CoreDataExtensions.swift in Sources */,
-				92A6926729CEFC8A00F22E39 /* PaymentDetailView.swift in Sources */,
+				92A6926729CEFC8A00F22E39 /* PaymentView.swift in Sources */,
 				80244EE1299CFE6600E9AC96 /* ParserSVGViewModel.swift in Sources */,
 				80244EDF299CD19900E9AC96 /* MapViewExtension.swift in Sources */,
 				92DF89BD299163860036CBEA /* Parking.swift in Sources */,

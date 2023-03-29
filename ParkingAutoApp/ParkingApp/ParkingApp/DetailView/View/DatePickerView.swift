@@ -14,45 +14,49 @@ struct DatePickerView: View {
     var parking: FetchedResults<Parking>
     
     //MARK: ViewModel
-    @StateObject var model: CardDetailViewModel
+    @StateObject var model = CardDetailViewModel()
     
     
     //MARK: Date
     @Environment(\.calendar) private var calendar
-    @State private var startDate = Date.now
+    
+    private var startDate: Date{
+        let date = calendar.startOfDay(for: Date.now)
+        return date
+    }
     
     private var endDate: Date{
         let end = model.data.dateEnd
         return end
     }
     
-    //MARK: Payment
-    @State private var price = ""
+//    //MARK: Payment
+//    @State private var price = ""
     
     var body: some View {
         Section(header: Text("Период парковки")){
-            DatePicker ("Оплачено c ", selection: $startDate, in: Date()..., displayedComponents: .date)
-                .onChange(of: startDate) { newValue in
-                    model.data.date = newValue
-                }
-            
+//            DatePicker ("Оплачено c ", selection: .init(projectedValue: Date.now), in: Date()..., displayedComponents: .date)
+//                .onChange(of: startDate) { newValue in
+//                    model.data.date = newValue
+//                }
+//
             DatePicker ("Оплачено до ", selection: $model.data.dateEnd, in: Date()..., displayedComponents: .date)
                 .onChange(of: endDate) { newValue in
                     model.data.dateEnd = newValue
-                    generateDate(dateStart: calendar.startOfDay(for: startDate), dateEnd: newValue)
+                    PaymentView().generateDate(dateStart: startDate, dateEnd: newValue)
                 }
         }
         
-        PaymentDetailView(price: price)
+        PaymentView()
     }
 }
 
 extension DatePickerView{
-    func generateDate(dateStart: Date, dateEnd: Date) -> () {
-        var dateComponent = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
-        dateComponent.timeZone = .current
-
-        let monyDay = ((dateComponent.day ?? 0))
-        price = String((monyDay) * 100)
-    }
+//    func generateDate(dateStart: Date, dateEnd: Date) -> () {
+//        var dateComponent = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
+//        dateComponent.timeZone = .current
+//
+//        let monyDay = ((dateComponent.day ?? 0))
+////        price = String((monyDay) * 100)
+//    }
 }
