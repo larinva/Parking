@@ -11,20 +11,48 @@ import CoreData
 
 
 class CardDetailViewModel: ObservableObject {
-    @Environment (\.calendar) private var calendar
+    @Environment (\.calendar) var calendar
+    
     @Published var data = CardDetailModel()
+    
+    @Published var price = ""
+    
+    @Published var isPicker: Bool = false
 }
 
 extension CardDetailViewModel{
-    func generateDate(dateStart: Date, dateEnd: Date) -> () {
-        var diffs = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
-        diffs.timeZone = .current
-
-        let _ = print((diffs.day ?? 0))
-        
-        let monyDay = ((diffs.day ?? 0))
-        //price = String((monyDay) * 100)
+    func paymentMonth() -> Date {
+        let dateComponent = calendar.dateComponents([.day], from: .now)
+        let nextDate = calendar.nextDate(after: .now, matching: dateComponent, matchingPolicy: .strict)
+        return nextDate ?? Date()
     }
+    
+    //тот же день следующего месяца
+    func payByDay() -> () {
+        let date = paymentMonth()
+        print(date)
+        price
+    }
+    
+    //оплата за месяц
+    func payOfMonth(){
+        price = "3000"
+    }
+    
+    
+    //оплата по дням
+    func generateDate(dateStart: Date, dateEnd: Date) -> () {
+        var dateComponent = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
+        dateComponent.timeZone = .current
+
+        let monyDay = dateComponent.day ?? 0
+        price = String(monyDay * 100)
+        //print(price)
+    }
+    
+}
+
+extension CardDetailViewModel{
     
     func loadArendaPlace(idplace: String ,place: FetchedResults<Parking>){
         for item in filterPlaceId(idPlace: idplace, parking: place){
