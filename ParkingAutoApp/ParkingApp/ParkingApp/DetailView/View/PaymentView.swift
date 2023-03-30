@@ -16,19 +16,24 @@ struct PaymentView: View {
     @State private var price: String = "0"
     @State private var price0: String = "0"
     
+    var date1: Date
+    var date2: Date
+    
     var body: some View {
         Section(header: Text("Оплата")){
             Text("\(price)")
-            Text("\(price0)")
+//            Text("\(price0)")
             
             Toggle(isOn: $isPicker){
                 Text("Оплата за месяц")
             }
             .onChange(of: isPicker) { newValue in
+                
                 if isPicker{
                     priceMonth()
                 } else{
-                    price = "0"
+                    generateDate(dateStart: date1, dateEnd: date2)
+//                    price = "0"
                 }
             }
         }
@@ -53,8 +58,8 @@ struct PaymentView: View {
         dateComponent.timeZone = .current
 
         let monyDay = dateComponent.day ?? 0
-        price0 = String(monyDay * 100)
-        print(price0)
+        price = String(monyDay * 100)
+        print(price)
     }
     
     func tttttt() -> () {

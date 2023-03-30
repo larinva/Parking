@@ -30,6 +30,8 @@ struct DatePickerView: View {
         return end
     }
     
+    @State private var date3 = Date.now
+    
 //    //MARK: Payment
 //    @State private var price = ""
     
@@ -42,12 +44,14 @@ struct DatePickerView: View {
 //
             DatePicker ("Оплачено до ", selection: $model.data.dateEnd, in: Date()..., displayedComponents: .date)
                 .onChange(of: endDate) { newValue in
+                    model.data.date = startDate
                     model.data.dateEnd = newValue
-                    PaymentView().generateDate(dateStart: startDate, dateEnd: newValue)
+                    date3 = newValue
+                    PaymentView(date1: startDate, date2: endDate).generateDate(dateStart: startDate, dateEnd: newValue)
                 }
         }
         
-        PaymentView()
+        PaymentView(date1: startDate, date2: date3)
     }
 }
 
