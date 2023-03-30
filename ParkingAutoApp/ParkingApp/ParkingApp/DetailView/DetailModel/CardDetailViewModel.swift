@@ -11,7 +11,10 @@ import CoreData
 
 
 class CardDetailViewModel: ObservableObject {
-    @Environment (\.calendar) var calendar
+    
+    @Published var calendar = Calendar.current
+  
+    @Published var datePicker = Date.now
     
     @Published var data = CardDetailModel()
     
@@ -21,35 +24,28 @@ class CardDetailViewModel: ObservableObject {
 }
 
 extension CardDetailViewModel{
-    func paymentMonth() -> Date {
+    //тот же день следующего месяца
+    func nextDayMonth() -> Date {
         let dateComponent = calendar.dateComponents([.day], from: .now)
         let nextDate = calendar.nextDate(after: .now, matching: dateComponent, matchingPolicy: .strict)
         return nextDate ?? Date()
     }
     
-    //тот же день следующего месяца
-    func payByDay() -> () {
-        let date = paymentMonth()
-        print(date)
-        price
-    }
-    
     //оплата за месяц
-    func payOfMonth(){
+    func payOfMonth()->String{
         price = "3000"
+        return price
     }
     
     
     //оплата по дням
-    func generateDate(dateStart: Date, dateEnd: Date) -> () {
+    func payByDay(dateStart: Date, dateEnd: Date) -> () {
         var dateComponent = calendar.dateComponents([.day], from: dateStart, to: dateEnd)
         dateComponent.timeZone = .current
 
         let monyDay = dateComponent.day ?? 0
         price = String(monyDay * 100)
-        //print(price)
     }
-    
 }
 
 extension CardDetailViewModel{
@@ -61,6 +57,8 @@ extension CardDetailViewModel{
                 data.numberFone = item.numberFone
                 data.carBrand = item.carBrand
                 data.numberAuto = item.numberAuto
+                data.isDatePicker = item.isDatePicker
+                data.price = item.price
                 data.date = item.date ?? Date()
                 data.dateEnd = item.dateEnd ?? Date()
             }
@@ -80,19 +78,21 @@ extension CardDetailViewModel{
 
 extension CardDetailViewModel{
     func addItem(idplace: String, detailViewModel: CardDetailViewModel, context: NSManagedObjectContext){
-        let parkingItem = Parking(context: context)
-        parkingItem.ovnerAuto = detailViewModel.data.ovnerAuto //ovnerAuto
-        parkingItem.numberFone = detailViewModel.data.numberFone
-        parkingItem.carBrand = detailViewModel.data.carBrand
-        parkingItem.numberAuto = detailViewModel.data.numberAuto
-        parkingItem.date = detailViewModel.data.date
-        parkingItem.dateEnd = detailViewModel.data.dateEnd
-        
-        parkingItem.places = Places(context: context)
-        parkingItem.places.isArenda = true
-        parkingItem.places.idPlace = idplace
-        parkingItem.idPlace = idplace
-        parkingItem.isArenda = true
+        let newPlace = Parking(context: context)
+        newPlace.ovnerAuto = detailViewModel.data.ovnerAuto
+        newPlace.numberFone = detailViewModel.data.numberFone
+        newPlace.carBrand = detailViewModel.data.carBrand
+        newPlace.numberAuto = detailViewModel.data.numberAuto
+        newPlace.price = detailViewModel.price
+        newPlace.isDatePicker = detailViewModel.isPicker
+        newPlace.date = detailViewModel.data.date
+        newPlace.dateEnd = detailViewModel.data.dateEnd
+
+        newPlace.places = Places(context: context)
+        newPlace.places.isArenda = true
+        newPlace.places.idPlace = idplace
+        newPlace.idPlace = idplace
+        newPlace.isArenda = true
         
         context.saveContext()
     }

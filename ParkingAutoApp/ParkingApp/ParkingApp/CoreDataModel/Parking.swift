@@ -41,6 +41,11 @@ extension Parking: Comparable{
         set{ places_ = newValue }
     }
     
+    var price: String{
+        get{ price_ ?? "" }
+        set{ price_ = newValue }
+    }
+    
     public static func < (lhs: Parking, rhs: Parking) -> Bool {
         lhs.ovnerAuto < rhs.ovnerAuto
     }

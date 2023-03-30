@@ -12,6 +12,8 @@ struct CardDetailModel{
     var numberFone = ""
     var carBrand = ""
     var numberAuto = ""
+    var isDatePicker = Bool()
+    var price = ""
     var date = Date()
     var dateEnd = Date()
 }

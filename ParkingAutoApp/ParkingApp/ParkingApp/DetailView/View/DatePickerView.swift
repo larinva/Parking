@@ -26,7 +26,7 @@ struct DatePickerView: View {
         return end
     }
     
-    @State private var dddd = Date.now
+    @State private var datePicker = Date.now
     
     var body: some View {
         
@@ -35,43 +35,42 @@ struct DatePickerView: View {
 //                .onChange(of: startDate) { newValue in
 //                    model.data.date = newValue
 //                }
-//
-            if !model.isPicker{
-                DatePicker ("Оплачено до ", selection: $model.data.dateEnd, in: Date()..., displayedComponents: .date)
-                    .onChange(of: endDate) { newValue in
-                        model.data.date = startDate
-                        model.data.dateEnd = newValue
-                        model.generateDate(dateStart: startDate, dateEnd: newValue)
-                    }
-            }
-            else{
-                DatePicker ("Оплачено до ", selection: $dddd , in: Date()..., displayedComponents: .date)
-                    .onChange(of: endDate) { newValue in
-                        model.data.date = startDate
-                        model.data.dateEnd = newValue
-                        model.generateDate(dateStart: startDate, dateEnd: newValue)
-                    }
-            }
+
+            DatePicker ("Оплачено до ", selection: model.isPicker ? $model.datePicker : $model.data.dateEnd, in: Date()..., displayedComponents: .date)
+                .onChange(of: endDate) { newValue in
+                    model.data.date = startDate
+                    model.data.dateEnd = newValue
+                    model.price = model.payOfMonth()
+//                    model.data.isDatePicker = model.isPicker
+                    model.payByDay(dateStart: startDate, dateEnd: newValue)
+                }
         }
-        Pay()
+        TogglePayView()
     }
     
     
-    func Pay() -> some View{
+    func TogglePayView() -> some View{
         Section(header: Text("Оплата")){
             Text("\(model.price)")
             
             Toggle(isOn: $model.isPicker){
                 Text("Оплата за месяц")
-                Text("\(model.paymentMonth())")
+                Text("\(model.nextDayMonth())")
             }
             .onChange(of: model.isPicker) { newValue in
-                dddd = model.paymentMonth()
+//                model.datePicker = model.nextDayMonth()
+//                model.price = model.payOfMonth()
+             
                 if model.isPicker{
-                    model.payOfMonth()
+                    model.datePicker = model.nextDayMonth()
+                    model.price = model.payOfMonth()
+//                    model.data.isDatePicker = newValue
                 } else{
-                    model.price = "0"
+                    model.payByDay(dateStart: startDate, dateEnd: endDate)
                 }
+            }
+            .onAppear{
+                model.isPicker = model.data.isDatePicker
             }
         }
     }
