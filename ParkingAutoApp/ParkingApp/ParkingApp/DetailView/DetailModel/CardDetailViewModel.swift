@@ -21,6 +21,7 @@ class CardDetailViewModel: ObservableObject {
     @Published var price = ""
     
     @Published var isPicker: Bool = false
+    
 }
 
 extension CardDetailViewModel{

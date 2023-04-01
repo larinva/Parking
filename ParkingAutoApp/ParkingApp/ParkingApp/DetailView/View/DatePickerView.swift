@@ -28,22 +28,30 @@ struct DatePickerView: View {
     
     @State private var datePicker = Date.now
     
+    
     var body: some View {
         
         Section(header: Text("Период парковки")){
-//            DatePicker ("Оплачено c ", selection: .init(projectedValue: Date.now), in: Date()..., displayedComponents: .date)
-//                .onChange(of: startDate) { newValue in
-//                    model.data.date = newValue
-//                }
-
-            DatePicker ("Оплачено до ", selection: model.isPicker ? $model.datePicker : $model.data.dateEnd, in: Date()..., displayedComponents: .date)
+            //            DatePicker ("Оплачено c ", selection: .init(projectedValue: Date.now), in: Date()..., displayedComponents: .date)
+            //                .onChange(of: startDate) { newValue in
+            //                    model.data.date = newValue
+            //                }
+            if model.isPicker{
+                
+                Text("Оплачено до \(model.nextDayMonth())")
+                
+            } else{
+                
+                DatePicker ("Оплачено до ", selection: model.isPicker ? $model.datePicker : $model.data.dateEnd, in: Date()..., displayedComponents: .date)
                 .onChange(of: endDate) { newValue in
                     model.data.date = startDate
                     model.data.dateEnd = newValue
                     model.price = model.payOfMonth()
 //                    model.data.isDatePicker = model.isPicker
                     model.payByDay(dateStart: startDate, dateEnd: newValue)
+                    
                 }
+        }
         }
         TogglePayView()
     }
@@ -55,7 +63,7 @@ struct DatePickerView: View {
             
             Toggle(isOn: $model.isPicker){
                 Text("Оплата за месяц")
-                Text("\(model.nextDayMonth())")
+                //Text("\(model.nextDayMonth())")
             }
             .onChange(of: model.isPicker) { newValue in
 //                model.datePicker = model.nextDayMonth()
