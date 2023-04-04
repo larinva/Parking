@@ -26,6 +26,7 @@ struct AutoView: View {
                         Text("Picker \(String(describing: item.isDatePicker))")
                         Text("\(String(describing: item.date?.formatted(date: .long, time: .omitted)))")
                         Text("\(String(describing: item.dateEnd?.formatted(date: .long, time: .omitted)))")
+                        let _ = print(item.dateEnd ?? "")
                     }
                 }.onDelete(perform: deleteItem(index:))
             }

@@ -39,7 +39,8 @@ struct DatePickerView: View {
             DatePicker ("Оплачено до ", selection: model.isPicker ? $model.datePicker : $model.data.dateEnd, in: Date()..., displayedComponents: .date)
                 .onChange(of: endDate) { newValue in
                     model.data.date = startDate
-                    model.data.dateEnd = newValue
+//                    model.data.dateEnd = newValue
+//                    print("0000000000000000 \(model.data.dateEnd)")
                     model.price = model.payOfMonth()
 //                    model.data.isDatePicker = model.isPicker
                     model.payByDay(dateStart: startDate, dateEnd: newValue)
@@ -58,13 +59,10 @@ struct DatePickerView: View {
                 Text("\(model.nextDayMonth())")
             }
             .onChange(of: model.isPicker) { newValue in
-//                model.datePicker = model.nextDayMonth()
-//                model.price = model.payOfMonth()
-             
                 if model.isPicker{
                     model.datePicker = model.nextDayMonth()
                     model.price = model.payOfMonth()
-//                    model.data.isDatePicker = newValue
+                    model.data.dateEnd = model.nextDayMonth()
                 } else{
                     model.payByDay(dateStart: startDate, dateEnd: endDate)
                 }
