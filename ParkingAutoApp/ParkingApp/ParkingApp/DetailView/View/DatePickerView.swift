@@ -33,10 +33,7 @@ struct DatePickerView: View {
     var body: some View {
         
         Section(header: Text("Период парковки")){
-            //            DatePicker ("Оплачено c ", selection: .init(projectedValue: Date.now), in: Date()..., displayedComponents: .date)
-            //                .onChange(of: startDate) { newValue in
-            //                    model.data.date = newValue
-            //                }
+            
             if model.isPicker{
                 
                 Text("Оплачено до \(model.nextDayMonth())")
@@ -46,10 +43,10 @@ struct DatePickerView: View {
                 DatePicker ("Оплачено до ", selection: model.isPicker ? $model.datePicker : $model.data.dateEnd, in: Date()..., displayedComponents: .date)
                 .onChange(of: endDate) { newValue in
                     model.data.date = startDate
-//                    model.data.dateEnd = newValue
-//                    print("0000000000000000 \(model.data.dateEnd)")
+                    model.data.dateEnd = newValue
+//                    model.datePicker = startDate
+//                    print(startDate)
                     model.price = model.payOfMonth()
-//                    model.data.isDatePicker = model.isPicker
                     model.payByDay(dateStart: startDate, dateEnd: newValue)
                     
                 }
@@ -58,6 +55,7 @@ struct DatePickerView: View {
         TogglePayView()
     }
     
+    /// не устанавливается текущая дата после переключения toggle
     
     func TogglePayView() -> some View{
         Section(header: Text("Оплата")){
@@ -65,15 +63,16 @@ struct DatePickerView: View {
             
             Toggle(isOn: $model.isPicker){
                 Text("Оплата за месяц")
-                //Text("\(model.nextDayMonth())")
             }
             .onChange(of: model.isPicker) { newValue in
                 if model.isPicker{
-                    model.datePicker = model.nextDayMonth()
+//                    model.datePicker = model.nextDayMonth()
                     model.price = model.payOfMonth()
-                    model.data.dateEnd = model.nextDayMonth()
+//                    model.data.dateEnd = model.nextDayMonth()
                 } else{
-                    model.payByDay(dateStart: startDate, dateEnd: endDate)
+//                    model.payByDay(dateStart: startDate, dateEnd: endDate)
+                    model.datePicker = startDate
+                    print("off \(startDate)")
                 }
             }
             .onAppear{
