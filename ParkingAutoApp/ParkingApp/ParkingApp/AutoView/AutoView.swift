@@ -12,26 +12,41 @@ struct AutoView: View {
     @FetchRequest(fetchRequest: Parking.fetchRequest0())
     private var parking: FetchedResults<Parking>
 
+    @State private var isDetailInfo: Bool = false
     
     var body: some View {
         NavigationStack{
             List{
-                ForEach(parking) { item in
+                ForEach(parking) { place in
                     VStack(alignment: .leading){
-                        Text("\(String(describing: item.ovnerAuto))")
-                        Text("\(String(describing: item.numberFone))")
-                        Text("\(String(describing: item.carBrand))")
-                        Text("\(String(describing: item.numberAuto))")
-                        Text("\(String(describing: item.isArenda))")
-                        Text("Picker \(String(describing: item.isDatePicker))")
-                        Text("\(String(describing: item.date?.formatted(date: .long, time: .omitted)))")
-                        Text("\(String(describing: item.dateEnd?.formatted(date: .long, time: .omitted)))")
-                        let _ = print(item.dateEnd ?? "")
+                        NavigationLink(value: place){
+                            VStack(alignment: .leading){
+                                Text("Парковочное место " + (place.idPlace ?? ""))
+                                isArenda(element: place.isArenda)
+                            }
+                        }
                     }
+                    
                 }.onDelete(perform: deleteItem(index:))
+            }//List
+            .navigationDestination(for: Parking.self) { place in
+                DetailInfo(idPlace: place.idPlace ?? "" )
             }
+        
         }
         .navigationTitle("Auto View")
+    }
+    
+    private func isArenda(element: Bool)-> some View{
+        return VStack{
+            if element{
+                Text("В аренде")
+                    .foregroundColor(.green)
+            }else{
+                Text("Свободен")
+                    .foregroundColor(.red)
+            }
+        }
     }
     
     private func deleteItem(index: IndexSet){

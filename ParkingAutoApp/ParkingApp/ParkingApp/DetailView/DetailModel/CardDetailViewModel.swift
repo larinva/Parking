@@ -26,15 +26,18 @@ class CardDetailViewModel: ObservableObject {
 
 extension CardDetailViewModel{
     //тот же день следующего месяца
-    func nextDayMonth() -> Date {
+    func nextDayMonth() -> String {
         let dateComponent = calendar.dateComponents([.day], from: .now)
         let nextDate = calendar.nextDate(after: .now, matching: dateComponent, matchingPolicy: .strict)
-        return nextDate ?? Date()
+       
+        let formatted = nextDate?.formatted(date: .abbreviated, time: .omitted)
+        
+        return formatted ?? ""
     }
     
     //оплата за месяц
     func payOfMonth()->String{
-        price = "3000"
+        price = ("3 000₽")
         return price
     }
     
@@ -45,7 +48,7 @@ extension CardDetailViewModel{
         dateComponent.timeZone = .current
 
         let monyDay = dateComponent.day ?? 0
-        price = String(monyDay * 100)
+        price = String(monyDay * 100) + "₽"
     }
 }
 

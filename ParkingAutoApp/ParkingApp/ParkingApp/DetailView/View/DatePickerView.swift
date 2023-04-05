@@ -35,11 +35,20 @@ struct DatePickerView: View {
         Section(header: Text("Период парковки")){
             
             if model.isPicker{
-                
-                Text("Оплачено до \(model.nextDayMonth())")
-                
+                HStack{
+                    Text("Оплачено до ")
+                    Spacer()
+                    VStack{
+                        Text("\(model.nextDayMonth())")
+                    }
+                    .edgesIgnoringSafeArea(.all)
+                    .foregroundColor(.primary)
+                        .padding([.horizontal], 12)
+                        .padding(.vertical, 6)
+                        .background(.gray.opacity(0.2))
+                        .cornerRadius(5)
+                }
             } else{
-                
                 DatePicker ("Оплачено до ", selection: model.isPicker ? $model.datePicker : $model.data.dateEnd, in: Date()..., displayedComponents: .date)
                 .onChange(of: endDate) { newValue in
                     model.data.date = startDate
@@ -48,14 +57,11 @@ struct DatePickerView: View {
 //                    print(startDate)
                     model.price = model.payOfMonth()
                     model.payByDay(dateStart: startDate, dateEnd: newValue)
-                    
                 }
         }
         }
         TogglePayView()
     }
-    
-    /// не устанавливается текущая дата после переключения toggle
     
     func TogglePayView() -> some View{
         Section(header: Text("Оплата")){
@@ -70,7 +76,7 @@ struct DatePickerView: View {
                     model.price = model.payOfMonth()
 //                    model.data.dateEnd = model.nextDayMonth()
                 } else{
-//                    model.payByDay(dateStart: startDate, dateEnd: endDate)
+                    model.payByDay(dateStart: startDate, dateEnd: endDate)
                     model.datePicker = startDate
                     print("off \(startDate)")
                 }
