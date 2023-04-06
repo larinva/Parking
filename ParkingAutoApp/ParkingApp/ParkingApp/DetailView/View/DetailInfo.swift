@@ -13,6 +13,11 @@ func filterPlaceId(idPlace: String, parking: FetchedResults<Parking>)-> [Fetched
     return filter
 }
 
+//func filterPlaceId0<T>(idPlace: String, parking: FetchedResults<T>)-> [FetchedResults<T>.Element]{
+//    let filter = parking.filter{ $0 as! String == idPlace.debugDescription }
+//    return filter
+//}
+
 
 struct DetailInfo: View {
     @Environment(\.dismiss) private var dismiss
@@ -29,9 +34,9 @@ struct DetailInfo: View {
     
     var body: some View{
             Form{
-                ProfileFotoView(title: idPlace)
+                ProfileFotoView(title: idPlace, status: statusArenda)
                 CardDetailView()
-                //DatePickerView(model: cardDetailViewModel)
+                DatePickerView(model: cardDetailViewModel)
             }
         WriteCardDetailView()
     }
@@ -58,15 +63,14 @@ extension DetailInfo{
     private func WriteCardDetailView()->some View{
         HStack{
             arendaPlaceButton(isArenda: false, color: .red)
-            .overlay {
-                isComplete()
-            }
-            
+                .overlay {
+                    isComplete()
+                }
             if !statusArenda{
                 arendaPlaceButton(isArenda: true, color: .green)
-                .overlay {
-                    isExtend()
-                }
+                    .overlay {
+                        isExtend()
+                    }
             }
         }
         .padding()

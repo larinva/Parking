@@ -16,30 +16,13 @@ extension MapView{
     
     private func viewSheet()->some View{
         return view.sheet(isPresented: $isDragging) {
-            
-            //if places.last?.isArenda == true{
-                
-                let filter = places.filter{ $0.idPlace == parsesMapViewModel.nodeTag }
-                
-                if let filter = filter.last {
-                    
-                    if filter.isArenda {
-                        let _ = print("Место занято!!!")
-     
-                        DetailInfo(idPlace: parsesMapViewModel.nodeTag, statusArenda: true)
-                    }
-                    
-                }else{
-                    
-                    let _ = print("Место свободно!!!")
+            let filter = places.filter{ $0.idPlace == parsesMapViewModel.nodeTag }
 
-                    DetailInfo(idPlace: parsesMapViewModel.nodeTag, statusArenda: false)
-                }
-                
-                //let _ = print("-------------")
-                
-                //DetailInfo(idPlace: parsesMapViewModel.nodeTag, statusArenda: false)
-            //}
+                if filter.first?.isArenda == true{
+                    DetailInfo(idPlace: parsesMapViewModel.nodeTag, statusArenda: true)
+            }else {
+                DetailInfo(idPlace: parsesMapViewModel.nodeTag, statusArenda: false)
+            }            
         }
     }
 }
