@@ -81,27 +81,26 @@ extension CardDetailViewModel{
 }
 
 extension CardDetailViewModel{
-    func addItem(idplace: String, detailViewModel: CardDetailViewModel, context: NSManagedObjectContext){
+    func addItem(idplace: String, context: NSManagedObjectContext){
         let newPlace = Parking(context: context)
-        newPlace.ovnerAuto = detailViewModel.data.ovnerAuto
-        newPlace.numberFone = detailViewModel.data.numberFone
-        newPlace.carBrand = detailViewModel.data.carBrand
-        newPlace.numberAuto = detailViewModel.data.numberAuto
-        newPlace.price = detailViewModel.price
-        newPlace.isDatePicker = detailViewModel.isPicker
-        newPlace.date = detailViewModel.data.date
-        newPlace.dateEnd = detailViewModel.data.dateEnd
-
-        newPlace.places = Places(context: context)
-        newPlace.places.isArenda = true
-        newPlace.places.idPlace = idplace
-        newPlace.idPlace = idplace
-        newPlace.isArenda = true
-        
-        context.saveContext()
+            newPlace.ovnerAuto = data.ovnerAuto
+            newPlace.numberFone = data.numberFone
+            newPlace.carBrand = data.carBrand
+            newPlace.numberAuto = data.numberAuto
+            newPlace.price = price
+            newPlace.isDatePicker = isPicker
+            newPlace.date = data.date
+            newPlace.dateEnd = data.dateEnd
+            
+            newPlace.places = Places(context: context)
+            newPlace.places.isArenda = true
+            newPlace.places.idPlace = idplace
+            newPlace.idPlace = idplace
+            newPlace.isArenda = true
+            
+            context.saveContext()
     }
-    
-    
+   
     func deleteAllItem(parking: FetchedResults<Parking>, context: NSManagedObjectContext){
         for item in parking{
             context.delete(item)

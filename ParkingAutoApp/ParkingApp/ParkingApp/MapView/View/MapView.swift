@@ -17,6 +17,7 @@ struct MapView: View {
     @ObservedObject var parsesMapViewModel = ParserSVGViewModel()
 
     @State var isDragging = false
+    @State var isAlert: Bool = false
     
     var view: SVGView!
    

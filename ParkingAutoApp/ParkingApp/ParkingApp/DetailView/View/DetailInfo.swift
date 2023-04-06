@@ -22,6 +22,7 @@ struct DetailInfo: View {
     @FetchRequest(fetchRequest: Parking.fetchRequest0()) private
     var parking: FetchedResults<Parking>
     var idPlace: String
+    var statusArenda: Bool
     
     //MARK: ViewModel
     @StateObject var cardDetailViewModel = CardDetailViewModel()
@@ -30,7 +31,7 @@ struct DetailInfo: View {
             Form{
                 ProfileFotoView(title: idPlace)
                 CardDetailView()
-                DatePickerView(model: cardDetailViewModel)
+                //DatePickerView(model: cardDetailViewModel)
             }
         WriteCardDetailView()
     }
@@ -56,42 +57,58 @@ extension DetailInfo{
     @ViewBuilder
     private func WriteCardDetailView()->some View{
         HStack{
-            Button{
-                filterPlace(isArenda: false)
-            } label: {
-                Capsule(style: .circular)
-                    .fill(.red)
-                    .frame(width: size.width * 0.40, height: 40)
-            }
+            arendaPlaceButton(isArenda: false, color: .red)
             .overlay {
-                Text("Завершить")
-                    .foregroundColor(.white)
+                isComplete()
             }
             
-            Button{
-                filterPlace(isArenda: true)
-                addItem()
-                dismiss()
-            } label: {
-                Capsule(style: .circular)
-                    .fill(.green)
-                    .frame(width: size.width * 0.40, height: 40)
-            }
-            .overlay {
-                if cardDetailViewModel.isHiddenLabel(id: idPlace, parking: parking){
-                    Text("Арендовать")
-                        .foregroundColor(.white)
-                } else{
-                    Text("Продлить")
-                        .foregroundColor(.white)
+            if !statusArenda{
+                arendaPlaceButton(isArenda: true, color: .green)
+                .overlay {
+                    isExtend()
                 }
             }
         }
         .padding()
     }
+    
+    private func arendaPlaceButton(isArenda: Bool, color: Color)->some View{
+        Button{
+            if isArenda {
+                filterPlace(isArenda: isArenda)
+                addItem()
+            } else{
+                filterPlace(isArenda: isArenda)
+            }
+        } label: {
+            Capsule(style: .circular)
+                .fill(color)
+                .frame(width: size.width * 0.40, height: 40)
+        }
+    }
+    
+    private func isExtend()-> some View{
+        return VStack{
+            if cardDetailViewModel.isHiddenLabel(id: idPlace, parking: parking){
+                Text("Арендовать")
+                    .foregroundColor(.white)
+            } else{
+                Text("Продлить")
+                    .foregroundColor(.white)
+            }
+        }
+    }
+    
+    private func isComplete()-> some View{
+        return VStack{
+            Text("Завершить")
+                .foregroundColor(.white)
+        }
+    }
 }
 
 extension DetailInfo{
+    
     private func filterPlace(isArenda: Bool){
         for item in filterPlaceId(idPlace: idPlace, parking: parking){
             item.isArenda = isArenda
@@ -104,7 +121,6 @@ extension DetailInfo{
         withAnimation {
             cardDetailViewModel.addItem(
                 idplace: idPlace,
-                detailViewModel: cardDetailViewModel,
                 context: viewContext
             )
         }
