@@ -14,7 +14,7 @@ struct MapView: View {
     @Environment(\.managedObjectContext) var viewContext
     @FetchRequest(fetchRequest: Places.fetchRequest1()) var places: FetchedResults<Places>
     
-    @ObservedObject var parsesMapViewModel = ParserSVGViewModel()
+    @ObservedObject var parserMapViewModel = ParserSVGViewModel()
 
     @State var isDragging = false
     @State var isAlert: Bool = false

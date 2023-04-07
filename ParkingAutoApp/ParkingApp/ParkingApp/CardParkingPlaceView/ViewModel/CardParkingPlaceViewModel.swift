@@ -10,13 +10,13 @@ import SwiftUI
 import CoreData
 
 
-class CardDetailViewModel: ObservableObject {
+class CardParkingPlaceViewModel: ObservableObject {
     
     @Published var calendar = Calendar.current
   
     @Published var datePicker = Date.now
     
-    @Published var data = CardDetailModel()
+    @Published var data = CardParkingPlaceModel()
     
     @Published var price = ""
     
@@ -24,7 +24,7 @@ class CardDetailViewModel: ObservableObject {
     
 }
 
-extension CardDetailViewModel{
+extension CardParkingPlaceViewModel{
     //тот же день следующего месяца
     func nextDayMonth() -> String {
         let dateComponent = calendar.dateComponents([.day], from: .now)
@@ -52,7 +52,7 @@ extension CardDetailViewModel{
     }
 }
 
-extension CardDetailViewModel{
+extension CardParkingPlaceViewModel{
     
     func loadArendaPlace(idplace: String ,place: FetchedResults<Parking>){
         for item in filterPlaceId(idPlace: idplace, parking: place){
@@ -80,7 +80,7 @@ extension CardDetailViewModel{
     }
 }
 
-extension CardDetailViewModel{
+extension CardParkingPlaceViewModel{
     func addItem(idplace: String, context: NSManagedObjectContext){
         let newPlace = Parking(context: context)
             newPlace.ovnerAuto = data.ovnerAuto

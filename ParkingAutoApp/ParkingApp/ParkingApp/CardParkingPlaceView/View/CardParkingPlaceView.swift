@@ -13,13 +13,7 @@ func filterPlaceId(idPlace: String, parking: FetchedResults<Parking>)-> [Fetched
     return filter
 }
 
-//func filterPlaceId0<T>(idPlace: String, parking: FetchedResults<T>)-> [FetchedResults<T>.Element]{
-//    let filter = parking.filter{ $0 as! String == idPlace.debugDescription }
-//    return filter
-//}
-
-
-struct DetailInfo: View {
+struct CardParkingPlaceView: View {
     @Environment(\.dismiss) private var dismiss
     
     //Core Data
@@ -27,24 +21,25 @@ struct DetailInfo: View {
     @FetchRequest(fetchRequest: Parking.fetchRequest0()) private
     var parking: FetchedResults<Parking>
     var idPlace: String
-    var statusArenda: Bool
+    var isStatusArenda: Bool
+    @State private var isAlertw: Bool = false
     
     //MARK: ViewModel
-    @StateObject var cardDetailViewModel = CardDetailViewModel()
+    @StateObject var cardDetailViewModel = CardParkingPlaceViewModel()
     
     var body: some View{
             Form{
-                ProfileFotoView(title: idPlace, status: statusArenda)
-                CardDetailView()
+                ProfileFotoView(title: idPlace, status: isStatusArenda)
+                InfoClientSectionView()
                 DatePickerView(model: cardDetailViewModel)
             }
         WriteCardDetailView()
     }
 }
 
-extension DetailInfo{
+extension CardParkingPlaceView{
     @ViewBuilder
-    private func CardDetailView()-> some View{
+    private func InfoClientSectionView()-> some View{
         Section(header: Text("Карточка клиента")){
             TextField("Имя владельца", text: $cardDetailViewModel.data.ovnerAuto)
             TextField("Номер телефона", text: $cardDetailViewModel.data.numberFone)
@@ -66,7 +61,8 @@ extension DetailInfo{
                 .overlay {
                     isComplete()
                 }
-            if !statusArenda{
+
+            if !isStatusArenda{
                 arendaPlaceButton(isArenda: true, color: .green)
                     .overlay {
                         isExtend()
@@ -88,6 +84,9 @@ extension DetailInfo{
             Capsule(style: .circular)
                 .fill(color)
                 .frame(width: size.width * 0.40, height: 40)
+        }
+        .alert(isPresented: $isAlertw) {
+            Alert(title: Text("1234654"), message: Text("12316454"))
         }
     }
     
@@ -111,7 +110,7 @@ extension DetailInfo{
     }
 }
 
-extension DetailInfo{
+extension CardParkingPlaceView{
     
     private func filterPlace(isArenda: Bool){
         for item in filterPlaceId(idPlace: idPlace, parking: parking){

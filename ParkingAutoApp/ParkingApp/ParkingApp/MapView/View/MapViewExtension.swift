@@ -16,13 +16,11 @@ extension MapView{
     
     private func viewSheet()->some View{
         return view.sheet(isPresented: $isDragging) {
-            let filter = places.filter{ $0.idPlace == parsesMapViewModel.nodeTag }
-
-                if filter.first?.isArenda == true{
-                    DetailInfo(idPlace: parsesMapViewModel.nodeTag, statusArenda: true)
-            }else {
-                DetailInfo(idPlace: parsesMapViewModel.nodeTag, statusArenda: false)
-            }            
+            
+            CardParkingPlaceView(
+                idPlace: parserMapViewModel.nodeTag,
+                isStatusArenda: isStatusArendaPlace() ? true : false
+            )
         }
     }
 }
@@ -39,6 +37,12 @@ extension MapView{
 
 extension MapView{
     
+    func isStatusArendaPlace() -> Bool {
+        let filter = places.filter{ $0.idPlace == parserMapViewModel.nodeTag }
+       
+        return filter.first?.isArenda == true
+    }
+    
     func selectedNode() {
         if places.isEmpty{
             print("base no")
@@ -49,7 +53,7 @@ extension MapView{
     }
     
     private func setNode() -> () {
-        for node in parsesMapViewModel.nodeDict{
+        for node in parserMapViewModel.nodeDict{
             onTapNode(nodeTag: node.ids ?? "")
         }
     }
@@ -69,7 +73,7 @@ extension MapView{
     private func selectedNodeColor(nodeTag : String) {
         if let shape = view.getNode(byId: nodeTag) as? SVGShape {
             shape.fill = SVGColor(r: 223, g: 35, b: 35, opacity: 1)
-            parsesMapViewModel.nodeTag = nodeTag
+            parserMapViewModel.nodeTag = nodeTag
         }
     }
     

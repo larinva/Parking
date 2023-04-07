@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		800F95D529C2E5E4001DCBED /* CardDetailModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800F95D429C2E5E4001DCBED /* CardDetailModel.swift */; };
-		800F95D829C2E61D001DCBED /* CardDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800F95D729C2E61D001DCBED /* CardDetailViewModel.swift */; };
+		800F95D529C2E5E4001DCBED /* CardParkingPlaceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800F95D429C2E5E4001DCBED /* CardParkingPlaceModel.swift */; };
+		800F95D829C2E61D001DCBED /* CardParkingPlaceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800F95D729C2E61D001DCBED /* CardParkingPlaceViewModel.swift */; };
 		80244EDF299CD19900E9AC96 /* MapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80244EDE299CD19900E9AC96 /* MapViewExtension.swift */; };
 		80244EE1299CFE6600E9AC96 /* ParserSVGViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80244EE0299CFE6500E9AC96 /* ParserSVGViewModel.swift */; };
 		8067944B299504B400C784B1 /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067944A299504B400C784B1 /* CoreDataExtensions.swift */; };
@@ -20,7 +20,7 @@
 		92DF899529915BED0036CBEA /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF899429915BED0036CBEA /* Persistence.swift */; };
 		92DF89A429915C300036CBEA /* NodeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF89A029915C300036CBEA /* NodeModel.swift */; };
 		92DF89A629915C300036CBEA /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF89A229915C300036CBEA /* MapView.swift */; };
-		92DF89B029915C3B0036CBEA /* DetailInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF89AA29915C3B0036CBEA /* DetailInfo.swift */; };
+		92DF89B029915C3B0036CBEA /* CardParkingPlaceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF89AA29915C3B0036CBEA /* CardParkingPlaceView.swift */; };
 		92DF89B329915C3B0036CBEA /* ProfileFotoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF89AD29915C3B0036CBEA /* ProfileFotoView.swift */; };
 		92DF89BA29915D0B0036CBEA /* SVGView in Frameworks */ = {isa = PBXBuildFile; productRef = 92DF89B929915D0B0036CBEA /* SVGView */; };
 		92DF89BD299163860036CBEA /* Parking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF89BC299163860036CBEA /* Parking.swift */; };
@@ -33,8 +33,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		800F95D429C2E5E4001DCBED /* CardDetailModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailModel.swift; sourceTree = "<group>"; };
-		800F95D729C2E61D001DCBED /* CardDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardDetailViewModel.swift; sourceTree = "<group>"; };
+		800F95D429C2E5E4001DCBED /* CardParkingPlaceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardParkingPlaceModel.swift; sourceTree = "<group>"; };
+		800F95D729C2E61D001DCBED /* CardParkingPlaceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardParkingPlaceViewModel.swift; sourceTree = "<group>"; };
 		80244EDE299CD19900E9AC96 /* MapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewExtension.swift; sourceTree = "<group>"; };
 		80244EE0299CFE6500E9AC96 /* ParserSVGViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserSVGViewModel.swift; sourceTree = "<group>"; };
 		8067944A299504B400C784B1 /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
@@ -48,7 +48,7 @@
 		92DF899929915BED0036CBEA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		92DF89A029915C300036CBEA /* NodeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeModel.swift; sourceTree = "<group>"; };
 		92DF89A229915C300036CBEA /* MapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
-		92DF89AA29915C3B0036CBEA /* DetailInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailInfo.swift; sourceTree = "<group>"; };
+		92DF89AA29915C3B0036CBEA /* CardParkingPlaceView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardParkingPlaceView.swift; sourceTree = "<group>"; };
 		92DF89AD29915C3B0036CBEA /* ProfileFotoView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileFotoView.swift; sourceTree = "<group>"; };
 		92DF89BC299163860036CBEA /* Parking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parking.swift; sourceTree = "<group>"; };
 		92DF89BE29916D8D0036CBEA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -74,17 +74,17 @@
 		800F95D329C2E575001DCBED /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				800F95D429C2E5E4001DCBED /* CardDetailModel.swift */,
+				800F95D429C2E5E4001DCBED /* CardParkingPlaceModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		800F95D629C2E603001DCBED /* DetailModel */ = {
+		800F95D629C2E603001DCBED /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				800F95D729C2E61D001DCBED /* CardDetailViewModel.swift */,
+				800F95D729C2E61D001DCBED /* CardParkingPlaceViewModel.swift */,
 			);
-			path = DetailModel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		92DF897F29915BEC0036CBEA = {
@@ -112,7 +112,7 @@
 				92DF899F29915C300036CBEA /* MapView */,
 				92DF89C6299172790036CBEA /* AutoView */,
 				92DF89C32991723C0036CBEA /* SettingsView */,
-				92DF89A829915C3B0036CBEA /* DetailView */,
+				92DF89A829915C3B0036CBEA /* CardParkingPlaceView */,
 				92DF898B29915BEC0036CBEA /* ParkingApp.swift */,
 				92DF898F29915BED0036CBEA /* Assets.xcassets */,
 				92DFE72429B120E90082506F /* MapParkengin.svg */,
@@ -140,20 +140,20 @@
 			path = MapView;
 			sourceTree = "<group>";
 		};
-		92DF89A829915C3B0036CBEA /* DetailView */ = {
+		92DF89A829915C3B0036CBEA /* CardParkingPlaceView */ = {
 			isa = PBXGroup;
 			children = (
-				800F95D629C2E603001DCBED /* DetailModel */,
+				800F95D629C2E603001DCBED /* ViewModel */,
 				800F95D329C2E575001DCBED /* Model */,
 				92DF89A929915C3B0036CBEA /* View */,
 			);
-			path = DetailView;
+			path = CardParkingPlaceView;
 			sourceTree = "<group>";
 		};
 		92DF89A929915C3B0036CBEA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				92DF89AA29915C3B0036CBEA /* DetailInfo.swift */,
+				92DF89AA29915C3B0036CBEA /* CardParkingPlaceView.swift */,
 				92A6926429CEF7DF00F22E39 /* DatePickerView.swift */,
 				92DF89AD29915C3B0036CBEA /* ProfileFotoView.swift */,
 			);
@@ -327,7 +327,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				800F95D829C2E61D001DCBED /* CardDetailViewModel.swift in Sources */,
+				800F95D829C2E61D001DCBED /* CardParkingPlaceViewModel.swift in Sources */,
 				8067944B299504B400C784B1 /* CoreDataExtensions.swift in Sources */,
 				80244EE1299CFE6600E9AC96 /* ParserSVGViewModel.swift in Sources */,
 				80244EDF299CD19900E9AC96 /* MapViewExtension.swift in Sources */,
@@ -339,11 +339,11 @@
 				92DF89A429915C300036CBEA /* NodeModel.swift in Sources */,
 				92FF4DA7299569B000607B5F /* Places.swift in Sources */,
 				807F2840299DF867003E9B9D /* ParkingApp.xcdatamodeld in Sources */,
-				800F95D529C2E5E4001DCBED /* CardDetailModel.swift in Sources */,
+				800F95D529C2E5E4001DCBED /* CardParkingPlaceModel.swift in Sources */,
 				92DF89A629915C300036CBEA /* MapView.swift in Sources */,
 				92DF89B329915C3B0036CBEA /* ProfileFotoView.swift in Sources */,
 				92FF4DAB29956E7000607B5F /* LoadPlaces.swift in Sources */,
-				92DF89B029915C3B0036CBEA /* DetailInfo.swift in Sources */,
+				92DF89B029915C3B0036CBEA /* CardParkingPlaceView.swift in Sources */,
 				92DF89C8299172B60036CBEA /* AutoView.swift in Sources */,
 				92DF898C29915BEC0036CBEA /* ParkingApp.swift in Sources */,
 			);

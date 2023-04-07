@@ -15,7 +15,7 @@ struct DatePickerView: View {
     var parking: FetchedResults<Parking>
     
     //MARK: ViewModel
-    @StateObject var model = CardDetailViewModel()
+    @StateObject var model = CardParkingPlaceViewModel()
 
     private var startDate: Date{
         let date = model.calendar.startOfDay(for: Date.now)

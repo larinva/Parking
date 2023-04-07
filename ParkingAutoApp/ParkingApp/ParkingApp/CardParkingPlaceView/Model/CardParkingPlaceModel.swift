@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CardDetailModel{
+struct CardParkingPlaceModel{
     var ovnerAuto = ""
     var numberFone = ""
     var carBrand = ""
