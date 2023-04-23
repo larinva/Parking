@@ -35,9 +35,10 @@ struct CardParkingPlaceView: View {
     
     var maskPhoneW: Formatter{
         let formatter = Formatter()
-        let mask = FilterNumberPhone.format(with: maskPhone, phone: text)
-        formatter.editingString(for: mask)
-//        formatter.string(for: mask)
+        let mask = "FilterNumberPhone.format(with: maskPhone, phone: text)"
+//        formatter.editingString(for: mask)
+        formatter.string(for: mask)
+        
         return formatter
     }
     
@@ -66,7 +67,7 @@ extension CardParkingPlaceView{
             TextField("Имя владельца", text: $cardDetailViewModel.data.ovnerAuto)
             TextField("Номер телефона", text: $cardDetailViewModel.data.numberFone)
                 .keyboardType(.numberPad)
-//            let _ = print(maskPhoneW)
+            let _ = print(maskPhoneW)
 //            NumberPhoneMaskView()
 //                .frame(height: 50)
 //                .padding([.all], widthStroke / 2)
