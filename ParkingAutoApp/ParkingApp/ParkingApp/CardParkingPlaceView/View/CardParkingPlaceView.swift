@@ -43,6 +43,8 @@ extension CardParkingPlaceView{
         Section(header: Text("Карточка клиента")){
             TextField("Имя владельца", text: $cardDetailViewModel.data.ovnerAuto)
             TextField("Номер телефона", text: $cardDetailViewModel.data.numberFone)
+                .keyboardType(.phonePad)
+                
             TextField("Марка машины", text: $cardDetailViewModel.data.carBrand)
             TextField("Гос. номер авто", text: $cardDetailViewModel.data.numberAuto)
         }

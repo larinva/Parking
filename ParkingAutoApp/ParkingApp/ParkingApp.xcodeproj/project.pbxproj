@@ -12,6 +12,7 @@
 		80244EDF299CD19900E9AC96 /* MapViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80244EDE299CD19900E9AC96 /* MapViewExtension.swift */; };
 		80244EE1299CFE6600E9AC96 /* ParserSVGViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80244EE0299CFE6500E9AC96 /* ParserSVGViewModel.swift */; };
 		8067944B299504B400C784B1 /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067944A299504B400C784B1 /* CoreDataExtensions.swift */; };
+		807198A529E91EBF00DA80C5 /* FormatterNumberPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 807198A429E91EBF00DA80C5 /* FormatterNumberPhone.swift */; };
 		807F2840299DF867003E9B9D /* ParkingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92DF899629915BED0036CBEA /* ParkingApp.xcdatamodeld */; };
 		92A6926529CEF7DF00F22E39 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6926429CEF7DF00F22E39 /* DatePickerView.swift */; };
 		92DF898C29915BEC0036CBEA /* ParkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF898B29915BEC0036CBEA /* ParkingApp.swift */; };
@@ -38,6 +39,7 @@
 		80244EDE299CD19900E9AC96 /* MapViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewExtension.swift; sourceTree = "<group>"; };
 		80244EE0299CFE6500E9AC96 /* ParserSVGViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParserSVGViewModel.swift; sourceTree = "<group>"; };
 		8067944A299504B400C784B1 /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
+		807198A429E91EBF00DA80C5 /* FormatterNumberPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterNumberPhone.swift; sourceTree = "<group>"; };
 		92A6926429CEF7DF00F22E39 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		92DF898829915BEC0036CBEA /* ParkingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DF898B29915BEC0036CBEA /* ParkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingApp.swift; sourceTree = "<group>"; };
@@ -87,6 +89,14 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		807198A329E91E8700DA80C5 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				807198A429E91EBF00DA80C5 /* FormatterNumberPhone.swift */,
+			);
+			name = Helpers;
+			sourceTree = "<group>";
+		};
 		92DF897F29915BEC0036CBEA = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +116,7 @@
 		92DF898A29915BEC0036CBEA /* ParkingApp */ = {
 			isa = PBXGroup;
 			children = (
+				807198A329E91E8700DA80C5 /* Helpers */,
 				92FF4DA929956A3100607B5F /* Persistens */,
 				92DF89BB29915EF90036CBEA /* CoreDataModel */,
 				92FF4DA8299569E200607B5F /* HomeView */,
@@ -331,6 +342,7 @@
 				8067944B299504B400C784B1 /* CoreDataExtensions.swift in Sources */,
 				80244EE1299CFE6600E9AC96 /* ParserSVGViewModel.swift in Sources */,
 				80244EDF299CD19900E9AC96 /* MapViewExtension.swift in Sources */,
+				807198A529E91EBF00DA80C5 /* FormatterNumberPhone.swift in Sources */,
 				92DF89BD299163860036CBEA /* Parking.swift in Sources */,
 				92DF89BF29916D8D0036CBEA /* HomeView.swift in Sources */,
 				92DF899529915BED0036CBEA /* Persistence.swift in Sources */,
