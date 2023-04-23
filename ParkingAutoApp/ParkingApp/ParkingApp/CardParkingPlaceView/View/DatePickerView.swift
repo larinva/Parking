@@ -3,24 +3,6 @@
 //  ParkingApp
 //
 //  Created by vacheslavBook on 25.03.2023.
-// update
-// update 222
-// update 23.04.23
-// update 23.04.23
-// update 23.04.23
-// update 23.04.23
-
-struct Name {
-    
-}
-
-struct Name2 {
-    
-}
-
-struct Name3 {
-    
-}
 
 import SwiftUI
 

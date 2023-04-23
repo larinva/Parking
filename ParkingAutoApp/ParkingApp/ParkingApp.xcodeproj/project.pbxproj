@@ -15,6 +15,7 @@
 		807F2840299DF867003E9B9D /* ParkingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92DF899629915BED0036CBEA /* ParkingApp.xcdatamodeld */; };
 		92A6926529CEF7DF00F22E39 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6926429CEF7DF00F22E39 /* DatePickerView.swift */; };
 		92DE8BA129F526C800904AB8 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA029F526C800904AB8 /* SwiftUIView.swift */; };
+		92DE8BA329F52DD700904AB8 /* FormatterNumberPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */; };
 		92DF898C29915BEC0036CBEA /* ParkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF898B29915BEC0036CBEA /* ParkingApp.swift */; };
 		92DF899029915BED0036CBEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92DF898F29915BED0036CBEA /* Assets.xcassets */; };
 		92DF899329915BED0036CBEA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92DF899229915BED0036CBEA /* Preview Assets.xcassets */; };
@@ -41,6 +42,7 @@
 		8067944A299504B400C784B1 /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		92A6926429CEF7DF00F22E39 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		92DE8BA029F526C800904AB8 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
+		92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterNumberPhone.swift; sourceTree = "<group>"; };
 		92DF898829915BEC0036CBEA /* ParkingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DF898B29915BEC0036CBEA /* ParkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingApp.swift; sourceTree = "<group>"; };
 		92DF898F29915BED0036CBEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				92DF89AA29915C3B0036CBEA /* CardParkingPlaceView.swift */,
+				92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */,
 				92A6926429CEF7DF00F22E39 /* DatePickerView.swift */,
 				92DF89AD29915C3B0036CBEA /* ProfileFotoView.swift */,
 				92DE8BA029F526C800904AB8 /* SwiftUIView.swift */,
@@ -340,6 +343,7 @@
 				92DF89C5299172620036CBEA /* SettingsView.swift in Sources */,
 				92A6926529CEF7DF00F22E39 /* DatePickerView.swift in Sources */,
 				92DF89A429915C300036CBEA /* NodeModel.swift in Sources */,
+				92DE8BA329F52DD700904AB8 /* FormatterNumberPhone.swift in Sources */,
 				92FF4DA7299569B000607B5F /* Places.swift in Sources */,
 				807F2840299DF867003E9B9D /* ParkingApp.xcdatamodeld in Sources */,
 				800F95D529C2E5E4001DCBED /* CardParkingPlaceModel.swift in Sources */,
