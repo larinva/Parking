@@ -8,7 +8,7 @@
 import SwiftUI
 
 class FilterNumberPhone: ObservableObject {
-    func format(with mask: String, phone: String)-> String{
+    static func format(with mask: String, phone: String)-> String{
         let numbers = phone.replacingOccurrences(of: "[^0-9]", with: "", options: .regularExpression)
         var result = ""
         var index = numbers.startIndex
