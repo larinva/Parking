@@ -16,6 +16,9 @@
 		92A6926529CEF7DF00F22E39 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6926429CEF7DF00F22E39 /* DatePickerView.swift */; };
 		92DE8BA129F526C800904AB8 /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA029F526C800904AB8 /* SwiftUIView.swift */; };
 		92DE8BA329F52DD700904AB8 /* FormatterNumberPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */; };
+		92DE8BA629F537CC00904AB8 /* NumberPhoneMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA529F537CC00904AB8 /* NumberPhoneMaskView.swift */; };
+		92DE8BA829F5384D00904AB8 /* TextFieldContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA729F5384D00904AB8 /* TextFieldContainer.swift */; };
+		92DE8BAA29F53F8A00904AB8 /* FilterNumberPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA929F53F8A00904AB8 /* FilterNumberPhone.swift */; };
 		92DF898C29915BEC0036CBEA /* ParkingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF898B29915BEC0036CBEA /* ParkingApp.swift */; };
 		92DF899029915BED0036CBEA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92DF898F29915BED0036CBEA /* Assets.xcassets */; };
 		92DF899329915BED0036CBEA /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92DF899229915BED0036CBEA /* Preview Assets.xcassets */; };
@@ -43,6 +46,9 @@
 		92A6926429CEF7DF00F22E39 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		92DE8BA029F526C800904AB8 /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterNumberPhone.swift; sourceTree = "<group>"; };
+		92DE8BA529F537CC00904AB8 /* NumberPhoneMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPhoneMaskView.swift; sourceTree = "<group>"; };
+		92DE8BA729F5384D00904AB8 /* TextFieldContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldContainer.swift; sourceTree = "<group>"; };
+		92DE8BA929F53F8A00904AB8 /* FilterNumberPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterNumberPhone.swift; sourceTree = "<group>"; };
 		92DF898829915BEC0036CBEA /* ParkingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ParkingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		92DF898B29915BEC0036CBEA /* ParkingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingApp.swift; sourceTree = "<group>"; };
 		92DF898F29915BED0036CBEA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +97,16 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		92DE8BA429F5378700904AB8 /* PhoneMask */ = {
+			isa = PBXGroup;
+			children = (
+				92DE8BA529F537CC00904AB8 /* NumberPhoneMaskView.swift */,
+				92DE8BA729F5384D00904AB8 /* TextFieldContainer.swift */,
+				92DE8BA929F53F8A00904AB8 /* FilterNumberPhone.swift */,
+			);
+			path = PhoneMask;
+			sourceTree = "<group>";
+		};
 		92DF897F29915BEC0036CBEA = {
 			isa = PBXGroup;
 			children = (
@@ -110,6 +126,7 @@
 		92DF898A29915BEC0036CBEA /* ParkingApp */ = {
 			isa = PBXGroup;
 			children = (
+				92DE8BA429F5378700904AB8 /* PhoneMask */,
 				92FF4DA929956A3100607B5F /* Persistens */,
 				92DF89BB29915EF90036CBEA /* CoreDataModel */,
 				92FF4DA8299569E200607B5F /* HomeView */,
@@ -337,8 +354,10 @@
 				8067944B299504B400C784B1 /* CoreDataExtensions.swift in Sources */,
 				80244EE1299CFE6600E9AC96 /* ParserSVGViewModel.swift in Sources */,
 				80244EDF299CD19900E9AC96 /* MapViewExtension.swift in Sources */,
+				92DE8BA629F537CC00904AB8 /* NumberPhoneMaskView.swift in Sources */,
 				92DF89BD299163860036CBEA /* Parking.swift in Sources */,
 				92DF89BF29916D8D0036CBEA /* HomeView.swift in Sources */,
+				92DE8BA829F5384D00904AB8 /* TextFieldContainer.swift in Sources */,
 				92DF899529915BED0036CBEA /* Persistence.swift in Sources */,
 				92DF89C5299172620036CBEA /* SettingsView.swift in Sources */,
 				92A6926529CEF7DF00F22E39 /* DatePickerView.swift in Sources */,
@@ -350,6 +369,7 @@
 				92DF89A629915C300036CBEA /* MapView.swift in Sources */,
 				92DE8BA129F526C800904AB8 /* SwiftUIView.swift in Sources */,
 				92DF89B329915C3B0036CBEA /* ProfileFotoView.swift in Sources */,
+				92DE8BAA29F53F8A00904AB8 /* FilterNumberPhone.swift in Sources */,
 				92FF4DAB29956E7000607B5F /* LoadPlaces.swift in Sources */,
 				92DF89B029915C3B0036CBEA /* CardParkingPlaceView.swift in Sources */,
 				92DF89C8299172B60036CBEA /* AutoView.swift in Sources */,

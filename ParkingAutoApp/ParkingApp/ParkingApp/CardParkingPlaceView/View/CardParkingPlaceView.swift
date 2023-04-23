@@ -22,10 +22,14 @@ struct CardParkingPlaceView: View {
     var parking: FetchedResults<Parking>
     var idPlace: String
     var isStatusArenda: Bool
+    
+    let widthStroke: CGFloat = 1
+   
     @State private var isAlertw: Bool = false
     
     //MARK: ViewModel
     @StateObject var cardDetailViewModel = CardParkingPlaceViewModel()
+    @StateObject var maskPhone = FilterNumberPhone()
     
     var body: some View{
             Form{
@@ -42,7 +46,15 @@ extension CardParkingPlaceView{
     private func InfoClientSectionView()-> some View{
         Section(header: Text("Карточка клиента")){
             TextField("Имя владельца", text: $cardDetailViewModel.data.ovnerAuto)
-            TextField("Номер телефона", text: $cardDetailViewModel.data.numberFone)
+            TextField("Номер телефона", text: $cardDetailViewModel.data.numberFone	)
+                .keyboardType(.numberPad)
+            
+            NumberPhoneMaskView()
+//                .frame(height: 50)
+//                .padding([.all], widthStroke / 2)
+//                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.purple, lineWidth: widthStroke))
+//                .padding()
+            
             TextField("Марка машины", text: $cardDetailViewModel.data.carBrand)
             TextField("Гос. номер авто", text: $cardDetailViewModel.data.numberAuto)
         }
