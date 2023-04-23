@@ -10,6 +10,10 @@
 // update 23.04.23
 // update 23.04.23
 
+struct Name {
+    
+}
+
 import SwiftUI
 
 struct DatePickerView: View {
