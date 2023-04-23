@@ -14,6 +14,14 @@ struct Name {
     
 }
 
+struct Name2 {
+    
+}
+
+struct Name3 {
+    
+}
+
 import SwiftUI
 
 struct DatePickerView: View {
