@@ -29,27 +29,7 @@ struct CardParkingPlaceView: View {
     
     //MARK: ViewModel
     @StateObject var cardDetailViewModel = CardParkingPlaceViewModel()
-    
-    let maskPhone = "+X-XXX-XXX-XX-XX"
-    @State private var text = ""
-    
-    var maskPhoneW: Formatter{
-        let formatter = Formatter()
-        let mask = "FilterNumberPhone.format(with: maskPhone, phone: text)"
-//        formatter.editingString(for: mask)
-        formatter.string(for: mask)
-        
-        return formatter
-    }
-    
-    @State private var score = 0
 
-        let formatter: NumberFormatter = {
-            let formatter = NumberFormatter()
-            formatter.numberStyle = .decimal
-            return formatter
-        }()
-    
     var body: some View{
             Form{
                 ProfileFotoView(title: idPlace, status: isStatusArenda)
@@ -63,18 +43,16 @@ struct CardParkingPlaceView: View {
 extension CardParkingPlaceView{
     @ViewBuilder
     private func InfoClientSectionView()-> some View{
+
+        
         Section(header: Text("Карточка клиента")){
             TextField("Имя владельца", text: $cardDetailViewModel.data.ovnerAuto)
-            TextField("Номер телефона", text: $cardDetailViewModel.data.numberFone)
+            
+            TextField("Номер телефона", text: cardDetailViewModel.maskPhoneBinding())
                 .keyboardType(.numberPad)
-            let _ = print(maskPhoneW)
-//            NumberPhoneMaskView()
-//                .frame(height: 50)
-//                .padding([.all], widthStroke / 2)
-//                .overlay(RoundedRectangle(cornerRadius: 15).stroke(Color.purple, lineWidth: widthStroke))
-//                .padding()
             
             TextField("Марка машины", text: $cardDetailViewModel.data.carBrand)
+            
             TextField("Гос. номер авто", text: $cardDetailViewModel.data.numberAuto)
         }
         .onAppear{

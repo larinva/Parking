@@ -11,16 +11,15 @@ import CoreData
 
 
 class CardParkingPlaceViewModel: ObservableObject {
-    
-    @Published var calendar = Calendar.current
-  
-    @Published var datePicker = Date.now
-    
     @Published var data = CardParkingPlaceModel()
-    
-    @Published var price = ""
-    
     @Published var isPicker: Bool = false
+    
+    @Published private (set) var calendar = Calendar.current
+    @Published private (set) var datePicker = Date.now
+    
+    @Published private (set) var price = ""
+    @Published private (set) var maskPhone = "+X-XXX-XXX-XX-XX"
+    @Published private (set) var text = ""
     
 }
 
@@ -49,6 +48,21 @@ extension CardParkingPlaceViewModel{
 
         let monyDay = dateComponent.day ?? 0
         price = String(monyDay * 100) + "₽"
+    }
+}
+
+extension CardParkingPlaceViewModel{
+    func maskPhoneBinding() -> Binding<String> {
+        let textChangeBinding = Binding<String>(
+            get: {
+                FilterNumberPhone.format(with: self.maskPhone, phone: self.text)
+            },
+            set: {
+                self.text = $0
+            }
+        )
+        //TextFieldContainer(placeholder: "+7", text: textChangeBinding)
+        return textChangeBinding
     }
 }
 
