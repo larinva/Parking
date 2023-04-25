@@ -13,14 +13,14 @@ import CoreData
 class CardParkingPlaceViewModel: ObservableObject {
     @Published var data = CardParkingPlaceModel()
     @Published var isPicker: Bool = false
+    @Published var datePicker = Date.now
+    @Published var price = ""
     
     @Published private (set) var calendar = Calendar.current
-    @Published private (set) var datePicker = Date.now
-    
-    @Published private (set) var price = ""
     @Published private (set) var maskPhone = "+X-XXX-XXX-XX-XX"
-    @Published private (set) var text = ""
-    
+    @Published private (set) var textPhone = ""
+    @Published private (set) var maskAuto = "aXXXaaXXX"
+    @Published private (set) var textAuto = ""
 }
 
 extension CardParkingPlaceViewModel{
@@ -55,10 +55,22 @@ extension CardParkingPlaceViewModel{
     func maskPhoneBinding() -> Binding<String> {
         let textChangeBinding = Binding<String>(
             get: {
-                FilterNumberPhone.format(with: self.maskPhone, phone: self.text)
+                FilterNumberPhone.format(with: self.maskPhone, phone: self.textPhone)
             },
             set: {
-                self.text = $0
+                self.textPhone = $0
+            }
+        )
+        //TextFieldContainer(placeholder: "+7", text: textChangeBinding)
+        return textChangeBinding
+    }
+    
+    func maskAutoBinding() -> Binding<String> {
+        let textChangeBinding = Binding<String>(
+            get: {
+                FilterNumberPhone.formatNumberAuto(with: self.maskAuto, auto: self.textAuto)            },
+            set: {
+                self.textAuto = $0
             }
         )
         //TextFieldContainer(placeholder: "+7", text: textChangeBinding)

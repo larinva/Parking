@@ -102,6 +102,7 @@
 			children = (
 				92DE8BA529F537CC00904AB8 /* NumberPhoneMaskView.swift */,
 				92DE8BA729F5384D00904AB8 /* TextFieldContainer.swift */,
+				92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */,
 				92DE8BA929F53F8A00904AB8 /* FilterNumberPhone.swift */,
 			);
 			path = PhoneMask;
@@ -175,7 +176,6 @@
 			isa = PBXGroup;
 			children = (
 				92DF89AA29915C3B0036CBEA /* CardParkingPlaceView.swift */,
-				92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */,
 				92A6926429CEF7DF00F22E39 /* DatePickerView.swift */,
 				92DF89AD29915C3B0036CBEA /* ProfileFotoView.swift */,
 				92DE8BA029F526C800904AB8 /* SwiftUIView.swift */,

@@ -5,7 +5,7 @@
 //  Created by vacheslavBook on 23.04.2023.
 //
 
-import SwiftUI
+/*import SwiftUI
 
 struct NumberPhoneMaskView: View {
     let maskPhone = "+X-XXX-XXX-XX-XX"
@@ -30,4 +30,4 @@ struct NumberPhoneMaskView_Previews: PreviewProvider {
     static var previews: some View {
         NumberPhoneMaskView()
     }
-}
+}*/
