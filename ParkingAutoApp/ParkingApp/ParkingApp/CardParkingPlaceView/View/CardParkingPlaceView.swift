@@ -54,6 +54,7 @@ extension CardParkingPlaceView{
             TextField("Марка машины", text: $cardDetailViewModel.data.carBrand)
             
             TextField("Гос. номер авто", text: cardDetailViewModel.maskAutoBinding())
+//                .keyboardType(.namePhonePad)
         }
         .onAppear{
             cardDetailViewModel.loadArendaPlace(

@@ -25,27 +25,24 @@ class FilterNumberPhone: ObservableObject {
     }
     
     static func formatNumberAuto(with mask: String, auto: String)-> String{
-        let numbers = auto.replacingOccurrences(of: "^[а-яё\\-\\s]{1}[0-9]{3}(?<!0{3})[а-яё\\-\\s]{2}[0-9]{2}$", with: "", options: .regularExpression)
+        let numbers = auto.replacingOccurrences(of: "[А-я]", with: "", options: .regularExpression)
         var result = ""
         var index = numbers.startIndex
         
+        print(numbers)
+        
         for ch in mask where index < numbers.endIndex{
-            //print(numbers)
-            if ch == "a"{
+//            print(ch)
+//            if ch == "a" || ch == "X"{
                 //print(numbers[index])
                 result.append(numbers[index])
                 index = numbers.index(after: index)
-                print(index)
-            }
-            
-            /*if ch == "X"{
-                result.append(numbers[index])
-                index = numbers.index(after: index)
-            }*/
-            
-            else {
-                result.append(ch)
-            }
+//                print("a - \(ch)")
+//                print(result.map{$0})
+//            }
+//            else {
+//                result.append(ch)
+//            }
         }
         return result
     }
