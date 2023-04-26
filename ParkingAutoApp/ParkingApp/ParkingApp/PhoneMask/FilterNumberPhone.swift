@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import RegexBuilder
 
 class FilterNumberPhone: ObservableObject {
     static func format(with mask: String, phone: String)-> String{
@@ -25,9 +26,12 @@ class FilterNumberPhone: ObservableObject {
     }
     
     static func formatNumberAuto(with mask: String, auto: String)-> String{
-        let numbers = auto.replacingOccurrences(of: "[А-я]", with: "", options: .regularExpression)
+        let numbers = auto.replacingOccurrences(of: "^(\\d{4})-([A-z]{4})", with: "", options: .regularExpression)
         var result = ""
         var index = numbers.startIndex
+        
+        var regex = /^[а-яё\-\s]{1}[0-9]{3}(?<!0{3})[а-яё\-\/s]{2}[0-9]{2}$/
+        
         
         print(numbers)
         

@@ -19,7 +19,7 @@ class CardParkingPlaceViewModel: ObservableObject {
     @Published private (set) var calendar = Calendar.current
     @Published private (set) var maskPhone = "+X-XXX-XXX-XX-XX"
     @Published private (set) var textPhone = ""
-    @Published private (set) var maskAuto = "aXXXaaXXX"
+    @Published private (set) var maskAuto = "xxxxxxxxx"
     @Published private (set) var textAuto = ""
 }
 
