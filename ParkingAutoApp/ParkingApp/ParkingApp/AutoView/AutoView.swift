@@ -22,7 +22,7 @@ struct AutoView: View {
                         NavigationLink(value: place){
                             VStack(alignment: .leading){
                                 Text("Парковочное место " + (place.idPlace ?? ""))
-                                isArenda(element: place.isArenda)
+                                StatusArendaView(isStatus: place.isArenda)
                             }
                         }
                     }
@@ -30,23 +30,12 @@ struct AutoView: View {
                 }.onDelete(perform: deleteItem(index:))
             }//List
             .navigationDestination(for: Parking.self) { place in
-                CardParkingPlaceView(idPlace: place.idPlace ?? "", isStatusArenda: false)
+                CardParkingPlaceView(idPlace: place.idPlace ?? "", isStatusArenda: place.isArenda)
+                let _ = print(place.isArenda)
             }
         
         }
         .navigationTitle("Auto View")
-    }
-    
-    private func isArenda(element: Bool)-> some View{
-        return VStack{
-            if element{
-                Text("В аренде")
-                    .foregroundColor(.green)
-            }else{
-                Text("Свободен")
-                    .foregroundColor(.red)
-            }
-        }
     }
     
     private func deleteItem(index: IndexSet){

@@ -25,12 +25,12 @@ class FilterNumberPhone: ObservableObject {
         return result
     }
     
-    static func formatNumberAuto(with mask: String, auto: String)-> String{
+    /*static func formatNumberAuto(with mask: String, auto: String)-> String{
         let numbers = auto.replacingOccurrences(of: "^(\\d{4})-([A-z]{4})", with: "", options: .regularExpression)
         var result = ""
         var index = numbers.startIndex
         
-        var regex = /^[а-яё\-\s]{1}[0-9]{3}(?<!0{3})[а-яё\-\/s]{2}[0-9]{2}$/
+        //var regex = /^[а-яё\-\s]{1}[0-9]{3}(?<!0{3})[а-яё\-\/s]{2}[0-9]{2}$/
         
         
         print(numbers)
@@ -49,5 +49,5 @@ class FilterNumberPhone: ObservableObject {
 //            }
         }
         return result
-    }
+    }*/
 }

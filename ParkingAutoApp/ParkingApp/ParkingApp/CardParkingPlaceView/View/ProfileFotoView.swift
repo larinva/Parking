@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileFotoView: View {
     var title: String
-    var status: Bool
+    var isStatus: Bool
     
     var body: some View {
         
@@ -25,10 +25,7 @@ struct ProfileFotoView: View {
                 }
             
             VStack(alignment: .leading, spacing: 8){
-                Text("\(String(describing: status ? "в аренде" : " свободен"))")
-                    .foregroundColor(status ? .red : .green)
-                    .font(.caption)
-                    .bold()
+                StatusArendaView(isStatus: isStatus)
                 
                 Text("Парковочное место \(title)")
                     .font(.title3)
@@ -41,6 +38,6 @@ struct ProfileFotoView: View {
 
 struct ProfileFotoView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileFotoView(title: "Title", status: true)
+        ProfileFotoView(title: "Title", isStatus: true)
     }
 }

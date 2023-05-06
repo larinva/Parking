@@ -32,7 +32,7 @@ struct CardParkingPlaceView: View {
 
     var body: some View{
             Form{
-                ProfileFotoView(title: idPlace, status: isStatusArenda)
+                ProfileFotoView(title: idPlace, isStatus: isStatusArenda)
                 InfoClientSectionView()
                 DatePickerView(model: cardDetailViewModel)
             }
@@ -44,17 +44,36 @@ extension CardParkingPlaceView{
     @ViewBuilder
     private func InfoClientSectionView()-> some View{
 
-        
         Section(header: Text("Карточка клиента")){
-            TextField("Имя владельца", text: $cardDetailViewModel.data.ovnerAuto)
+            HStack{
+                Image(systemName: "person")
+                    .resizable()
+                    .frame(width: 28, height: 28)
+                TextField("Имя владельца", text: $cardDetailViewModel.data.ovnerAuto)
+            }
             
-            TextField("Номер телефона", text: cardDetailViewModel.maskPhoneBinding())
-                .keyboardType(.numberPad)
+            HStack{
+                Image(systemName: "phone.circle")
+                    .resizable()
+                    .frame(width: 28, height: 28)
+                TextField("Номер телефона", text: cardDetailViewModel.maskPhoneBinding())
+                    .keyboardType(.numberPad)
+            }
             
-            TextField("Марка машины", text: $cardDetailViewModel.data.carBrand)
+            HStack{
+                Image(systemName: "car")
+                    .resizable()
+                    .frame(width: 28, height: 28)
+                TextField("Марка машины", text: $cardDetailViewModel.data.carBrand)
+            }
             
-            TextField("Гос. номер авто", text: cardDetailViewModel.maskAutoBinding())
-//                .keyboardType(.namePhonePad)
+            HStack{
+                Image(systemName: "person.fill")
+                    .resizable()
+                    .frame(width: 32, height: 32)
+                TextField("Гос. номер авто", text:
+                            $cardDetailViewModel.data.numberAuto)
+            }
         }
         .onAppear{
             cardDetailViewModel.loadArendaPlace(
@@ -94,9 +113,6 @@ extension CardParkingPlaceView{
             Capsule(style: .circular)
                 .fill(color)
                 .frame(width: size.width * 0.40, height: 40)
-        }
-        .alert(isPresented: $isAlertw) {
-            Alert(title: Text("1234654"), message: Text("12316454"))
         }
     }
     
