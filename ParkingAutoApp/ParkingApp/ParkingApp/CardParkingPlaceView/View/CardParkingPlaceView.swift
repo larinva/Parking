@@ -18,14 +18,20 @@ struct CardParkingPlaceView: View {
     
     //Core Data
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(fetchRequest: Parking.fetchRequest0()) private
-    var parking: FetchedResults<Parking>
+    @FetchRequest(fetchRequest: Parking.fetchRequest0()) private var parking: FetchedResults<Parking>
+    
+    @State private var isAlert: Bool = false
+    
     var idPlace: String
     var isStatusArenda: Bool
+    private let imageSize: CGFloat = 22
     
-    let widthStroke: CGFloat = 1
-   
-    @State private var isAlertw: Bool = false
+    private let arendaText = "Арендовать"
+    private let stopText = "Завершить"
+    private let warningText = "Внимание"
+    private let cancelText = "Отмена"
+    private let extendText = "Продлить"
+    private let messageText = "Вы действительно хотите завершить аренду"
     
     //MARK: ViewModel
     @StateObject var cardDetailViewModel = CardParkingPlaceViewModel()
@@ -43,19 +49,18 @@ struct CardParkingPlaceView: View {
 extension CardParkingPlaceView{
     @ViewBuilder
     private func InfoClientSectionView()-> some View{
-
         Section(header: Text("Карточка клиента")){
             HStack{
                 Image(systemName: "person")
                     .resizable()
-                    .frame(width: 28, height: 28)
+                    .frame(width: imageSize, height: imageSize)
                 TextField("Имя владельца", text: $cardDetailViewModel.data.ovnerAuto)
             }
             
             HStack{
                 Image(systemName: "phone.circle")
                     .resizable()
-                    .frame(width: 28, height: 28)
+                    .frame(width: imageSize, height: imageSize)
                 TextField("Номер телефона", text: cardDetailViewModel.maskPhoneBinding())
                     .keyboardType(.numberPad)
             }
@@ -63,14 +68,14 @@ extension CardParkingPlaceView{
             HStack{
                 Image(systemName: "car")
                     .resizable()
-                    .frame(width: 28, height: 28)
+                    .frame(width: imageSize, height: imageSize)
                 TextField("Марка машины", text: $cardDetailViewModel.data.carBrand)
             }
             
             HStack{
                 Image(systemName: "person.fill")
                     .resizable()
-                    .frame(width: 32, height: 32)
+                    .frame(width: imageSize, height: imageSize)
                 TextField("Гос. номер авто", text:
                             $cardDetailViewModel.data.numberAuto)
             }
@@ -88,9 +93,10 @@ extension CardParkingPlaceView{
         HStack{
             arendaPlaceButton(isArenda: false, color: .red)
                 .overlay {
-                    isComplete()
+                    iaAlert()
+                        .foregroundColor(.white)
                 }
-
+                
             if !isStatusArenda{
                 arendaPlaceButton(isArenda: true, color: .green)
                     .overlay {
@@ -101,6 +107,7 @@ extension CardParkingPlaceView{
         .padding()
     }
     
+    @ViewBuilder
     private func arendaPlaceButton(isArenda: Bool, color: Color)->some View{
         Button{
             if isArenda {
@@ -119,19 +126,28 @@ extension CardParkingPlaceView{
     private func isExtend()-> some View{
         return VStack{
             if cardDetailViewModel.isHiddenLabel(id: idPlace, parking: parking){
-                Text("Арендовать")
+                Text(arendaText)
                     .foregroundColor(.white)
             } else{
-                Text("Продлить")
+                Text(extendText)
                     .foregroundColor(.white)
             }
         }
     }
     
-    private func isComplete()-> some View{
+    private func iaAlert()->some View{
         return VStack{
-            Text("Завершить")
-                .foregroundColor(.white)
+            Button(stopText) {
+                isAlert = true
+            }
+            .alert(Text(warningText), isPresented: $isAlert, actions: {
+                Button(stopText) {
+                    filterPlace(isArenda: false)
+                }
+                Button(cancelText, role: .cancel){}
+            }, message: {
+                Text(messageText)
+            })
         }
     }
 }

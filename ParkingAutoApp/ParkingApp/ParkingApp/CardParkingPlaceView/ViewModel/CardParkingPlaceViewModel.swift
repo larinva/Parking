@@ -59,6 +59,7 @@ extension CardParkingPlaceViewModel{
             },
             set: {
                 self.textPhone = $0
+//                let _ = print(String(describing: self.textPhone))
             }
         )
         return textChangeBinding
@@ -109,7 +110,7 @@ extension CardParkingPlaceViewModel{
     func addItem(idplace: String, context: NSManagedObjectContext){
         let newPlace = Parking(context: context)
             newPlace.ovnerAuto = data.ovnerAuto
-            newPlace.numberFone = data.numberFone
+            newPlace.numberFone = textPhone //data.numberFone
             newPlace.carBrand = data.carBrand
             newPlace.numberAuto = data.numberAuto
             newPlace.price = price
@@ -122,6 +123,7 @@ extension CardParkingPlaceViewModel{
             newPlace.places.idPlace = idplace
             newPlace.idPlace = idplace
             newPlace.isArenda = true
+        print(data.numberFone)
             
             context.saveContext()
     }
