@@ -16,6 +16,7 @@
 		8094D9642A04F3AB00E986F9 /* DatePiickerViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094D9632A04F3AB00E986F9 /* DatePiickerViewExtension.swift */; };
 		8094D9672A050AC700E986F9 /* StatusArendaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094D9662A050AC700E986F9 /* StatusArendaView.swift */; };
 		92A6926529CEF7DF00F22E39 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6926429CEF7DF00F22E39 /* DatePickerView.swift */; };
+		92C46A7B2A0F948F00660DDE /* ScaleModified.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C46A7A2A0F948F00660DDE /* ScaleModified.swift */; };
 		92DE8BA329F52DD700904AB8 /* FormatterNumberPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */; };
 		92DE8BA629F537CC00904AB8 /* NumberPhoneMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA529F537CC00904AB8 /* NumberPhoneMaskView.swift */; };
 		92DE8BA829F5384D00904AB8 /* TextFieldContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA729F5384D00904AB8 /* TextFieldContainer.swift */; };
@@ -47,6 +48,7 @@
 		8094D9632A04F3AB00E986F9 /* DatePiickerViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePiickerViewExtension.swift; sourceTree = "<group>"; };
 		8094D9662A050AC700E986F9 /* StatusArendaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusArendaView.swift; sourceTree = "<group>"; };
 		92A6926429CEF7DF00F22E39 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
+		92C46A7A2A0F948F00660DDE /* ScaleModified.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleModified.swift; sourceTree = "<group>"; };
 		92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterNumberPhone.swift; sourceTree = "<group>"; };
 		92DE8BA529F537CC00904AB8 /* NumberPhoneMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPhoneMaskView.swift; sourceTree = "<group>"; };
 		92DE8BA729F5384D00904AB8 /* TextFieldContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldContainer.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				8094D9662A050AC700E986F9 /* StatusArendaView.swift */,
+				92C46A7A2A0F948F00660DDE /* ScaleModified.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -384,6 +387,7 @@
 				92DE8BAA29F53F8A00904AB8 /* FilterNumberPhone.swift in Sources */,
 				92FF4DAB29956E7000607B5F /* LoadPlaces.swift in Sources */,
 				92DF89B029915C3B0036CBEA /* CardParkingPlaceView.swift in Sources */,
+				92C46A7B2A0F948F00660DDE /* ScaleModified.swift in Sources */,
 				92DF89C8299172B60036CBEA /* AutoView.swift in Sources */,
 				92DF898C29915BEC0036CBEA /* ParkingApp.swift in Sources */,
 			);

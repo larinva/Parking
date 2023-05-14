@@ -11,7 +11,8 @@ struct StatusArendaView: View {
     var isStatus: Bool
     
     var body: some View{
-        Text("\(String(describing: isStatus ? "в аренде" : " свободен"))")            .foregroundColor(isStatus ? .red : .green)
+        Text("\(String(describing: isStatus ? "в аренде" : " свободен"))")
+            .foregroundColor(isStatus ? .red : .green)
             .font(.caption)
             .bold()
     }

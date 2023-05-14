@@ -10,7 +10,7 @@ import SwiftUI
 extension DatePickerView{
     func NextDayMonthView() -> some View {
         HStack{
-            Text("Оплачено до ")
+            Text(paidToText)
             Spacer()
             VStack{
                 Text("\(model.nextDayMonth())")
@@ -25,22 +25,21 @@ extension DatePickerView{
     }
     
     func DatePayView() -> some View {
-        DatePicker ("Оплачено до ", selection: model.isPicker ? $model.datePicker : $model.data.dateEnd, displayedComponents: .date)
+        DatePicker (paidToText, selection: model.isPicker ? $model.datePicker : $model.data.dateEnd, displayedComponents: .date)
         .onChange(of: endDate) { newValue in
             model.data.date = startDate
             model.data.dateEnd = newValue
             model.price = model.payOfMonth()
             model.payByDay(dateStart: startDate, dateEnd: newValue)
-            //let _ = print(newValue)
         }
     }
     
     func TogglePayView() -> some View{
-        Section(header: Text("Оплата")){
+        Section(header: Text(paymentText)){
             Text("\(model.price)")
             
             Toggle(isOn: $model.isPicker){
-                Text("Оплата за месяц")
+                Text(paymentMonthText)
             }
             .onChange(of: model.isPicker) { newValue in
                 if model.isPicker{
@@ -51,7 +50,7 @@ extension DatePickerView{
                 }
             }
             .onAppear{
-                //model.isPicker = model.data.isDatePicker
+                model.isPicker = model.data.isDatePicker
             }
         }
     }

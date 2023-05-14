@@ -59,7 +59,6 @@ extension CardParkingPlaceViewModel{
             },
             set: {
                 self.textPhone = $0
-//                let _ = print(String(describing: self.textPhone))
             }
         )
         return textChangeBinding
@@ -79,6 +78,10 @@ extension CardParkingPlaceViewModel{
 }
 
 extension CardParkingPlaceViewModel{
+    
+    func loadNumberFone() -> () {
+        textPhone = data.numberFone
+    }
     
     func loadArendaPlace(idplace: String ,place: FetchedResults<Parking>){
         for item in filterPlaceId(idPlace: idplace, parking: place){
@@ -123,8 +126,7 @@ extension CardParkingPlaceViewModel{
             newPlace.places.idPlace = idplace
             newPlace.idPlace = idplace
             newPlace.isArenda = true
-        print(data.numberFone)
-            
+        
             context.saveContext()
     }
    

@@ -31,6 +31,7 @@ extension MapView{
                                           withExtension: "svg")
         if let url = url {
             view = SVGView(contentsOf: url)
+                
         }
     }
 }

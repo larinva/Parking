@@ -24,10 +24,15 @@ struct DatePickerView: View {
         let end = model.data.dateEnd
         return end
     }
+    
+    var paidToText = "Оплачено до "
+    var paymentText = "Оплата"
+    var paymentMonthText = "Оплата за месяц"
+    var parkingPeriod = "Период парковки"
      
     var body: some View {
         
-        Section(header: Text("Период парковки")){
+        Section(header: Text(parkingPeriod)){
             if model.isPicker{
                 NextDayMonthView()
             } else{
