@@ -28,7 +28,6 @@ extension CardParkingPlaceViewModel{
     func nextDayMonth() -> String {
         let dateComponent = calendar.dateComponents([.day], from: .now)
         let nextDate = calendar.nextDate(after: .now, matching: dateComponent, matchingPolicy: .strict)
-       
         let formatted = nextDate?.formatted(date: .abbreviated, time: .omitted)
         
         return formatted ?? ""
@@ -39,7 +38,6 @@ extension CardParkingPlaceViewModel{
         price = ("3 000₽")
         return price
     }
-    
     
     //оплата по дням
     func payByDay(dateStart: Date, dateEnd: Date) -> () {
