@@ -13,12 +13,12 @@ struct ProfileFotoView: View {
     
     var body: some View {
         
-        HStack(spacing: 16){
+        HStack(spacing: 20){
             Circle()
                 .fill(.gray).opacity(0.5)
                 .frame(width: 100, height: 100, alignment: .center)
                 .overlay {
-                    Text("Фото")
+                    Text(PersonData.foto)
                         .foregroundColor(.white)
                         .font(.title2)
                         .bold()
@@ -27,12 +27,12 @@ struct ProfileFotoView: View {
             VStack(alignment: .leading, spacing: 8){
                 StatusArendaView(isStatus: isStatus)
                 
-                Text("Парковочное место \(title)")
+                Text(PersonData.parkingPlace + title)
                     .font(.title3)
                     .bold()
             }
         }
-        .padding()
+        .padding(8)
     }
 }
 

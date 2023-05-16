@@ -13,6 +13,7 @@ struct AutoView: View {
     private var parking: FetchedResults<Parking>
 
     @State private var isDetailInfo: Bool = false
+    @State private var searchText = ""
     
     var body: some View {
         NavigationStack{
@@ -20,8 +21,12 @@ struct AutoView: View {
                 ForEach(parking) { place in
                     VStack(alignment: .leading){
                         NavigationLink(value: place){
-                            VStack(alignment: .leading){
-                                Text("Парковочное место " + (place.idPlace ?? ""))
+                            VStack(alignment: .leading, spacing: 8){
+                                Text(PersonData.ovnerAuto + place.ovnerAuto)
+                                Text(PersonData.numberFone + place.numberFone)
+                                Text(PersonData.carBrand + place.carBrand)
+                                Text(PersonData.numberAuto + place.numberAuto)
+                                Text(PersonData.parkingPlace + " " + (place.idPlace ?? ""))
                                 StatusArendaView(isStatus: place.isArenda)
                             }
                         }
@@ -30,12 +35,14 @@ struct AutoView: View {
                 }.onDelete(perform: deleteItem(index:))
             }//List
             .navigationDestination(for: Parking.self) { place in
-                CardParkingPlaceView(idPlace: place.idPlace ?? "", isStatusArenda: place.isArenda)
-                let _ = print(place.isArenda)
+                CardParkingPlaceView(idPlace: place.idPlace ?? "",
+                                     isStatusArenda: place.isArenda,
+                                     isCancelButton: false)
+                
             }
-        
+            .navigationTitle(PersonData.listClients)
+            .searchable(text: $searchText)
         }
-        .navigationTitle("Auto View")
     }
     
     private func deleteItem(index: IndexSet){

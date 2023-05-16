@@ -17,6 +17,7 @@
 		8094D9672A050AC700E986F9 /* StatusArendaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094D9662A050AC700E986F9 /* StatusArendaView.swift */; };
 		92A6926529CEF7DF00F22E39 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6926429CEF7DF00F22E39 /* DatePickerView.swift */; };
 		92C46A7B2A0F948F00660DDE /* ScaleModified.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C46A7A2A0F948F00660DDE /* ScaleModified.swift */; };
+		92D5464A2A14011200E49DD8 /* PersonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D546492A14011200E49DD8 /* PersonData.swift */; };
 		92DE8BA329F52DD700904AB8 /* FormatterNumberPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */; };
 		92DE8BA629F537CC00904AB8 /* NumberPhoneMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA529F537CC00904AB8 /* NumberPhoneMaskView.swift */; };
 		92DE8BA829F5384D00904AB8 /* TextFieldContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA729F5384D00904AB8 /* TextFieldContainer.swift */; };
@@ -49,6 +50,7 @@
 		8094D9662A050AC700E986F9 /* StatusArendaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusArendaView.swift; sourceTree = "<group>"; };
 		92A6926429CEF7DF00F22E39 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		92C46A7A2A0F948F00660DDE /* ScaleModified.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScaleModified.swift; sourceTree = "<group>"; };
+		92D546492A14011200E49DD8 /* PersonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonData.swift; sourceTree = "<group>"; };
 		92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterNumberPhone.swift; sourceTree = "<group>"; };
 		92DE8BA529F537CC00904AB8 /* NumberPhoneMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPhoneMaskView.swift; sourceTree = "<group>"; };
 		92DE8BA729F5384D00904AB8 /* TextFieldContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldContainer.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 			children = (
 				8094D9662A050AC700E986F9 /* StatusArendaView.swift */,
 				92C46A7A2A0F948F00660DDE /* ScaleModified.swift */,
+				92D546492A14011200E49DD8 /* PersonData.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -370,6 +373,7 @@
 				80244EE1299CFE6600E9AC96 /* ParserSVGViewModel.swift in Sources */,
 				80244EDF299CD19900E9AC96 /* MapViewExtension.swift in Sources */,
 				92DE8BA629F537CC00904AB8 /* NumberPhoneMaskView.swift in Sources */,
+				92D5464A2A14011200E49DD8 /* PersonData.swift in Sources */,
 				92DF89BD299163860036CBEA /* Parking.swift in Sources */,
 				92DF89BF29916D8D0036CBEA /* HomeView.swift in Sources */,
 				92DE8BA829F5384D00904AB8 /* TextFieldContainer.swift in Sources */,
