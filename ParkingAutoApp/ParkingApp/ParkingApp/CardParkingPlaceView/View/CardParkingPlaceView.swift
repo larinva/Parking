@@ -76,7 +76,7 @@ extension CardParkingPlaceView{
                     .resizable()
                     .frame(width: imageSize, height: imageSize)
                     .foregroundColor(.gray)
-                TextField("Имя владельца", text: $cardDetailViewModel.data.ovnerAuto)
+                TextField(Person, text: $cardDetailViewModel.data.ovnerAuto)
             }
             
             HStack{
