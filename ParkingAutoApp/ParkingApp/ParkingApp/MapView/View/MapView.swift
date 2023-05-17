@@ -17,9 +17,9 @@ struct MapView: View {
     @ObservedObject var parserMapViewModel = ParserSVGViewModel()
     
     @State var isDragging = false
-    @State var isAlert: Bool = false
-    @State private var currentScale: CGFloat = 0
-    @State private var finalScale: CGFloat = 1
+    
+//    @State private var currentScale: CGFloat = 0
+//    @State private var finalScale: CGFloat = 1
     
     var view: SVGView!
     

@@ -15,7 +15,6 @@ func filterPlaceId(idPlace: String, parking: FetchedResults<Parking>)-> [Fetched
 
 struct CardParkingPlaceView: View {
     @Environment(\.dismiss) private var dismiss
-    @Environment(\.editMode) private var editMode
     
     //Core Data
     @Environment(\.managedObjectContext) private var viewContext
@@ -25,6 +24,8 @@ struct CardParkingPlaceView: View {
     
     var idPlace: String
     var isStatusArenda: Bool
+    var isCancelButton: Bool
+   
     private let imageSize: CGFloat = 22
     
     private let arendaText = "Арендовать"
@@ -33,7 +34,7 @@ struct CardParkingPlaceView: View {
     private let cancelText = "Отмена"
     private let extendText = "Продлить"
     private let messageText = "Вы действительно хотите завершить аренду"
-   private let clientsCardText = "Карточка клиента"
+    private let clientsCardText = "Карточка клиента"
     
     private let cancelImage = "multiply.circle.fill"
     private let personImage = "person"
@@ -42,7 +43,9 @@ struct CardParkingPlaceView: View {
     @StateObject var cardDetailViewModel = CardParkingPlaceViewModel()
 
     var body: some View{
-        HStack{
+        
+        if isCancelButton {
+            HStack{
                 Button() {
                     dismiss.callAsFunction()
                 } label: {
@@ -50,18 +53,19 @@ struct CardParkingPlaceView: View {
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(width: 28, height: 28)
+                        .foregroundColor(Color(.systemGray2))
                 }
-
-            Spacer()
-            EditButton()
-        }
-        .padding()
-        
-            Form{
-                ProfileFotoView(title: idPlace, isStatus: isStatusArenda)
-                InfoClientSectionView()
-                DatePickerView(model: cardDetailViewModel)
+                
+                Spacer()
             }
+            .padding([.leading, .top], 8)
+        }
+
+        Form{
+            ProfileFotoView(title: idPlace, isStatus: isStatusArenda)
+            InfoClientSectionView()
+            DatePickerView(model: cardDetailViewModel)
+        }
             
         WriteCardDetailView()
     }
@@ -76,7 +80,11 @@ extension CardParkingPlaceView{
                     .resizable()
                     .frame(width: imageSize, height: imageSize)
                     .foregroundColor(.gray)
+<<<<<<< HEAD
                 TextField(Person, text: $cardDetailViewModel.data.ovnerAuto)
+=======
+                TextField(PersonData.ovnerAuto, text: $cardDetailViewModel.data.ovnerAuto)
+>>>>>>> 100cd0b7468111e00d980dfe67dc874a87da99f2
             }
             
             HStack{
@@ -85,7 +93,7 @@ extension CardParkingPlaceView{
                     .frame(width: imageSize, height: imageSize)
                     .foregroundColor(.gray)
                 
-                TextField("Номер телефона", text: cardDetailViewModel.maskPhoneBinding())
+                TextField(PersonData.numberFone, text: cardDetailViewModel.maskPhoneBinding())
                     .keyboardType(.numberPad)
                     .onAppear{
                         cardDetailViewModel.loadNumberFone()
@@ -97,7 +105,7 @@ extension CardParkingPlaceView{
                     .resizable()
                     .frame(width: imageSize, height: imageSize)
                     .foregroundColor(.gray)
-                TextField("Марка машины", text: $cardDetailViewModel.data.carBrand)
+                TextField(PersonData.carBrand, text: $cardDetailViewModel.data.carBrand)
             }
             
             HStack{
@@ -105,7 +113,7 @@ extension CardParkingPlaceView{
                     .resizable()
                     .frame(width: imageSize, height: imageSize)
                     .foregroundColor(.gray)
-                TextField("Гос. номер авто", text:
+                TextField(PersonData.numberAuto, text:
                             $cardDetailViewModel.data.numberAuto)
             }
         }

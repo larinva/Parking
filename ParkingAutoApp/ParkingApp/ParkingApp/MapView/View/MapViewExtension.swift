@@ -19,7 +19,8 @@ extension MapView{
             
             CardParkingPlaceView(
                 idPlace: parserMapViewModel.nodeTag,
-                isStatusArenda: isStatusArendaPlace() ? true : false
+                isStatusArenda: isStatusArendaPlace() ? true : false,
+                isCancelButton: true
             )
         }
     }
