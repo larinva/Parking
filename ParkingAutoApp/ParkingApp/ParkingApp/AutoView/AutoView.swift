@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct AutoView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -42,8 +43,20 @@ struct AutoView: View {
             }
             .navigationTitle(PersonData.listClients)
             .searchable(text: $searchText)
+            .onChange(of: searchText) { newValue in
+                parking.sortDescriptors = [SortDescriptor(\.numberFone_)]
+                parking.nsPredicate = !newValue.isEmpty ? Parking.searchPredicate(query: newValue, field: "numberFone_") : .all
+            }
         }
     }
+    
+//    var search: FetchedResults<Parking>{
+//        if searchText.isEmpty{
+//            return parking
+//        } else{
+//            return parking.filter { $0.numberFone.inc (searchText)}
+//        }
+//    }
     
     private func deleteItem(index: IndexSet){
         index.map { parking[$0] }.forEach(viewContext.delete)

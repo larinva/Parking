@@ -10,6 +10,7 @@ import SVGView
 
 
 struct MapView: View {
+    @Environment(\.colorScheme) var scheme
     
     @Environment(\.managedObjectContext) var viewContext
     @FetchRequest(fetchRequest: Places.fetchRequest1()) var places: FetchedResults<Places>
@@ -31,21 +32,25 @@ struct MapView: View {
         NavigationStack{
             ScrollView(.horizontal){
                 ZStack{
-                    Image("sample.png")
+                    Image(scheme == .dark ? "sampleDark.png" : "sample.png")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-//                        .pinchZoom()
-//                        .scaleEffect(finalScale + currentScale)
-//                        .gesture(
-//                            MagnificationGesture()
-//                                .onChanged{ newScale in
-//                                    currentScale = newScale
-//                                }
-//                                .onEnded({ scale in
-//                                    finalScale = scale
-//                                    currentScale = 0
-//                                })
-//                        )
+                    
+//                    Image("sample.png")
+//                        .resizable()
+//                        .aspectRatio(contentMode: .fill)
+////                        .pinchZoom()
+////                        .scaleEffect(finalScale + currentScale)
+////                        .gesture(
+////                            MagnificationGesture()
+////                                .onChanged{ newScale in
+////                                    currentScale = newScale
+////                                }
+////                                .onEnded({ scale in
+////                                    finalScale = scale
+////                                    currentScale = 0
+////                                })
+////                        )
                     
                     SVGViewMap()
 //                        .pinchZoom()
