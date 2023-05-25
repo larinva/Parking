@@ -4,6 +4,8 @@
 //
 //  Created by vacheslavBook on 21.01.2023.
 
+// testing 1
+
 import SwiftUI
 
 let size = UIScreen.main.bounds
@@ -80,11 +82,11 @@ extension CardParkingPlaceView{
                     .resizable()
                     .frame(width: imageSize, height: imageSize)
                     .foregroundColor(.gray)
-<<<<<<< HEAD
+
                 TextField(Person, text: $cardDetailViewModel.data.ovnerAuto)
-=======
+
                 TextField(PersonData.ovnerAuto, text: $cardDetailViewModel.data.ovnerAuto)
->>>>>>> 100cd0b7468111e00d980dfe67dc874a87da99f2
+
             }
             
             HStack{
