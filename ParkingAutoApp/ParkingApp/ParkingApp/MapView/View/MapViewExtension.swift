@@ -28,11 +28,9 @@ extension MapView{
 
 extension MapView{
     mutating func loadMapView() -> () {
-        let url = Bundle.main.url(forResource: "MapParkengin",
-                                          withExtension: "svg")
+        let url = Bundle.main.url(forResource: "MapParkengin", withExtension: "svg")
         if let url = url {
             view = SVGView(contentsOf: url)
-                
         }
     }
 }

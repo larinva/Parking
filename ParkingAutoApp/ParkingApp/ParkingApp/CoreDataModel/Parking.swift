@@ -16,6 +16,14 @@ extension Parking: Comparable{
         return request
     }
     
+    static func searchPredicate(query: String, field: String)-> NSPredicate?{
+        if query.isEmpty{
+            return nil
+        } else{
+            return NSPredicate(format: "%K BEGINSWITH[cd] %@", field, query)
+        }
+    }
+    
     var ovnerAuto: String{
         get{ ovnerAuto_ ?? "" }
         set{ ovnerAuto_ = newValue }

@@ -19,6 +19,7 @@ func filterPlaceId(idPlace: String, parking: FetchedResults<Parking>)-> [Fetched
 
 struct CardParkingPlaceView: View {
     @Environment(\.dismiss) private var dismiss
+    @Environment(\.editMode) private var editMode
     
     //Core Data
     @Environment(\.managedObjectContext) private var viewContext
@@ -59,10 +60,15 @@ struct CardParkingPlaceView: View {
                         .frame(width: 28, height: 28)
                         .foregroundColor(Color(.systemGray2))
                 }
-                
+
                 Spacer()
+                
+                if isStatusArenda == true{
+                    EditButton()
+                }
+            
             }
-            .padding([.leading, .top], 8)
+            .padding([.leading, .trailing, .top], 8)
         }
 
         Form{
@@ -70,7 +76,7 @@ struct CardParkingPlaceView: View {
             InfoClientSectionView()
             DatePickerView(model: cardDetailViewModel)
         }
-            
+
         WriteCardDetailView()
     }
 }
@@ -79,6 +85,7 @@ extension CardParkingPlaceView{
     @ViewBuilder
     private func InfoClientSectionView()-> some View{
         Section(header: Text(clientsCardText)){
+<<<<<<< HEAD
             HStack{
                 Image(systemName: personImage)
                     .resizable()
@@ -90,35 +97,15 @@ extension CardParkingPlaceView{
                 TextField(PersonData.ovnerAuto, text: $cardDetailViewModel.data.ovnerAuto)
 
             }
+=======
+>>>>>>> 0c6a7d4f01c13600f6d9a1bb9529e568ba2d4403
             
-            HStack{
-                Image(systemName: "phone.circle")
-                    .resizable()
-                    .frame(width: imageSize, height: imageSize)
-                    .foregroundColor(.gray)
+            if isStatusArenda == true && editMode?.wrappedValue.isEditing == false{
+                let _ = print("yes")
+                downFormView()
                 
-                TextField(PersonData.numberFone, text: cardDetailViewModel.maskPhoneBinding())
-                    .keyboardType(.numberPad)
-                    .onAppear{
-                        cardDetailViewModel.loadNumberFone()
-                    }
-            }
-            
-            HStack{
-                Image(systemName: "car")
-                    .resizable()
-                    .frame(width: imageSize, height: imageSize)
-                    .foregroundColor(.gray)
-                TextField(PersonData.carBrand, text: $cardDetailViewModel.data.carBrand)
-            }
-            
-            HStack{
-                Image(systemName: "person.fill")
-                    .resizable()
-                    .frame(width: imageSize, height: imageSize)
-                    .foregroundColor(.gray)
-                TextField(PersonData.numberAuto, text:
-                            $cardDetailViewModel.data.numberAuto)
+            }else{
+                editFormView()
             }
         }
         .onAppear{
@@ -127,6 +114,58 @@ extension CardParkingPlaceView{
                 place: parking
             )
         }
+    }
+    
+    private func editFormView()-> some View{
+        return VStack(spacing: 15){
+            HStack{
+                Image(systemName: personImage)
+                    .resizable()
+                    .frame(width: imageSize, height: imageSize)
+                    .foregroundColor(.gray)
+                
+            TextField(PersonData.ovnerAuto, text: $cardDetailViewModel.data.ovnerAuto)
+        }
+        
+        HStack{
+            Image(systemName: "phone.circle")
+                .resizable()
+                .frame(width: imageSize, height: imageSize)
+                .foregroundColor(.gray)
+            
+            TextField(PersonData.numberFone, text: cardDetailViewModel.maskPhoneBinding())
+                .keyboardType(.numberPad)
+                .onAppear{
+                    cardDetailViewModel.loadNumberFone()
+                }
+        }
+        
+        HStack{
+            Image(systemName: "car")
+                .resizable()
+                .frame(width: imageSize, height: imageSize)
+                .foregroundColor(.gray)
+            TextField(PersonData.carBrand, text: $cardDetailViewModel.data.carBrand)
+        }
+        
+        HStack{
+            Image(systemName: "person.fill")
+                .resizable()
+                .frame(width: imageSize, height: imageSize)
+                .foregroundColor(.gray)
+            TextField(PersonData.numberAuto, text:
+                        $cardDetailViewModel.data.numberAuto)
+        }
+        }
+    }
+    
+    private func downFormView()-> some View{
+        return VStack(alignment: .leading, spacing: 15){
+            Text(cardDetailViewModel.data.ovnerAuto)
+            Text(cardDetailViewModel.data.numberFone)
+            Text(cardDetailViewModel.data.carBrand)
+            Text(cardDetailViewModel.data.numberAuto)
+        } 
     }
     
     @ViewBuilder
