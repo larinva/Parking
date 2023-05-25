@@ -19,8 +19,6 @@ class CardParkingPlaceViewModel: ObservableObject {
     @Published private (set) var calendar = Calendar.current
     @Published private (set) var maskPhone = "+X-XXX-XXX-XX-XX"
     @Published private (set) var textPhone = ""
-    //@Published private (set) var maskAuto = "xxxxxxxxx"
-    //@Published private (set) var textAuto = ""
 }
 
 extension CardParkingPlaceViewModel{
@@ -61,18 +59,6 @@ extension CardParkingPlaceViewModel{
         )
         return textChangeBinding
     }
-    
-    /*func maskAutoBinding() -> Binding<String> {
-        let textChangeBinding = Binding<String>(
-            get: {
-                FilterNumberPhone.formatNumberAuto(with: self.maskAuto, auto: self.textAuto)            },
-            set: {
-                self.textAuto = $0
-            }
-        )
-        //TextFieldContainer(placeholder: "+7", text: textChangeBinding)
-        return textChangeBinding
-    }*/
 }
 
 extension CardParkingPlaceViewModel{
@@ -126,6 +112,10 @@ extension CardParkingPlaceViewModel{
             newPlace.isArenda = true
         
             context.saveContext()
+    }
+    
+    func saveCoreData(id: String, context: NSManagedObjectContext) -> () {
+        Parking.update(id: id, from: data, in: context)
     }
    
     func deleteAllItem(parking: FetchedResults<Parking>, context: NSManagedObjectContext){

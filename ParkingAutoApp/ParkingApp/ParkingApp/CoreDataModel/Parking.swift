@@ -24,6 +24,32 @@ extension Parking: Comparable{
         }
     }
     
+    static func withParkingPlace(id: String, context: NSManagedObjectContext)-> Parking{
+        let request = NSFetchRequest(NSPredicate(format: "idPlace = %@", id))
+        let places = (try? context.fetch(request)) ?? []
+    }
+    
+    static func update(id: String, from cardClient: CardParkingPlaceModel, in context: NSManagedObjectContext){
+        
+        /*let parking = Parking(context: context)
+        parking.idPlace = id
+        parking.ovnerAuto = cardClient.ovnerAuto
+        parking.numberFone = cardClient.numberFone
+        parking.carBrand = cardClient.carBrand
+        parking.numberAuto = cardClient.numberAuto
+        parking.isDatePicker = cardClient.isDatePicker
+        parking.price = cardClient.price
+        parking.date = cardClient.date
+        parking.dateEnd = cardClient.dateEnd*/
+        
+        //parking.objectWillChange.send()*/
+        
+        
+        print(context.updatedObjects)
+        
+        context.saveContext()
+    }
+    
     var ovnerAuto: String{
         get{ ovnerAuto_ ?? "" }
         set{ ovnerAuto_ = newValue }

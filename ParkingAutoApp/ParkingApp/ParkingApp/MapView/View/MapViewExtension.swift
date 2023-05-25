@@ -21,7 +21,7 @@ extension MapView{
                 idPlace: parserMapViewModel.nodeTag,
                 isStatusArenda: isStatusArendaPlace() ? true : false,
                 isCancelButton: true
-            )
+            ) //true
         }
     }
 }

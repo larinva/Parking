@@ -8,14 +8,14 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "040360B7-4077-4374-8E92-B7EA82D82317"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParkingApp/CardParkingPlaceView/ViewModel/CardParkingPlaceViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
             landmarkName = "loadArendaPlace(idplace:place:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,16 +23,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "580AE44A-7E3A-4D7A-AAF4-E80B4CCD7D55"
-            shouldBeEnabled = "Yes"
+            uuid = "141A3F1D-52B1-4838-A11D-BA748BACDC51"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ParkingApp/CardParkingPlaceView/View/CardParkingPlaceView.swift"
+            filePath = "ParkingApp/CardParkingPlaceView/ViewModel/CardParkingPlaceViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "104"
-            endingLineNumber = "104"
-            landmarkName = "InfoClientSectionView()"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "saveCoreData(id:context:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DC140335-3A14-47CE-BAFD-5BF560F6E045"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParkingApp/CoreDataModel/Parking.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "update(id:from:in:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

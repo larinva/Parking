@@ -4,9 +4,6 @@
 //
 //  Created by vacheslavBook on 21.01.2023.
 
-// testing 1
-// testing 2
-// testing 3
 
 import SwiftUI
 
@@ -26,10 +23,10 @@ struct CardParkingPlaceView: View {
     @FetchRequest(fetchRequest: Parking.fetchRequest0()) private var parking: FetchedResults<Parking>
     
     @State private var isAlert: Bool = false
-    
+   
     var idPlace: String
     var isStatusArenda: Bool
-    var isCancelButton: Bool
+    var isCancelButton: Bool?
    
     private let imageSize: CGFloat = 22
     
@@ -48,35 +45,15 @@ struct CardParkingPlaceView: View {
     @StateObject var cardDetailViewModel = CardParkingPlaceViewModel()
 
     var body: some View{
-        
-        if isCancelButton {
-            HStack{
-                Button() {
-                    dismiss.callAsFunction()
-                } label: {
-                    Image(systemName: cancelImage)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .frame(width: 28, height: 28)
-                        .foregroundColor(Color(.systemGray2))
-                }
-
-                Spacer()
-                
-                if isStatusArenda == true{
-                    EditButton()
-                }
-            
-            }
-            .padding([.leading, .trailing, .top], 8)
+        if isCancelButton ?? true{
+            toolbarView()
         }
-
+        
         Form{
             ProfileFotoView(title: idPlace, isStatus: isStatusArenda)
             InfoClientSectionView()
             DatePickerView(model: cardDetailViewModel)
         }
-
         WriteCardDetailView()
     }
 }
@@ -85,21 +62,7 @@ extension CardParkingPlaceView{
     @ViewBuilder
     private func InfoClientSectionView()-> some View{
         Section(header: Text(clientsCardText)){
-<<<<<<< HEAD
-            HStack{
-                Image(systemName: personImage)
-                    .resizable()
-                    .frame(width: imageSize, height: imageSize)
-                    .foregroundColor(.gray)
 
-                TextField(Person, text: $cardDetailViewModel.data.ovnerAuto)
-
-                TextField(PersonData.ovnerAuto, text: $cardDetailViewModel.data.ovnerAuto)
-
-            }
-=======
->>>>>>> 0c6a7d4f01c13600f6d9a1bb9529e568ba2d4403
-            
             if isStatusArenda == true && editMode?.wrappedValue.isEditing == false{
                 let _ = print("yes")
                 downFormView()
@@ -116,8 +79,43 @@ extension CardParkingPlaceView{
         }
     }
     
+    private func toolbarView()-> some View{
+        HStack{
+            Button() {
+                dismiss()
+            } label: {
+                Text("Отмена")
+            }
+            
+            Spacer()
+            
+            if isStatusArenda == true {
+                if editMode?.wrappedValue == .inactive{
+                    Button("Править") {
+                        editMode?.wrappedValue = .active
+                        let _ = print("tap")
+                    }
+                } else {
+                    Button("Готово") {
+                        //editMode?.wrappedValue = .active
+                        let _ = print("Save")
+                        saveData()
+                    }
+                }
+                
+                //EditButton()
+            } else {
+                Button("1111") {
+                    //editMode?.wrappedValue = .active
+                    let _ = print("11111")
+                }
+            }
+        }
+        .padding([.leading, .trailing, .top], 16)
+    }
+    
     private func editFormView()-> some View{
-        return VStack(spacing: 15){
+        return VStack{
             HStack{
                 Image(systemName: personImage)
                     .resizable()
@@ -160,11 +158,11 @@ extension CardParkingPlaceView{
     }
     
     private func downFormView()-> some View{
-        return VStack(alignment: .leading, spacing: 15){
-            Text(cardDetailViewModel.data.ovnerAuto)
-            Text(cardDetailViewModel.data.numberFone)
-            Text(cardDetailViewModel.data.carBrand)
-            Text(cardDetailViewModel.data.numberAuto)
+        return VStack{
+            TextField("", text: $cardDetailViewModel.data.ovnerAuto)
+            TextField("", text: $cardDetailViewModel.data.numberFone)
+            TextField("", text: $cardDetailViewModel.data.carBrand)
+            TextField("", text: $cardDetailViewModel.data.numberAuto)
         } 
     }
     
@@ -232,6 +230,8 @@ extension CardParkingPlaceView{
     }
 }
 
+// MARK: Core Data
+
 extension CardParkingPlaceView{
     
     private func filterPlace(isArenda: Bool){
@@ -249,6 +249,10 @@ extension CardParkingPlaceView{
                 context: viewContext
             )
         }
+    }
+    
+    private func saveData(){
+        cardDetailViewModel.saveCoreData(id: idPlace, context: viewContext)
     }
     
     private func deleteItem(){

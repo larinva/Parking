@@ -38,7 +38,7 @@ struct AutoView: View {
             .navigationDestination(for: Parking.self) { place in
                 CardParkingPlaceView(idPlace: place.idPlace ?? "",
                                      isStatusArenda: place.isArenda,
-                                     isCancelButton: false)
+                                     isCancelButton: false) //false
                 
             }
             .navigationTitle(PersonData.listClients)
