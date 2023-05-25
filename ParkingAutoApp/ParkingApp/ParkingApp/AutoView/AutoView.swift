@@ -10,7 +10,7 @@ import CoreData
 
 struct AutoView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(fetchRequest: Parking.fetchRequest0())
+    @FetchRequest(fetchRequest: Parking.fetchRequest0(.all))
     private var parking: FetchedResults<Parking>
 
     @State private var isDetailInfo: Bool = false

@@ -9,7 +9,7 @@ import SwiftUI
 struct DatePickerView: View {
     //Core Data
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(fetchRequest: Parking.fetchRequest0()) private
+    @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) private
     var parking: FetchedResults<Parking>
     
     //MARK: ViewModel

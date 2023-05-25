@@ -67,19 +67,27 @@ extension CardParkingPlaceViewModel{
         textPhone = data.numberFone
     }
     
-    func loadArendaPlace(idplace: String ,place: FetchedResults<Parking>){
-        for item in filterPlaceId(idPlace: idplace, parking: place){
-            if item.isArenda{
-                data.ovnerAuto = item.ovnerAuto
-                data.numberFone = item.numberFone
-                data.carBrand = item.carBrand
-                data.numberAuto = item.numberAuto
-                data.isDatePicker = item.isDatePicker
-                data.price = item.price
-                data.date = item.date ?? Date()
-                data.dateEnd = item.dateEnd ?? Date()
-            }
-        }
+    func loadArendaPlace(idplace: String , place: Parking, context: NSManagedObjectContext){
+        Parking.load(idplace: idplace, in: context)
+        
+//        print(idplace)
+        
+//        let p = Parking.withParkingPlace(id: idplace, context: context)
+//        print(place.first)
+        
+//        for item in filterPlaceId(idPlace: idplace, parking: place){
+//            if item.isArenda{
+//                data.ovnerAuto = item.ovnerAuto
+//                data.numberFone = item.numberFone
+//                data.carBrand = item.carBrand
+//                data.numberAuto = item.numberAuto
+//                data.isDatePicker = item.isDatePicker
+//                data.price = item.price
+//                data.date = item.date ?? Date()
+//                data.dateEnd = item.dateEnd ?? Date()
+//            }
+//            print(data)
+//        }
     }
     
     func isHiddenLabel(id: String, parking: FetchedResults<Parking>)->Bool{
@@ -94,24 +102,8 @@ extension CardParkingPlaceViewModel{
 }
 
 extension CardParkingPlaceViewModel{
-    func addItem(idplace: String, context: NSManagedObjectContext){
-        let newPlace = Parking(context: context)
-            newPlace.ovnerAuto = data.ovnerAuto
-            newPlace.numberFone = textPhone //data.numberFone
-            newPlace.carBrand = data.carBrand
-            newPlace.numberAuto = data.numberAuto
-            newPlace.price = price
-            newPlace.isDatePicker = isPicker
-            newPlace.date = data.date
-            newPlace.dateEnd = data.dateEnd
-            
-            newPlace.places = Places(context: context)
-            newPlace.places.isArenda = true
-            newPlace.places.idPlace = idplace
-            newPlace.idPlace = idplace
-            newPlace.isArenda = true
-        
-            context.saveContext()
+    func addCoreData(idplace: String, context: NSManagedObjectContext){
+        Parking.add(id: idplace, from: data, context: context)
     }
     
     func saveCoreData(id: String, context: NSManagedObjectContext) -> () {

@@ -20,9 +20,11 @@ struct CardParkingPlaceView: View {
     
     //Core Data
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(fetchRequest: Parking.fetchRequest0()) private var parking: FetchedResults<Parking>
+    @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) private var parking: FetchedResults<Parking>
     
     @State private var isAlert: Bool = false
+    
+    var parking0: Parking?
    
     var idPlace: String
     var isStatusArenda: Bool
@@ -74,7 +76,8 @@ extension CardParkingPlaceView{
         .onAppear{
             cardDetailViewModel.loadArendaPlace(
                 idplace: idPlace,
-                place: parking
+                place: parking0 ?? Parking(context: viewContext),
+                context: viewContext
             )
         }
     }
@@ -190,7 +193,7 @@ extension CardParkingPlaceView{
         Button{
             if isArenda {
                 filterPlace(isArenda: isArenda)
-                addItem()
+                addData()
             } else{
                 filterPlace(isArenda: isArenda)
             }
@@ -242,9 +245,9 @@ extension CardParkingPlaceView{
         }
     }
     
-    private func addItem(){
+    private func addData(){
         withAnimation {
-            cardDetailViewModel.addItem(
+            cardDetailViewModel.addCoreData(
                 idplace: idPlace,
                 context: viewContext
             )
