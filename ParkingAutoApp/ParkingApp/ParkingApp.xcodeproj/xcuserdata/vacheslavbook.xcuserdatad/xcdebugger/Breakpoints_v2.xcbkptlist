@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
             endingLineNumber = "73"
-            landmarkName = "load(idplace:in:)"
+            landmarkName = "load(idplace:cardClient:context:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -48,7 +48,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "71"
             endingLineNumber = "71"
-            landmarkName = "loadArendaPlace(idplace:place:context:)"
+            landmarkName = "loadArendaPlace(idplace:place:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -80,7 +80,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "67"
             endingLineNumber = "67"
-            landmarkName = "load(idplace:in:)"
+            landmarkName = "load(idplace:cardClient:context:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -88,7 +88,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "EB4F2F7A-8FA6-4F91-8997-4CCB540AA389"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ParkingApp/CoreDataModel/Parking.swift"
@@ -96,8 +96,56 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "37"
             endingLineNumber = "37"
-            landmarkName = "withParkingPlace(id:context:)"
-            landmarkType = "7">
+            landmarkName = "Parking"
+            landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2C8BE60F-69C6-4E2B-BBCF-E4718F9A965B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParkingApp/CardParkingPlaceView/View/CardFormView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "isStatusArenda"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "2C8BE60F-69C6-4E2B-BBCF-E4718F9A965B - 64cc014f536c9dca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ParkingApp.CardFormView.isStatusArenda.getter : Swift.Bool"
+                  moduleName = "ParkingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vacheslavbook/Documents/WorkingCinemaApp/Parking/ParkingAutoApp/ParkingApp/ParkingApp/CardParkingPlaceView/View/CardFormView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "424">
+               </Location>
+               <Location
+                  uuid = "2C8BE60F-69C6-4E2B-BBCF-E4718F9A965B - 64cc014f536c9dca"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ParkingApp.CardFormView.isStatusArenda.getter : Swift.Bool"
+                  moduleName = "ParkingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vacheslavbook/Documents/WorkingCinemaApp/Parking/ParkingAutoApp/ParkingApp/ParkingApp/CardParkingPlaceView/View/CardFormView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "24"
+                  endingLineNumber = "24"
+                  offsetFromSymbolStart = "516">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

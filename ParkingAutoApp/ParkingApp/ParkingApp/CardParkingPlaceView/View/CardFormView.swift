@@ -12,36 +12,32 @@ struct CardFormView: View {
     //MARK: ViewModel
     @StateObject var cardDetailViewModel: CardParkingPlaceViewModel
     
+    @Environment(\.editMode) private var editMode
+    
     //Core Data
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) private var parking: FetchedResults<Parking>
     
     var id: String
-    
-    var isStatusArenda: Bool = {
-        let filter = parking.filter{ $0.idPlace == "1" }
-        let result = filter.first?.isArenda == true
-        return result
-    }()
-    
-    @Environment(\.editMode) private var editMode
-    
+
+    var isStatusArenda: Bool {
+        get{
+            let filter = parking.filter{ $0.idPlace == id }
+            let result = filter.first?.isArenda == true
+            return result
+        }
+    }
+
     private let imageSize: CGFloat = 22
-   
     private let clientsCardText = "Карточка клиента"
     private let personImage = "person"
 
     var body: some View{
         Form{
-            ProfileFotoView(idPlace: id, isStatus: isStatusArendaPlace() ? true : false)
+            ProfileFotoView(idPlace: id, isStatus: isStatusArenda ? true : false)
             InfoClientSectionView()
-            //DatePickerView(model: cardDetailViewModel)
+            DatePickerView(model: cardDetailViewModel)
         }
-    }
-    
-    func isStatusArendaPlace() -> Bool {
-        let filter = parking.filter{ $0.idPlace == id }
-        return filter.first?.isArenda == true
     }
 }
 
@@ -50,15 +46,13 @@ extension CardFormView{
     @ViewBuilder
     private func InfoClientSectionView()-> some View{
         Section(header: Text(clientsCardText)){
-            
-            editFormView()
-            
-            if isStatusArendaPlace() == true && editMode?.wrappedValue.isEditing == false{
-                let _ = print("yes")
-                downFormView()
-                
-            }else{
+
+            if editMode?.wrappedValue.isEditing == true{
+                let _ = print("editform")
                 editFormView()
+            }else{
+                let _ = print("downform")
+                downFormView()
             }
         }
         .onAppear{
@@ -116,10 +110,12 @@ extension CardFormView{
     
     private func downFormView()-> some View{
         return VStack{
-            TextField("", text: $cardDetailViewModel.data.ovnerAuto)
-            TextField("", text: $cardDetailViewModel.data.numberFone)
-            TextField("", text: $cardDetailViewModel.data.carBrand)
-            TextField("", text: $cardDetailViewModel.data.numberAuto)
+            List{
+                Text(cardDetailViewModel.data.ovnerAuto)
+                Text(cardDetailViewModel.data.numberFone)
+                Text(cardDetailViewModel.data.carBrand)
+                Text(cardDetailViewModel.data.numberAuto)
+            }
         }
     }
 }

@@ -19,26 +19,21 @@ struct CardParkingPlaceView: View {
     @Environment(\.editMode) private var editMode
     
     //Core Data
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) private var parking: FetchedResults<Parking>
+    @Environment(\.managedObjectContext) var viewContext
+    @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) var parking: FetchedResults<Parking>
     
     @State private var isAlert: Bool = false
-    
-    //var parking0: Parking?
-   
+
     var idPlace: String?
     var isStatusArenda: Bool?
     var isCancelButton: Bool?
-   
-    //var parkings: FetchedResults<Parking>
-    
+
     private let arendaText = "Арендовать"
     private let stopText = "Завершить"
     private let warningText = "Внимание"
     private let cancelText = "Отмена"
     private let extendText = "Продлить"
     private let messageText = "Вы действительно хотите завершить аренду"
-   
     
     private let cancelImage = "multiply.circle.fill"
     
@@ -46,136 +41,56 @@ struct CardParkingPlaceView: View {
     @StateObject var cardDetailViewModel = CardParkingPlaceViewModel()
 
     var body: some View{
-        if isCancelButton ?? true{
-            toolbarView()
-        }
-
-        CardFormView(cardDetailViewModel: cardDetailViewModel, id: idPlace ?? "")
-        
-        /*Form{
-            ProfileFotoView(title: idPlace, isStatus: isStatusArenda)
-            InfoClientSectionView()
-            DatePickerView(model: cardDetailViewModel)
-        }*/
+        ToolbarView()
+        CardFormView(
+            cardDetailViewModel: cardDetailViewModel,
+            id: idPlace ?? ""
+        )
         WriteCardDetailView()
-    }
-    
-    func isStatusArendaPlace() -> Bool {
-        let filter = parking.filter{ $0.idPlace == idPlace }
-        return filter.first?.isArenda == true
     }
 }
 
 extension CardParkingPlaceView{
-    /*@ViewBuilder
-    private func InfoClientSectionView()-> some View{
-        Section(header: Text(clientsCardText)){
+    private func ToolbarView()-> some View{
+        ZStack{
+            if isCancelButton ?? true{
+                HStack{
+                    Button() {
+                        dismiss()
+                    } label: {
+                        Text("Отмена")
+                    }
 
-            if isStatusArenda == true && editMode?.wrappedValue.isEditing == false{
-                let _ = print("yes")
-                downFormView()
-                
-            }else{
-                editFormView()
-            }
-        }
-        .onAppear{
-            //Parking.load(idplace: idPlace, cardClient: cardDetailViewModel.data, context: viewContext)
-            cardDetailViewModel.loadArendaPlace(
-                idplace: idPlace,
-                place: parking,
-                context: viewContext
-            )
-        }
-    }*/
-    
-    private func toolbarView()-> some View{
-        HStack{
-            Button() {
-                dismiss()
-            } label: {
-                Text("Отмена")
-            }
-            
-            Spacer()
-            
-            if isStatusArenda == true {
-                if editMode?.wrappedValue == .inactive{
-                    Button("Править") {
-                        editMode?.wrappedValue = .active
-                        let _ = print("tap")
+                    Spacer()
+
+                    if isStatusArenda == true {
+                        if editMode?.wrappedValue == .inactive{
+                            Button("Править") {
+                                editMode?.wrappedValue = .active
+                                let _ = print("правка")
+                            }
+                        } else {
+                            Button("Готово") {
+                                editMode?.wrappedValue = .active
+                                let _ = print("Save")
+                                saveData()
+                            }
+                        }
+
+//                        EditButton()
                     }
-                } else {
-                    Button("Готово") {
-                        //editMode?.wrappedValue = .active
-                        let _ = print("Save")
-                        saveData()
-                    }
+//                    else {
+//                        Button("Готово") {
+//                            editMode?.wrappedValue = .active
+//                            let _ = print("11111")
+//                        }
+//                    }
                 }
-                
-                //EditButton()
-            } else {
-                Button("1111") {
-                    //editMode?.wrappedValue = .active
-                    let _ = print("11111")
-                }
+                .padding([.leading, .trailing, .top], 16)
             }
-        }
-        .padding([.leading, .trailing, .top], 16)
-    }
-    
-    /*private func editFormView()-> some View{
-        return VStack{
-            HStack{
-                Image(systemName: personImage)
-                    .resizable()
-                    .frame(width: imageSize, height: imageSize)
-                    .foregroundColor(.gray)
-                
-            TextField(PersonData.ovnerAuto, text: $cardDetailViewModel.data.ovnerAuto)
-        }
-        
-        HStack{
-            Image(systemName: "phone.circle")
-                .resizable()
-                .frame(width: imageSize, height: imageSize)
-                .foregroundColor(.gray)
-            
-            TextField(PersonData.numberFone, text: cardDetailViewModel.maskPhoneBinding())
-                .keyboardType(.numberPad)
-                .onAppear{
-                    cardDetailViewModel.loadNumberFone()
-                }
-        }
-        
-        HStack{
-            Image(systemName: "car")
-                .resizable()
-                .frame(width: imageSize, height: imageSize)
-                .foregroundColor(.gray)
-            TextField(PersonData.carBrand, text: $cardDetailViewModel.data.carBrand)
-        }
-        
-        HStack{
-            Image(systemName: "person.fill")
-                .resizable()
-                .frame(width: imageSize, height: imageSize)
-                .foregroundColor(.gray)
-            TextField(PersonData.numberAuto, text:
-                        $cardDetailViewModel.data.numberAuto)
-        }
         }
     }
-    
-    private func downFormView()-> some View{
-        return VStack{
-            TextField("", text: $cardDetailViewModel.data.ovnerAuto)
-            TextField("", text: $cardDetailViewModel.data.numberFone)
-            TextField("", text: $cardDetailViewModel.data.carBrand)
-            TextField("", text: $cardDetailViewModel.data.numberAuto)
-        } 
-    }*/
-    
+
     @ViewBuilder
     private func WriteCardDetailView()->some View{
         HStack{
@@ -240,37 +155,4 @@ extension CardParkingPlaceView{
     }
 }
 
-// MARK: Core Data
 
-extension CardParkingPlaceView{
-    
-    private func filterPlace(isArenda: Bool){
-        for item in filterPlaceId(idPlace: idPlace ?? "", parking: parking){
-            item.isArenda = isArenda
-            item.places_?.isArenda = isArenda
-            viewContext.saveContext()
-        }
-    }
-    
-    private func addData(){
-        withAnimation {
-            cardDetailViewModel.addCoreData(
-                idplace: idPlace ?? "",
-                context: viewContext
-            )
-        }
-    }
-    
-    private func saveData(){
-        cardDetailViewModel.saveCoreData(id: idPlace ?? "", context: viewContext)
-    }
-    
-    private func deleteItem(){
-        withAnimation {
-            cardDetailViewModel.deleteAllItem(
-                parking: parking,
-                context: viewContext
-            )
-        }
-    }
-}
