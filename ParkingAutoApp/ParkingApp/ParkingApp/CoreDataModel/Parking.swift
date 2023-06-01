@@ -9,9 +9,9 @@ import CoreData
 
 extension Parking: Comparable{
     
-    static func fetchRequest0() -> NSFetchRequest<Parking> {
+    static func fetchRequest0(_ predicate: NSPredicate) -> NSFetchRequest<Parking> {
         let request = NSFetchRequest<Parking>(entityName: "Parking")
-        request.predicate = nil
+        request.predicate = predicate
         request.sortDescriptors = [NSSortDescriptor(key: "ovnerAuto_", ascending: true)]
         return request
     }
@@ -25,13 +25,70 @@ extension Parking: Comparable{
     }
     
     static func withParkingPlace(id: String, context: NSManagedObjectContext)-> Parking{
-        let request = NSFetchRequest(NSPredicate(format: "idPlace = %@", id))
+        let request = fetchRequest0(NSPredicate(format: "idPlace = %@", id))
         let places = (try? context.fetch(request)) ?? []
+        if let place = places.first {
+            return place
+        } else {
+            let place = Parking(context: context)
+            return place
+        }
     }
     
-    static func update(id: String, from cardClient: CardParkingPlaceModel, in context: NSManagedObjectContext){
+    static func add(id: String, from cardClient: ParkingPlaceModel, context: NSManagedObjectContext){
+        let newPlace = Parking(context: context)
+        newPlace.ovnerAuto = cardClient.ovnerAuto
+        newPlace.numberFone = cardClient.numberFone
+        newPlace.carBrand = cardClient.carBrand
+        newPlace.numberAuto = cardClient.numberAuto
+        newPlace.price = cardClient.price
+        newPlace.isDatePicker = cardClient.isDatePicker
+        newPlace.date = cardClient.date
+        newPlace.dateEnd = cardClient.dateEnd
         
-        /*let parking = Parking(context: context)
+        newPlace.places = Places(context: context)
+        newPlace.places.isArenda = true
+        newPlace.places.idPlace = id
+        newPlace.idPlace = id
+        newPlace.isArenda = true
+        
+        context.saveContext()
+    }
+    
+    static func load(idplace: String, cardClient: ParkingPlaceModel, context: NSManagedObjectContext){
+        let parking = withParkingPlace(id: idplace, context: context)
+        
+       
+        //print(parking)
+        
+//        for item in parking.{
+            if parking.isArenda{
+//                cardClient.ovnerAuto = parking.ovnerAuto
+//
+        parking.ovnerAuto = cardClient.ovnerAuto
+        parking.numberFone = cardClient.numberFone
+        parking.carBrand = cardClient.carBrand
+        parking.numberAuto = cardClient.numberAuto
+        parking.isDatePicker = cardClient.isDatePicker
+        parking.price = cardClient.price
+        parking.date = cardClient.date
+        parking.dateEnd = cardClient.dateEnd
+//
+////                context.saveContext()
+            }
+//        }
+    }
+    static func load0(idplace: String, context: NSManagedObjectContext)->ParkingPlaceModel{
+        let parking = withParkingPlace(id: idplace, context: context)
+        var cardClient = ParkingPlaceModel()
+        
+        cardClient.ovnerAuto = parking.ovnerAuto
+        cardClient.numberFone = parking.numberFone
+        return cardClient
+    }
+    
+    static func update(id: String, from cardClient: ParkingPlaceModel, in context: NSManagedObjectContext){
+        let parking = withParkingPlace(id: id, context: context)
         parking.idPlace = id
         parking.ovnerAuto = cardClient.ovnerAuto
         parking.numberFone = cardClient.numberFone
@@ -40,16 +97,23 @@ extension Parking: Comparable{
         parking.isDatePicker = cardClient.isDatePicker
         parking.price = cardClient.price
         parking.date = cardClient.date
-        parking.dateEnd = cardClient.dateEnd*/
-        
-        //parking.objectWillChange.send()*/
-        
-        
-        print(context.updatedObjects)
-        
+        parking.dateEnd = cardClient.dateEnd
+
         context.saveContext()
     }
     
+    static func delete(in context: NSManagedObjectContext){
+        print("delete")
+        let request = fetchRequest()
+        let result = ( try? context.fetch(request))
+        
+        if let result = result{
+            for element in 0..<result.count{
+                context.delete(result[element] )
+            }
+        }
+        context.saveContext()
+    }
     var ovnerAuto: String{
         get{ ovnerAuto_ ?? "" }
         set{ ovnerAuto_ = newValue }

@@ -10,11 +10,17 @@ import CoreData
 
 struct AutoView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(fetchRequest: Parking.fetchRequest0())
+    @FetchRequest(fetchRequest: Parking.fetchRequest0(.all))
     private var parking: FetchedResults<Parking>
-
+    
     @State private var isDetailInfo: Bool = false
     @State private var searchText = ""
+    
+    var delete: some View{
+        Button("delete") {
+            Parking.delete(in: viewContext)
+        }
+    }
     
     var body: some View {
         NavigationStack{
@@ -47,16 +53,18 @@ struct AutoView: View {
                 parking.sortDescriptors = [SortDescriptor(\.numberFone_)]
                 parking.nsPredicate = !newValue.isEmpty ? Parking.searchPredicate(query: newValue, field: "numberFone_") : .all
             }
+            .navigationBarItems(trailing: delete)
+            
         }
     }
     
-//    var search: FetchedResults<Parking>{
-//        if searchText.isEmpty{
-//            return parking
-//        } else{
-//            return parking.filter { $0.numberFone.inc (searchText)}
-//        }
-//    }
+    //    var search: FetchedResults<Parking>{
+    //        if searchText.isEmpty{
+    //            return parking
+    //        } else{
+    //            return parking.filter { $0.numberFone.inc (searchText)}
+    //        }
+    //    }
     
     private func deleteItem(index: IndexSet){
         index.map { parking[$0] }.forEach(viewContext.delete)

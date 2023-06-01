@@ -16,7 +16,7 @@ extension MapView{
     
     private func viewSheet()->some View{
         return view.sheet(isPresented: $isDragging) {
-            
+            //CardParkingPlaceView(parkings: parking)
             CardParkingPlaceView(
                 idPlace: parserMapViewModel.nodeTag,
                 isStatusArenda: isStatusArendaPlace() ? true : false,
@@ -38,17 +38,16 @@ extension MapView{
 extension MapView{
     
     func isStatusArendaPlace() -> Bool {
-        let filter = places.filter{ $0.idPlace == parserMapViewModel.nodeTag }
-       
+        let filter = parking.filter{ $0.idPlace == parserMapViewModel.nodeTag }
         return filter.first?.isArenda == true
     }
     
     func selectedNode() {
-        if places.isEmpty{
+        if parking.isEmpty{
             print("base no")
         } else {
-            let filter = places.filter{$0.isArenda}
-            selectedNodesColor(nodeTag: filter.map{ $0.idPlace})
+            let filter = parking.filter{$0.isArenda}
+            selectedNodesColor(nodeTag: filter.map{ $0.idPlace ?? ""})
         }
     }
     

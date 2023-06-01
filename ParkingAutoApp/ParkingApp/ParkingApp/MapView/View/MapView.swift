@@ -13,15 +13,13 @@ struct MapView: View {
     @Environment(\.colorScheme) var scheme
     
     @Environment(\.managedObjectContext) var viewContext
-    @FetchRequest(fetchRequest: Places.fetchRequest1()) var places: FetchedResults<Places>
+    //@FetchRequest(fetchRequest: Places.fetchRequest1()) var places: FetchedResults<Places>
+    @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) var parking: FetchedResults<Parking>
     
     @ObservedObject var parserMapViewModel = ParserSVGViewModel()
     
     @State var isDragging = false
-    
-//    @State private var currentScale: CGFloat = 0
-//    @State private var finalScale: CGFloat = 1
-    
+
     var view: SVGView!
     
     init(){
@@ -35,39 +33,8 @@ struct MapView: View {
                     Image(scheme == .dark ? "sampleDark.png" : "sample.png")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
-                    
-//                    Image("sample.png")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fill)
-////                        .pinchZoom()
-////                        .scaleEffect(finalScale + currentScale)
-////                        .gesture(
-////                            MagnificationGesture()
-////                                .onChanged{ newScale in
-////                                    currentScale = newScale
-////                                }
-////                                .onEnded({ scale in
-////                                    finalScale = scale
-////                                    currentScale = 0
-////                                })
-////                        )
-                    
+
                     SVGViewMap()
-//                        .pinchZoom()
-//                        .overlay {
-//                            textNode()
-//                        .scaleEffect(finalScale + currentScale)
-//                        .gesture(
-//                            MagnificationGesture()
-//                                .onChanged{ newScale in
-//                                    currentScale = newScale
-//                                }
-//                                .onEnded({ scale in
-//                                    finalScale = scale
-//                                    currentScale = 0
-//                                })
-//                        )
-//                        }
                         .onAppear{
                             selectedNode()
                         }

@@ -11,7 +11,7 @@ import CoreData
 
 
 class CardParkingPlaceViewModel: ObservableObject {
-    @Published var data = CardParkingPlaceModel()
+    @Published var data = ParkingPlaceModel()
     @Published var isPicker: Bool = false
     @Published var datePicker = Date.now
     @Published var price = ""
@@ -67,17 +67,18 @@ extension CardParkingPlaceViewModel{
         textPhone = data.numberFone
     }
     
-    func loadArendaPlace(idplace: String ,place: FetchedResults<Parking>){
-        for item in filterPlaceId(idPlace: idplace, parking: place){
-            if item.isArenda{
-                data.ovnerAuto = item.ovnerAuto
-                data.numberFone = item.numberFone
-                data.carBrand = item.carBrand
-                data.numberAuto = item.numberAuto
-                data.isDatePicker = item.isDatePicker
-                data.price = item.price
-                data.date = item.date ?? Date()
-                data.dateEnd = item.dateEnd ?? Date()
+    func loadArendaPlace(idplace: String , place: FetchedResults<Parking>){
+        for place in filterPlaceId(idPlace: idplace, parking: place){
+            if place.isArenda{
+                data.idPlace = place.idPlace ?? ""
+                data.ovnerAuto = place.ovnerAuto
+                data.numberFone = place.numberFone
+                data.carBrand = place.carBrand
+                data.numberAuto = place.numberAuto
+                data.isDatePicker = place.isDatePicker
+                data.price = place.price
+                data.date = place.date ?? Date()
+                data.dateEnd = place.dateEnd ?? Date()
             }
         }
     }
@@ -94,24 +95,8 @@ extension CardParkingPlaceViewModel{
 }
 
 extension CardParkingPlaceViewModel{
-    func addItem(idplace: String, context: NSManagedObjectContext){
-        let newPlace = Parking(context: context)
-            newPlace.ovnerAuto = data.ovnerAuto
-            newPlace.numberFone = textPhone //data.numberFone
-            newPlace.carBrand = data.carBrand
-            newPlace.numberAuto = data.numberAuto
-            newPlace.price = price
-            newPlace.isDatePicker = isPicker
-            newPlace.date = data.date
-            newPlace.dateEnd = data.dateEnd
-            
-            newPlace.places = Places(context: context)
-            newPlace.places.isArenda = true
-            newPlace.places.idPlace = idplace
-            newPlace.idPlace = idplace
-            newPlace.isArenda = true
-        
-            context.saveContext()
+    func addCoreData(idplace: String, context: NSManagedObjectContext){
+        Parking.add(id: idplace, from: data, context: context)
     }
     
     func saveCoreData(id: String, context: NSManagedObjectContext) -> () {

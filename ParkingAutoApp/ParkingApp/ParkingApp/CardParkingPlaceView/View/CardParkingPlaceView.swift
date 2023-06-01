@@ -20,15 +20,17 @@ struct CardParkingPlaceView: View {
     
     //Core Data
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(fetchRequest: Parking.fetchRequest0()) private var parking: FetchedResults<Parking>
+    @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) private var parking: FetchedResults<Parking>
     
     @State private var isAlert: Bool = false
+    
+    //var parking0: Parking?
    
-    var idPlace: String
-    var isStatusArenda: Bool
+    var idPlace: String?
+    var isStatusArenda: Bool?
     var isCancelButton: Bool?
    
-    private let imageSize: CGFloat = 22
+    //var parkings: FetchedResults<Parking>
     
     private let arendaText = "Арендовать"
     private let stopText = "Завершить"
@@ -36,10 +38,9 @@ struct CardParkingPlaceView: View {
     private let cancelText = "Отмена"
     private let extendText = "Продлить"
     private let messageText = "Вы действительно хотите завершить аренду"
-    private let clientsCardText = "Карточка клиента"
+   
     
     private let cancelImage = "multiply.circle.fill"
-    private let personImage = "person"
     
     //MARK: ViewModel
     @StateObject var cardDetailViewModel = CardParkingPlaceViewModel()
@@ -48,18 +49,25 @@ struct CardParkingPlaceView: View {
         if isCancelButton ?? true{
             toolbarView()
         }
+
+        CardFormView(cardDetailViewModel: cardDetailViewModel, id: idPlace ?? "")
         
-        Form{
+        /*Form{
             ProfileFotoView(title: idPlace, isStatus: isStatusArenda)
             InfoClientSectionView()
             DatePickerView(model: cardDetailViewModel)
-        }
+        }*/
         WriteCardDetailView()
+    }
+    
+    func isStatusArendaPlace() -> Bool {
+        let filter = parking.filter{ $0.idPlace == idPlace }
+        return filter.first?.isArenda == true
     }
 }
 
 extension CardParkingPlaceView{
-    @ViewBuilder
+    /*@ViewBuilder
     private func InfoClientSectionView()-> some View{
         Section(header: Text(clientsCardText)){
 
@@ -72,12 +80,14 @@ extension CardParkingPlaceView{
             }
         }
         .onAppear{
+            //Parking.load(idplace: idPlace, cardClient: cardDetailViewModel.data, context: viewContext)
             cardDetailViewModel.loadArendaPlace(
                 idplace: idPlace,
-                place: parking
+                place: parking,
+                context: viewContext
             )
         }
-    }
+    }*/
     
     private func toolbarView()-> some View{
         HStack{
@@ -114,7 +124,7 @@ extension CardParkingPlaceView{
         .padding([.leading, .trailing, .top], 16)
     }
     
-    private func editFormView()-> some View{
+    /*private func editFormView()-> some View{
         return VStack{
             HStack{
                 Image(systemName: personImage)
@@ -164,7 +174,7 @@ extension CardParkingPlaceView{
             TextField("", text: $cardDetailViewModel.data.carBrand)
             TextField("", text: $cardDetailViewModel.data.numberAuto)
         } 
-    }
+    }*/
     
     @ViewBuilder
     private func WriteCardDetailView()->some View{
@@ -175,7 +185,7 @@ extension CardParkingPlaceView{
                         .foregroundColor(.white)
                 }
                 
-            if !isStatusArenda{
+            if !(isStatusArenda ?? true){
                 arendaPlaceButton(isArenda: true, color: .green)
                     .overlay {
                         isExtend()
@@ -190,7 +200,7 @@ extension CardParkingPlaceView{
         Button{
             if isArenda {
                 filterPlace(isArenda: isArenda)
-                addItem()
+                addData()
             } else{
                 filterPlace(isArenda: isArenda)
             }
@@ -203,7 +213,7 @@ extension CardParkingPlaceView{
     
     private func isExtend()-> some View{
         return VStack{
-            if cardDetailViewModel.isHiddenLabel(id: idPlace, parking: parking){
+            if cardDetailViewModel.isHiddenLabel(id: idPlace ?? "", parking: parking){
                 Text(arendaText)
                     .foregroundColor(.white)
             } else{
@@ -235,24 +245,24 @@ extension CardParkingPlaceView{
 extension CardParkingPlaceView{
     
     private func filterPlace(isArenda: Bool){
-        for item in filterPlaceId(idPlace: idPlace, parking: parking){
+        for item in filterPlaceId(idPlace: idPlace ?? "", parking: parking){
             item.isArenda = isArenda
             item.places_?.isArenda = isArenda
             viewContext.saveContext()
         }
     }
     
-    private func addItem(){
+    private func addData(){
         withAnimation {
-            cardDetailViewModel.addItem(
-                idplace: idPlace,
+            cardDetailViewModel.addCoreData(
+                idplace: idPlace ?? "",
                 context: viewContext
             )
         }
     }
     
     private func saveData(){
-        cardDetailViewModel.saveCoreData(id: idPlace, context: viewContext)
+        cardDetailViewModel.saveCoreData(id: idPlace ?? "", context: viewContext)
     }
     
     private func deleteItem(){

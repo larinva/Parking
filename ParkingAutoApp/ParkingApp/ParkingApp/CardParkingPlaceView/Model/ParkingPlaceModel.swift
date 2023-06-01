@@ -7,7 +7,8 @@
 
 import Foundation
 
-struct CardParkingPlaceModel{
+struct ParkingPlaceModel{
+    var idPlace = ""
     var ovnerAuto = ""
     var numberFone = ""
     var carBrand = ""

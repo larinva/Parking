@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct ProfileFotoView: View {
-    var title: String
+    var idPlace: String
+    
+    //var title: String
     var isStatus: Bool
     
     var body: some View {
@@ -27,17 +29,11 @@ struct ProfileFotoView: View {
             VStack(alignment: .leading, spacing: 8){
                 StatusArendaView(isStatus: isStatus)
                 
-                Text(PersonData.parkingPlace + title)
+                Text(PersonData.parkingPlace + " " + idPlace)
                     .font(.title3)
                     .bold()
             }
         }
         .padding(8)
-    }
-}
-
-struct ProfileFotoView_Previews: PreviewProvider {
-    static var previews: some View {
-        ProfileFotoView(title: "Title", isStatus: true)
     }
 }
