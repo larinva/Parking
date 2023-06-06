@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-
-struct CardFormView: View {
+struct CardClientFormView: View {
     //MARK: ViewModel
     @StateObject var cardDetailViewModel: CardParkingPlaceViewModel
     
@@ -28,7 +27,7 @@ struct CardFormView: View {
         }
     }
 
-    private let imageSize: CGFloat = 22
+//    private let imageSize: CGFloat = 22
     private let clientsCardText = "Карточка клиента"
     private let personImage = "person"
 
@@ -42,12 +41,12 @@ struct CardFormView: View {
 }
 
 
-extension CardFormView{
+extension CardClientFormView{
     @ViewBuilder
     private func InfoClientSectionView()-> some View{
         Section(header: Text(clientsCardText)){
 
-            if editMode?.wrappedValue.isEditing == true{
+            if isStatusArenda == false || editMode?.wrappedValue.isEditing == true{
                 let _ = print("editform")
                 editFormView()
             }else{
@@ -64,24 +63,20 @@ extension CardFormView{
     }
 }
 
-extension CardFormView{
+extension CardClientFormView{
     private func editFormView()-> some View{
-        return VStack{
+        return Section{
             HStack{
                 Image(systemName: personImage)
                     .resizable()
-                    .frame(width: imageSize, height: imageSize)
-                    .foregroundColor(.gray)
-                
+                    .imageStyle()
             TextField(PersonData.ovnerAuto, text: $cardDetailViewModel.data.ovnerAuto)
         }
         
         HStack{
             Image(systemName: "phone.circle")
                 .resizable()
-                .frame(width: imageSize, height: imageSize)
-                .foregroundColor(.gray)
-            
+                .imageStyle()
             TextField(PersonData.numberFone, text: cardDetailViewModel.maskPhoneBinding())
                 .keyboardType(.numberPad)
                 .onAppear{
@@ -92,30 +87,25 @@ extension CardFormView{
         HStack{
             Image(systemName: "car")
                 .resizable()
-                .frame(width: imageSize, height: imageSize)
-                .foregroundColor(.gray)
+                .imageStyle()
             TextField(PersonData.carBrand, text: $cardDetailViewModel.data.carBrand)
         }
         
         HStack{
             Image(systemName: "person.fill")
                 .resizable()
-                .frame(width: imageSize, height: imageSize)
-                .foregroundColor(.gray)
-            TextField(PersonData.numberAuto, text:
-                        $cardDetailViewModel.data.numberAuto)
+                .imageStyle()
+            TextField(PersonData.numberAuto, text: $cardDetailViewModel.data.numberAuto)
         }
         }
     }
     
     private func downFormView()-> some View{
-        return VStack{
-            List{
+        return Section{
                 Text(cardDetailViewModel.data.ovnerAuto)
                 Text(cardDetailViewModel.data.numberFone)
                 Text(cardDetailViewModel.data.carBrand)
                 Text(cardDetailViewModel.data.numberAuto)
-            }
         }
     }
 }

@@ -7,6 +7,18 @@
 
 import SwiftUI
 
+
+struct ImageModified: ViewModifier {
+    private let imageSize: CGFloat = 22
+    
+    func body(content: Content) -> some View {
+        content
+//            .resizable()
+            .frame(width: imageSize, height: imageSize)
+            .foregroundColor(.gray)
+    }
+}
+
 struct ScaleModified: ViewModifier {
     @State private var currentScale: CGFloat = 0
     @State private var finalScale: CGFloat = 1
@@ -30,5 +42,9 @@ struct ScaleModified: ViewModifier {
 extension View{
     func pinchZoom() -> some View {
         modifier(ScaleModified())
+    }
+    
+    func imageStyle() -> some View {
+        modifier(ImageModified())
     }
 }

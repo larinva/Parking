@@ -42,7 +42,7 @@ struct CardParkingPlaceView: View {
 
     var body: some View{
         ToolbarView()
-        CardFormView(
+        CardClientFormView(
             cardDetailViewModel: cardDetailViewModel,
             id: idPlace ?? ""
         )
