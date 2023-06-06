@@ -76,15 +76,7 @@ extension CardParkingPlaceView{
                                 saveData()
                             }
                         }
-
-//                        EditButton()
                     }
-//                    else {
-//                        Button("Готово") {
-//                            editMode?.wrappedValue = .active
-//                            let _ = print("11111")
-//                        }
-//                    }
                 }
                 .padding([.leading, .trailing, .top], 16)
             }

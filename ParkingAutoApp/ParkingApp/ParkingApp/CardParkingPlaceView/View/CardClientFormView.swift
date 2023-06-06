@@ -27,7 +27,6 @@ struct CardClientFormView: View {
         }
     }
 
-//    private let imageSize: CGFloat = 22
     private let clientsCardText = "Карточка клиента"
     private let personImage = "person"
 
@@ -55,10 +54,12 @@ extension CardClientFormView{
             }
         }
         .onAppear{
-            cardDetailViewModel.loadArendaPlace(
+            cardDetailViewModel.loadCoreData(id: id, context: viewContext)
+            
+            /*cardDetailViewModel.loadArendaPlace(
                 idplace: id,
                 place: parking
-            )
+            )*/
         }
     }
 }

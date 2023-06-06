@@ -95,18 +95,15 @@ extension CardParkingPlaceViewModel{
 }
 
 extension CardParkingPlaceViewModel{
+    func loadCoreData(id: String, context: NSManagedObjectContext) -> () {
+        Parking.load(idplace: id, cardClient: data, context: context)
+    }
+    
     func addCoreData(idplace: String, context: NSManagedObjectContext){
         Parking.add(id: idplace, from: data, context: context)
     }
     
     func saveCoreData(id: String, context: NSManagedObjectContext) -> () {
         Parking.update(id: id, from: data, in: context)
-    }
-   
-    func deleteAllItem(parking: FetchedResults<Parking>, context: NSManagedObjectContext){
-        for item in parking{
-            context.delete(item)
-        }
-        context.saveContext()
     }
 }

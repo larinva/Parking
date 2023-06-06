@@ -57,34 +57,23 @@ extension Parking: Comparable{
     
     static func load(idplace: String, cardClient: ParkingPlaceModel, context: NSManagedObjectContext){
         let parking = withParkingPlace(id: idplace, context: context)
-        
        
-        //print(parking)
-        
+        var cardClient = cardClient
 //        for item in parking.{
             if parking.isArenda{
-//                cardClient.ovnerAuto = parking.ovnerAuto
-//
-        parking.ovnerAuto = cardClient.ovnerAuto
-        parking.numberFone = cardClient.numberFone
-        parking.carBrand = cardClient.carBrand
-        parking.numberAuto = cardClient.numberAuto
-        parking.isDatePicker = cardClient.isDatePicker
-        parking.price = cardClient.price
-        parking.date = cardClient.date
-        parking.dateEnd = cardClient.dateEnd
-//
-////                context.saveContext()
+                //cardClient.ovnerAuto = parking.ovnerAuto
+                //print(parking)
+                
+                cardClient.ovnerAuto = parking.ovnerAuto
+                cardClient.numberFone = parking.numberFone
+                cardClient.carBrand = parking.carBrand
+                cardClient.numberAuto = parking.numberAuto
+                cardClient.isDatePicker = parking.isDatePicker
+                cardClient.price = parking.price
+                cardClient.date = parking.date ?? Date.now
+                cardClient.dateEnd = parking.dateEnd ?? Date.now
             }
 //        }
-    }
-    static func load0(idplace: String, context: NSManagedObjectContext)->ParkingPlaceModel{
-        let parking = withParkingPlace(id: idplace, context: context)
-        var cardClient = ParkingPlaceModel()
-        
-        cardClient.ovnerAuto = parking.ovnerAuto
-        cardClient.numberFone = parking.numberFone
-        return cardClient
     }
     
     static func update(id: String, from cardClient: ParkingPlaceModel, in context: NSManagedObjectContext){

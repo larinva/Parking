@@ -33,12 +33,4 @@ extension CardParkingPlaceView{
             context: viewContext
         )
     }
-    
-    func deleteItem(){
-        cardDetailViewModel.deleteAllItem(
-            parking: parking,
-            context: viewContext
-        )
-        
-    }
 }
