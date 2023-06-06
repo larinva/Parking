@@ -21,8 +21,10 @@ struct CardClientFormView: View {
 
     var isStatusArenda: Bool {
         get{
-            let filter = parking.filter{ $0.idPlace == id }
-            let result = filter.first?.isArenda == true
+            let result = cardDetailViewModel.isStatusArenda(
+                id: id,
+                context: viewContext
+            )
             return result
         }
     }
@@ -54,12 +56,7 @@ extension CardClientFormView{
             }
         }
         .onAppear{
-            cardDetailViewModel.loadCoreData(id: id, context: viewContext)
-            
-            /*cardDetailViewModel.loadArendaPlace(
-                idplace: id,
-                place: parking
-            )*/
+             cardDetailViewModel.loadCoreData(id: id, context: viewContext)
         }
     }
 }
@@ -78,10 +75,10 @@ extension CardClientFormView{
             Image(systemName: "phone.circle")
                 .resizable()
                 .imageStyle()
-            TextField(PersonData.numberFone, text: cardDetailViewModel.maskPhoneBinding())
+            TextField(PersonData.numberFone, text: $cardDetailViewModel.data.numberFone)
                 .keyboardType(.numberPad)
                 .onAppear{
-                    cardDetailViewModel.loadNumberFone()
+//                    cardDetailViewModel.loadNumberFone()
                 }
         }
         
@@ -103,10 +100,10 @@ extension CardClientFormView{
     
     private func downFormView()-> some View{
         return Section{
-                Text(cardDetailViewModel.data.ovnerAuto)
-                Text(cardDetailViewModel.data.numberFone)
-                Text(cardDetailViewModel.data.carBrand)
-                Text(cardDetailViewModel.data.numberAuto)
+            Text(cardDetailViewModel.data.ovnerAuto)
+            Text(cardDetailViewModel.data.numberFone)
+            Text(cardDetailViewModel.data.carBrand)
+            Text(cardDetailViewModel.data.numberAuto)
         }
     }
 }

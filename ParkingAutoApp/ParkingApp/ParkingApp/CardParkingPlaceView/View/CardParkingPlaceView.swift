@@ -9,10 +9,10 @@ import SwiftUI
 
 let size = UIScreen.main.bounds
 
-func filterPlaceId(idPlace: String, parking: FetchedResults<Parking>)-> [FetchedResults<Parking>.Element]{
-    let filter = parking.filter{ $0.idPlace == idPlace }
-    return filter
-}
+//func filterPlaceId(idPlace: String, parking: FetchedResults<Parking>)-> [FetchedResults<Parking>.Element]{
+//    let filter = parking.filter{ $0.idPlace == idPlace }
+//    return filter
+//}
 
 struct CardParkingPlaceView: View {
     @Environment(\.dismiss) private var dismiss
@@ -120,11 +120,11 @@ extension CardParkingPlaceView{
     
     private func isExtend()-> some View{
         return VStack{
-            if cardDetailViewModel.isHiddenLabel(id: idPlace ?? "", parking: parking){
-                Text(arendaText)
+            if cardDetailViewModel.isStatusArenda(id: idPlace ?? "", context: viewContext){
+                Text(extendText)
                     .foregroundColor(.white)
             } else{
-                Text(extendText)
+                Text(arendaText)
                     .foregroundColor(.white)
             }
         }

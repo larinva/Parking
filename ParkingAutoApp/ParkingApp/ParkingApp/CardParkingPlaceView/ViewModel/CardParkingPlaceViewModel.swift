@@ -18,7 +18,7 @@ class CardParkingPlaceViewModel: ObservableObject {
     
     @Published private (set) var calendar = Calendar.current
     @Published private (set) var maskPhone = "+X-XXX-XXX-XX-XX"
-    @Published private (set) var textPhone = ""
+    @Published  var textPhone = ""
 }
 
 extension CardParkingPlaceViewModel{
@@ -55,6 +55,7 @@ extension CardParkingPlaceViewModel{
             },
             set: {
                 self.textPhone = $0
+
             }
         )
         return textChangeBinding
@@ -67,36 +68,31 @@ extension CardParkingPlaceViewModel{
         textPhone = data.numberFone
     }
     
-    func loadArendaPlace(idplace: String , place: FetchedResults<Parking>){
-        for place in filterPlaceId(idPlace: idplace, parking: place){
-            if place.isArenda{
-                data.idPlace = place.idPlace ?? ""
-                data.ovnerAuto = place.ovnerAuto
-                data.numberFone = place.numberFone
-                data.carBrand = place.carBrand
-                data.numberAuto = place.numberAuto
-                data.isDatePicker = place.isDatePicker
-                data.price = place.price
-                data.date = place.date ?? Date()
-                data.dateEnd = place.dateEnd ?? Date()
-            }
-        }
-    }
-    
-    func isHiddenLabel(id: String, parking: FetchedResults<Parking>)->Bool{
-        var isId = true
-        for item in filterPlaceId(idPlace: id, parking: parking){
-            if item.isArenda {
-                isId = false
-            }
-        }
-        return isId
+    func isStatusArenda(id: String, context: NSManagedObjectContext)->Bool{
+        let place = Parking.withParkingPlace(id: id, context: context)
+        return place.isArenda
     }
 }
 
 extension CardParkingPlaceViewModel{
     func loadCoreData(id: String, context: NSManagedObjectContext) -> () {
-        Parking.load(idplace: id, cardClient: data, context: context)
+        let place = Parking.load(idplace: id, cardClient: data, context: context)
+            data.idPlace = place.idPlace
+            data.ovnerAuto = place.ovnerAuto
+            data.numberFone = place.numberFone
+            data.carBrand = place.carBrand
+            data.numberAuto = place.numberAuto
+            data.isDatePicker = place.isDatePicker
+            data.price = place.price
+            data.date = place.date
+            data.dateEnd = place.dateEnd
+    }
+    
+    func isArendaPlaceCoreData(_ id: String, _ isArenda: Bool, context: NSManagedObjectContext) -> () {
+        let arendaPlace = Parking.withParkingPlace(id: id , context: context)
+        arendaPlace.isArenda = isArenda
+        arendaPlace.places_?.isArenda = isArenda
+        context.saveContext()
     }
     
     func addCoreData(idplace: String, context: NSManagedObjectContext){

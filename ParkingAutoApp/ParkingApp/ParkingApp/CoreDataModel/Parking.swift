@@ -55,15 +55,10 @@ extension Parking: Comparable{
         context.saveContext()
     }
     
-    static func load(idplace: String, cardClient: ParkingPlaceModel, context: NSManagedObjectContext){
+    static func load(idplace: String, cardClient: ParkingPlaceModel, context: NSManagedObjectContext)->ParkingPlaceModel{
         let parking = withParkingPlace(id: idplace, context: context)
-       
         var cardClient = cardClient
-//        for item in parking.{
             if parking.isArenda{
-                //cardClient.ovnerAuto = parking.ovnerAuto
-                //print(parking)
-                
                 cardClient.ovnerAuto = parking.ovnerAuto
                 cardClient.numberFone = parking.numberFone
                 cardClient.carBrand = parking.carBrand
@@ -73,7 +68,7 @@ extension Parking: Comparable{
                 cardClient.date = parking.date ?? Date.now
                 cardClient.dateEnd = parking.dateEnd ?? Date.now
             }
-//        }
+        return cardClient
     }
     
     static func update(id: String, from cardClient: ParkingPlaceModel, in context: NSManagedObjectContext){
