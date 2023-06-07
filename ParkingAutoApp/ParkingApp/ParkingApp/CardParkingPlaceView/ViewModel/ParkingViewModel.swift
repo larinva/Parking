@@ -10,7 +10,7 @@ import SwiftUI
 import CoreData
 
 
-class CardParkingPlaceViewModel: ObservableObject {
+class ParkingViewModel: ObservableObject {
     @Published var data = ParkingPlaceModel()
     @Published var isPicker: Bool = false
     @Published var datePicker = Date.now
@@ -18,10 +18,10 @@ class CardParkingPlaceViewModel: ObservableObject {
     
     @Published private (set) var calendar = Calendar.current
     @Published private (set) var maskPhone = "+X-XXX-XXX-XX-XX"
-    @Published  var textPhone = ""
+    @Published private var textPhone = ""
 }
 
-extension CardParkingPlaceViewModel{
+extension ParkingViewModel{
     //тот же день следующего месяца
     func nextDayMonth() -> String {
         let dateComponent = calendar.dateComponents([.day], from: .now)
@@ -47,7 +47,7 @@ extension CardParkingPlaceViewModel{
     }
 }
 
-extension CardParkingPlaceViewModel{
+extension ParkingViewModel{
     func maskPhoneBinding() -> Binding<String> {
         let textChangeBinding = Binding<String>(
             get: {
@@ -55,26 +55,18 @@ extension CardParkingPlaceViewModel{
             },
             set: {
                 self.textPhone = $0
-
+                self.data.numberFone = $0
             }
         )
         return textChangeBinding
     }
-}
-
-extension CardParkingPlaceViewModel{
     
     func loadNumberFone() -> () {
         textPhone = data.numberFone
     }
-    
-    func isStatusArenda(id: String, context: NSManagedObjectContext)->Bool{
-        let place = Parking.withParkingPlace(id: id, context: context)
-        return place.isArenda
-    }
 }
 
-extension CardParkingPlaceViewModel{
+extension ParkingViewModel{
     func loadCoreData(id: String, context: NSManagedObjectContext) -> () {
         let place = Parking.load(idplace: id, cardClient: data, context: context)
             data.idPlace = place.idPlace
@@ -94,6 +86,12 @@ extension CardParkingPlaceViewModel{
         arendaPlace.places_?.isArenda = isArenda
         context.saveContext()
     }
+    
+    func isStatusArenda(id: String, context: NSManagedObjectContext)->Bool{
+        let place = Parking.withParkingPlace(id: id, context: context)
+        return place.isArenda
+    }
+    
     
     func addCoreData(idplace: String, context: NSManagedObjectContext){
         Parking.add(id: idplace, from: data, context: context)

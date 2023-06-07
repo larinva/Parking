@@ -8,12 +8,15 @@
 import SwiftUI
 
 struct CardClientFormView: View {
-    //MARK: ViewModel
-    @StateObject var cardDetailViewModel: CardParkingPlaceViewModel
+    private let clientsCardText = "Карточка клиента"
+    private let personImage = "person"
+
+    //MARK: - ViewModel
+    @StateObject var parkingViewModel: ParkingViewModel
     
     @Environment(\.editMode) private var editMode
     
-    //Core Data
+    //MARK: - Core Data
     @Environment(\.managedObjectContext) private var viewContext
     @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) private var parking: FetchedResults<Parking>
     
@@ -21,7 +24,7 @@ struct CardClientFormView: View {
 
     var isStatusArenda: Bool {
         get{
-            let result = cardDetailViewModel.isStatusArenda(
+            let result = parkingViewModel.isStatusArenda(
                 id: id,
                 context: viewContext
             )
@@ -29,15 +32,8 @@ struct CardClientFormView: View {
         }
     }
 
-    private let clientsCardText = "Карточка клиента"
-    private let personImage = "person"
-
     var body: some View{
-        Form{
-            ProfileFotoView(idPlace: id, isStatus: isStatusArenda ? true : false)
-            InfoClientSectionView()
-            DatePickerView(model: cardDetailViewModel)
-        }
+        InfoClientSectionView()
     }
 }
 
@@ -48,15 +44,15 @@ extension CardClientFormView{
         Section(header: Text(clientsCardText)){
 
             if isStatusArenda == false || editMode?.wrappedValue.isEditing == true{
-                let _ = print("editform")
                 editFormView()
+                let _ = print("editFormView()")
             }else{
-                let _ = print("downform")
                 downFormView()
+                let _ = print("downFormView()")
             }
         }
         .onAppear{
-             cardDetailViewModel.loadCoreData(id: id, context: viewContext)
+             parkingViewModel.loadCoreData(id: id, context: viewContext)
         }
     }
 }
@@ -68,17 +64,17 @@ extension CardClientFormView{
                 Image(systemName: personImage)
                     .resizable()
                     .imageStyle()
-            TextField(PersonData.ovnerAuto, text: $cardDetailViewModel.data.ovnerAuto)
+            TextField(PersonData.ovnerAuto, text: $parkingViewModel.data.ovnerAuto)
         }
         
         HStack{
             Image(systemName: "phone.circle")
                 .resizable()
                 .imageStyle()
-            TextField(PersonData.numberFone, text: $cardDetailViewModel.data.numberFone)
+            TextField(PersonData.numberFone, text: parkingViewModel.maskPhoneBinding())
                 .keyboardType(.numberPad)
                 .onAppear{
-//                    cardDetailViewModel.loadNumberFone()
+                    parkingViewModel.loadNumberFone()
                 }
         }
         
@@ -86,24 +82,24 @@ extension CardClientFormView{
             Image(systemName: "car")
                 .resizable()
                 .imageStyle()
-            TextField(PersonData.carBrand, text: $cardDetailViewModel.data.carBrand)
+            TextField(PersonData.carBrand, text: $parkingViewModel.data.carBrand)
         }
         
         HStack{
             Image(systemName: "person.fill")
                 .resizable()
                 .imageStyle()
-            TextField(PersonData.numberAuto, text: $cardDetailViewModel.data.numberAuto)
+            TextField(PersonData.numberAuto, text: $parkingViewModel.data.numberAuto)
         }
         }
     }
     
     private func downFormView()-> some View{
         return Section{
-            Text(cardDetailViewModel.data.ovnerAuto)
-            Text(cardDetailViewModel.data.numberFone)
-            Text(cardDetailViewModel.data.carBrand)
-            Text(cardDetailViewModel.data.numberAuto)
+            Text(parkingViewModel.data.ovnerAuto)
+            Text(parkingViewModel.data.numberFone)
+            Text(parkingViewModel.data.carBrand)
+            Text(parkingViewModel.data.numberAuto)
         }
     }
 }

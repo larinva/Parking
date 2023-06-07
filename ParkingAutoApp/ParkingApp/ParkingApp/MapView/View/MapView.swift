@@ -11,11 +11,9 @@ import SVGView
 
 struct MapView: View {
     @Environment(\.colorScheme) var scheme
-    
     @Environment(\.managedObjectContext) var viewContext
     //@FetchRequest(fetchRequest: Places.fetchRequest1()) var places: FetchedResults<Places>
     @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) var parking: FetchedResults<Parking>
-    
     @ObservedObject var parserMapViewModel = ParserSVGViewModel()
     
     @State var isDragging = false
@@ -27,19 +25,29 @@ struct MapView: View {
     }
     
     var body: some View {
-        NavigationStack{
-            ScrollView(.horizontal){
-                ZStack{
-                    Image(scheme == .dark ? "sampleDark.png" : "sample.png")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-
-                    SVGViewMap()
-                        .onAppear{
-                            selectedNode()
-                        }
+        VStack(alignment: .leading){
+            VStack(alignment: .leading){
+                Text("Карта парковки")
+                    .font(.title)
+                Text("Блинова, 23А")
+                    .font(.subheadline)
+            }
+            .padding()
+            
+            NavigationStack{
+                ScrollView(.horizontal){
+                    ZStack{
+                        Image(scheme == .dark ? "sampleDark.png" : "sample.png")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                        
+                        SVGViewMap()
+                            .onAppear{
+                                selectedNode()
+                            }
+                    }
                 }
-            } .navigationTitle("Карта парковки")
+            }
         }
     }
 }

@@ -12,22 +12,22 @@ import Foundation
 extension CardParkingPlaceView{
     
     func filterPlace(isArenda: Bool){
-        cardDetailViewModel.isArendaPlaceCoreData(
-            idPlace ?? "", isArenda,
+        parkingViewModel.isArendaPlaceCoreData(
+            idPlace, isArenda,
             context: viewContext
         )
     }
     
     func addData(){
-        cardDetailViewModel.addCoreData(
-            idplace: idPlace ?? "",
+        parkingViewModel.addCoreData(
+            idplace: idPlace,
             context: viewContext
         )
     }
     
     func saveData(){
-        cardDetailViewModel.saveCoreData(
-            id: idPlace ?? "",
+        parkingViewModel.saveCoreData(
+            id: idPlace,
             context: viewContext
         )
     }

@@ -9,11 +9,6 @@ import SwiftUI
 
 let size = UIScreen.main.bounds
 
-//func filterPlaceId(idPlace: String, parking: FetchedResults<Parking>)-> [FetchedResults<Parking>.Element]{
-//    let filter = parking.filter{ $0.idPlace == idPlace }
-//    return filter
-//}
-
 struct CardParkingPlaceView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.editMode) private var editMode
@@ -24,7 +19,7 @@ struct CardParkingPlaceView: View {
     
     @State private var isAlert: Bool = false
 
-    var idPlace: String?
+    var idPlace: String
     var isStatusArenda: Bool?
     var isCancelButton: Bool?
 
@@ -38,14 +33,15 @@ struct CardParkingPlaceView: View {
     private let cancelImage = "multiply.circle.fill"
     
     //MARK: ViewModel
-    @StateObject var cardDetailViewModel = CardParkingPlaceViewModel()
+    @StateObject var parkingViewModel = ParkingViewModel()
 
     var body: some View{
         ToolbarView()
-        CardClientFormView(
-            cardDetailViewModel: cardDetailViewModel,
-            id: idPlace ?? ""
-        )
+        Form{
+            ProfileFotoView(idPlace: idPlace, isStatus: isStatusArenda ?? false ? true : false)
+            CardClientFormView(parkingViewModel: parkingViewModel, id: idPlace)
+            DatePickerView()
+        }
         WriteCardDetailView()
     }
 }
@@ -71,7 +67,7 @@ extension CardParkingPlaceView{
                             }
                         } else {
                             Button("Готово") {
-                                editMode?.wrappedValue = .active
+                                editMode?.wrappedValue = .inactive
                                 let _ = print("Save")
                                 saveData()
                             }
@@ -120,7 +116,7 @@ extension CardParkingPlaceView{
     
     private func isExtend()-> some View{
         return VStack{
-            if cardDetailViewModel.isStatusArenda(id: idPlace ?? "", context: viewContext){
+            if parkingViewModel.isStatusArenda(id: idPlace, context: viewContext){
                 Text(extendText)
                     .foregroundColor(.white)
             } else{
