@@ -40,7 +40,7 @@ struct CardParkingPlaceView: View {
         Form{
             ProfileFotoView(idPlace: idPlace, isStatus: isStatusArenda ?? false ? true : false)
             CardClientFormView(parkingViewModel: parkingViewModel, id: idPlace)
-            DatePickerView()
+            DatePickerView(parkingViewModel: parkingViewModel)
         }
         WriteCardDetailView()
     }

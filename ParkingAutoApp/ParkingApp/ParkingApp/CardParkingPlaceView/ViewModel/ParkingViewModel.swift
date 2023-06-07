@@ -95,6 +95,7 @@ extension ParkingViewModel{
     
     func addCoreData(idplace: String, context: NSManagedObjectContext){
         Parking.add(id: idplace, from: data, context: context)
+        print(data)
     }
     
     func saveCoreData(id: String, context: NSManagedObjectContext) -> () {

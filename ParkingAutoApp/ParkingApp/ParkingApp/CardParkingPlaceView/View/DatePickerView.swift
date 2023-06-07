@@ -7,31 +7,31 @@
 import SwiftUI
 
 struct DatePickerView: View {
-    private var paidToText = "Оплачено до "
-    private var paymentText = "Оплата"
-    private var paymentMonthText = "Оплата за месяц"
-    private var parkingPeriod = "Период парковки"
+    var paidToText = "Оплачено до "
+    var paymentText = "Оплата"
+    var paymentMonthText = "Оплата за месяц"
+    var parkingPeriod = "Период парковки"
     
-    private var startDate: Date{
+    var startDate: Date{
         let date = parkingViewModel.calendar.startOfDay(for: Date.now)
         return date
     }
     
-    private var endDate: Date{
+    var endDate: Date{
+
         let end = parkingViewModel.data.dateEnd
         return end
     }
     
     //Core Data
-    @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) private
-    var parking: FetchedResults<Parking>
+    @Environment(\.managedObjectContext) var viewContext
+    @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) var parking: FetchedResults<Parking>
     
     //MARK: ViewModel
-    @StateObject var parkingViewModel = ParkingViewModel()
+    @StateObject var parkingViewModel: ParkingViewModel
+    
 
     var body: some View {
-        
         Section(header: Text(parkingPeriod)){
             if parkingViewModel.isPicker{
                 NextDayMonthView()
@@ -80,6 +80,7 @@ extension DatePickerView{
             .onChange(of: parkingViewModel.isPicker) { newValue in
                 if parkingViewModel.isPicker{
                     parkingViewModel.price = parkingViewModel.payOfMonth()
+                    parkingViewModel.data.isDatePicker = newValue
                 } else{
                     parkingViewModel.payByDay(dateStart: startDate, dateEnd: endDate)
                     parkingViewModel.datePicker = startDate
@@ -87,7 +88,6 @@ extension DatePickerView{
             }
             .onAppear{
                 parkingViewModel.isPicker = parkingViewModel.data.isDatePicker
-                print(<#T##items: Any...##Any#>)
             }
         }
     }
