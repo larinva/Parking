@@ -11,8 +11,8 @@ import Foundation
 
 extension CardParkingPlaceView{
     
-    func filterPlace(isArenda: Bool){
-        parkingViewModel.isArendaPlaceCoreData(
+    func setStatusRent(isArenda: Bool){
+        parkingViewModel.setStatusRent(
             idPlace, isArenda,
             context: viewContext
         )

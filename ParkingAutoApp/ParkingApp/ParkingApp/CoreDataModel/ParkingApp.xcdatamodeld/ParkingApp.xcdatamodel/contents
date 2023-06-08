@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21513" systemVersion="21G115" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21279" systemVersion="21G72" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="Clients" representedClassName="Clients" syncable="YES" codeGenerationType="class">
+        <relationship name="company_" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="clients_" inverseEntity="Company"/>
+    </entity>
+    <entity name="Company" representedClassName="Company" syncable="YES" codeGenerationType="class">
+        <attribute name="addres" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="clients_" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Clients" inverseName="company_" inverseEntity="Clients"/>
+        <relationship name="parking_" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Parking" inverseName="company_" inverseEntity="Parking"/>
+        <relationship name="places_" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Places" inverseName="company_" inverseEntity="Places"/>
+    </entity>
     <entity name="Parking" representedClassName="Parking" syncable="YES" codeGenerationType="class">
         <attribute name="carBrand_" optional="YES" attributeType="String"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -12,12 +22,14 @@
         <attribute name="numberFone_" optional="YES" attributeType="String"/>
         <attribute name="ovnerAuto_" optional="YES" attributeType="String"/>
         <attribute name="price_" optional="YES" attributeType="String"/>
+        <relationship name="company_" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="parking_" inverseEntity="Company"/>
         <relationship name="places_" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Places" inverseName="parking_" inverseEntity="Places"/>
     </entity>
     <entity name="Places" representedClassName="Places" syncable="YES" codeGenerationType="class">
         <attribute name="idPlace_" optional="YES" attributeType="String"/>
         <attribute name="isArenda_" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="title_" optional="YES" attributeType="String"/>
+        <relationship name="company_" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Company" inverseName="places_" inverseEntity="Company"/>
         <relationship name="parking_" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Parking" inverseName="places_" inverseEntity="Parking"/>
     </entity>
 </model>

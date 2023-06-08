@@ -24,7 +24,7 @@ struct CardClientFormView: View {
 
     var isStatusArenda: Bool {
         get{
-            let result = parkingViewModel.isStatusArenda(
+            let result = parkingViewModel.getStatusRent(
                 id: id,
                 context: viewContext
             )

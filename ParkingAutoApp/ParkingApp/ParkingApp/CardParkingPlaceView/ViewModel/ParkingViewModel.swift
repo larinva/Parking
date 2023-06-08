@@ -80,14 +80,14 @@ extension ParkingViewModel{
             data.dateEnd = place.dateEnd
     }
     
-    func isArendaPlaceCoreData(_ id: String, _ isArenda: Bool, context: NSManagedObjectContext) -> () {
+    func setStatusRent(_ id: String, _ isArenda: Bool, context: NSManagedObjectContext) -> () {
         let arendaPlace = Parking.withParkingPlace(id: id , context: context)
         arendaPlace.isArenda = isArenda
         arendaPlace.places_?.isArenda = isArenda
         context.saveContext()
     }
     
-    func isStatusArenda(id: String, context: NSManagedObjectContext)->Bool{
+    func getStatusRent(id: String, context: NSManagedObjectContext)->Bool{
         let place = Parking.withParkingPlace(id: id, context: context)
         return place.isArenda
     }

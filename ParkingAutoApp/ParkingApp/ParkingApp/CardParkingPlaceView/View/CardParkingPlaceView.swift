@@ -9,6 +9,7 @@ import SwiftUI
 
 let size = UIScreen.main.bounds
 
+
 struct CardParkingPlaceView: View {
     @Environment(\.dismiss) private var dismiss
     @Environment(\.editMode) private var editMode
@@ -18,7 +19,8 @@ struct CardParkingPlaceView: View {
     @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) var parking: FetchedResults<Parking>
     
     @State private var isAlert: Bool = false
-
+    @State private var searchText = ""
+    
     var idPlace: String
     var isStatusArenda: Bool?
     var isCancelButton: Bool?
@@ -37,11 +39,11 @@ struct CardParkingPlaceView: View {
 
     var body: some View{
         ToolbarView()
-        Form{
-            ProfileFotoView(idPlace: idPlace, isStatus: isStatusArenda ?? false ? true : false)
-            CardClientFormView(parkingViewModel: parkingViewModel, id: idPlace)
-            DatePickerView(parkingViewModel: parkingViewModel)
-        }
+            Form{
+                ProfileFotoView(idPlace: idPlace, isStatus: isStatusArenda ?? false ? true : false)
+                CardClientFormView(parkingViewModel: parkingViewModel, id: idPlace)
+                DatePickerView(parkingViewModel: parkingViewModel)
+            }
         WriteCardDetailView()
     }
 }
@@ -63,12 +65,10 @@ extension CardParkingPlaceView{
                         if editMode?.wrappedValue == .inactive{
                             Button("Править") {
                                 editMode?.wrappedValue = .active
-                                let _ = print("правка")
                             }
                         } else {
                             Button("Готово") {
                                 editMode?.wrappedValue = .inactive
-                                let _ = print("Save")
                                 saveData()
                             }
                         }
@@ -82,13 +82,18 @@ extension CardParkingPlaceView{
     @ViewBuilder
     private func WriteCardDetailView()->some View{
         HStack{
-            arendaPlaceButton(isArenda: false, color: .red)
-                .overlay {
-                    iaAlert()
-                        .foregroundColor(.white)
-                }
+            if (isStatusArenda ?? true){
+                arendaPlaceButton(isArenda: false, color: .red)
+                    .overlay {
+                        iaAlert()
+                            .foregroundColor(.white)
+                    }
+                arendaPlaceButton(isArenda: false, color: .green)
+                    .overlay {
+                        isExtend()
+                    }
                 
-            if !(isStatusArenda ?? true){
+            } else {
                 arendaPlaceButton(isArenda: true, color: .green)
                     .overlay {
                         isExtend()
@@ -102,10 +107,10 @@ extension CardParkingPlaceView{
     private func arendaPlaceButton(isArenda: Bool, color: Color)->some View{
         Button{
             if isArenda {
-                filterPlace(isArenda: isArenda)
+                setStatusRent(isArenda: isArenda)
                 addData()
             } else{
-                filterPlace(isArenda: isArenda)
+                setStatusRent(isArenda: isArenda)
             }
         } label: {
             Capsule(style: .circular)
@@ -116,7 +121,7 @@ extension CardParkingPlaceView{
     
     private func isExtend()-> some View{
         return VStack{
-            if parkingViewModel.isStatusArenda(id: idPlace, context: viewContext){
+            if parkingViewModel.getStatusRent(id: idPlace, context: viewContext){
                 Text(extendText)
                     .foregroundColor(.white)
             } else{
@@ -133,7 +138,7 @@ extension CardParkingPlaceView{
             }
             .alert(Text(warningText), isPresented: $isAlert, actions: {
                 Button(stopText) {
-                    filterPlace(isArenda: false)
+                    setStatusRent(isArenda: false)
                 }
                 Button(cancelText, role: .cancel){}
             }, message: {
