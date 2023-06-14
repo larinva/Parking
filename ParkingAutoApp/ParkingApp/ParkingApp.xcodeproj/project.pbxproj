@@ -15,6 +15,7 @@
 		8067944B299504B400C784B1 /* CoreDataExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8067944A299504B400C784B1 /* CoreDataExtensions.swift */; };
 		807F2840299DF867003E9B9D /* ParkingApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 92DF899629915BED0036CBEA /* ParkingApp.xcdatamodeld */; };
 		8094D9672A050AC700E986F9 /* StatusArendaView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8094D9662A050AC700E986F9 /* StatusArendaView.swift */; };
+		9260B3E92A3471F200B8CD50 /* CardTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9260B3E82A3471F200B8CD50 /* CardTextFieldView.swift */; };
 		92A6926529CEF7DF00F22E39 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6926429CEF7DF00F22E39 /* DatePickerView.swift */; };
 		92C46A7B2A0F948F00660DDE /* ParkingModified.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C46A7A2A0F948F00660DDE /* ParkingModified.swift */; };
 		92D5464A2A14011200E49DD8 /* PersonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D546492A14011200E49DD8 /* PersonData.swift */; };
@@ -49,6 +50,7 @@
 		8032569C2A209A320045F711 /* CardClientFormView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardClientFormView.swift; sourceTree = "<group>"; };
 		8067944A299504B400C784B1 /* CoreDataExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataExtensions.swift; sourceTree = "<group>"; };
 		8094D9662A050AC700E986F9 /* StatusArendaView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusArendaView.swift; sourceTree = "<group>"; };
+		9260B3E82A3471F200B8CD50 /* CardTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardTextFieldView.swift; sourceTree = "<group>"; };
 		92A6926429CEF7DF00F22E39 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		92C46A7A2A0F948F00660DDE /* ParkingModified.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingModified.swift; sourceTree = "<group>"; };
 		92D546492A14011200E49DD8 /* PersonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonData.swift; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 				92A6926429CEF7DF00F22E39 /* DatePickerView.swift */,
 				92DF89AD29915C3B0036CBEA /* ProfileFotoView.swift */,
 				92D5464D2A2924CE00E49DD8 /* CardParkingPlaceViewExtensionCoreData.swift */,
+				9260B3E82A3471F200B8CD50 /* CardTextFieldView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -372,6 +375,7 @@
 			files = (
 				800F95D829C2E61D001DCBED /* ParkingViewModel.swift in Sources */,
 				8067944B299504B400C784B1 /* CoreDataExtensions.swift in Sources */,
+				9260B3E92A3471F200B8CD50 /* CardTextFieldView.swift in Sources */,
 				80244EE1299CFE6600E9AC96 /* ParserSVGViewModel.swift in Sources */,
 				80244EDF299CD19900E9AC96 /* MapViewExtension.swift in Sources */,
 				92DE8BA629F537CC00904AB8 /* NumberPhoneMaskView.swift in Sources */,

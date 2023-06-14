@@ -7,49 +7,45 @@
 import SwiftUI
 
 struct DatePickerView: View {
-    var paidToText = "Оплачено до "
-    var paymentText = "Оплата"
-    var paymentMonthText = "Оплата за месяц"
-    var parkingPeriod = "Период парковки"
-    
-    var startDate: Date{
-        let date = parkingViewModel.calendar.startOfDay(for: Date.now)
-        return date
-    }
-    
-    var endDate: Date{
-
-        let end = parkingViewModel.data.dateEnd
-        return end
-    }
-    
     //Core Data
     @Environment(\.managedObjectContext) var viewContext
     @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) var parking: FetchedResults<Parking>
     
     //MARK: ViewModel
-    @StateObject var parkingViewModel: ParkingViewModel
+    @StateObject var viewModel: ParkingViewModel
+    
+    @State private var isPicker: Bool = false
     
 
     var body: some View {
-        Section(header: Text(parkingPeriod)){
-            if parkingViewModel.isPicker{
-                NextDayMonthView()
+        Section(header: Text("Период парковки")){
+            if isPicker{
+                NextDayMonthView
             } else{
-                DatePayView()
+                DatePayView
             }
         }
-        TogglePayView()
+        TogglePayView
     }
 }
 
 extension DatePickerView{
-    func NextDayMonthView() -> some View {
+    private var startDate: Date{
+         let date = viewModel.calendar.startOfDay(for: Date.now)
+         return date
+     }
+    
+    private var endDate: Date{
+        let end = viewModel.data.dateEnd
+        return end
+    }
+
+    private var NextDayMonthView: some View {
         HStack{
-            Text(paidToText)
+            Text("Оплачено до ")
             Spacer()
             VStack{
-                Text("\(parkingViewModel.nextDayMonth())")
+                Text("\(viewModel.nextDayMonth)")
             }
             .edgesIgnoringSafeArea(.all)
             .foregroundColor(.primary)
@@ -60,34 +56,34 @@ extension DatePickerView{
         }
     }
     
-    func DatePayView() -> some View {
-        DatePicker (paidToText, selection: parkingViewModel.isPicker ? $parkingViewModel.datePicker : $parkingViewModel.data.dateEnd, displayedComponents: .date)
+    private var DatePayView: some View {
+        return DatePicker ("Оплачено до ", selection: isPicker ? $viewModel.datePicker : $viewModel.data.dateEnd, displayedComponents: .date)
         .onChange(of: endDate) { newValue in
-            parkingViewModel.data.date = startDate
-            parkingViewModel.data.dateEnd = newValue
-            parkingViewModel.price = parkingViewModel.payOfMonth()
-            parkingViewModel.payByDay(dateStart: startDate, dateEnd: newValue)
+            viewModel.data.date = startDate
+            viewModel.data.dateEnd = newValue
+            viewModel.price = viewModel.payOfMonth
+            viewModel.payByDay(dateStart: startDate, dateEnd: newValue)
         }
     }
     
-    func TogglePayView() -> some View{
-        Section(header: Text(paymentText)){
-            Text("\(parkingViewModel.price)")
+    private var TogglePayView: some View{
+        Section(header: Text("Оплата")){
+            Text("\(viewModel.price)")
             
-            Toggle(isOn: $parkingViewModel.isPicker){
-                Text(paymentMonthText)
+            Toggle(isOn: $isPicker){
+                Text("Оплата за месяц")
             }
-            .onChange(of: parkingViewModel.isPicker) { newValue in
-                if parkingViewModel.isPicker{
-                    parkingViewModel.price = parkingViewModel.payOfMonth()
-                    parkingViewModel.data.isDatePicker = newValue
+            .onChange(of: isPicker) { newValue in
+                if isPicker{
+                    viewModel.price = viewModel.payOfMonth
+                    viewModel.data.isDatePicker = newValue
                 } else{
-                    parkingViewModel.payByDay(dateStart: startDate, dateEnd: endDate)
-                    parkingViewModel.datePicker = startDate
+                    viewModel.payByDay(dateStart: startDate, dateEnd: endDate)
+                    viewModel.datePicker = startDate
                 }
             }
             .onAppear{
-                parkingViewModel.isPicker = parkingViewModel.data.isDatePicker
+                isPicker = viewModel.data.isDatePicker
             }
         }
     }

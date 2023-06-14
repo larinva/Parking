@@ -13,21 +13,21 @@ extension CardParkingPlaceView{
     
     func setStatusRent(isArenda: Bool){
         parkingViewModel.setStatusRent(
-            idPlace, isArenda,
+            id, isArenda,
             context: viewContext
         )
     }
     
     func addData(){
         parkingViewModel.addCoreData(
-            idplace: idPlace,
+            idplace: id,
             context: viewContext
         )
     }
     
     func saveData(){
         parkingViewModel.saveCoreData(
-            id: idPlace,
+            idplace: id,
             context: viewContext
         )
     }

@@ -42,7 +42,7 @@ struct AutoView: View {
                 }.onDelete(perform: deleteItem(index:))
             }//List
             .navigationDestination(for: Parking.self) { place in
-                CardParkingPlaceView(idPlace: place.idPlace ?? "",
+                CardParkingPlaceView(id: place.idPlace ?? "",
                                      isStatusArenda: place.isArenda,
                                      isCancelButton: false) //false
                 

@@ -21,35 +21,26 @@ struct CardParkingPlaceView: View {
     @State private var isAlert: Bool = false
     @State private var searchText = ""
     
-    var idPlace: String
-    var isStatusArenda: Bool?
+    var id: String
+    var isStatusArenda: Bool
     var isCancelButton: Bool?
 
-    private let arendaText = "Арендовать"
-    private let stopText = "Завершить"
-    private let warningText = "Внимание"
-    private let cancelText = "Отмена"
-    private let extendText = "Продлить"
-    private let messageText = "Вы действительно хотите завершить аренду"
-    
-    private let cancelImage = "multiply.circle.fill"
-    
     //MARK: ViewModel
     @StateObject var parkingViewModel = ParkingViewModel()
 
     var body: some View{
-        ToolbarView()
+        ToolbarView
             Form{
-                ProfileFotoView(idPlace: idPlace, isStatus: isStatusArenda ?? false ? true : false)
-                CardClientFormView(parkingViewModel: parkingViewModel, id: idPlace)
-                DatePickerView(parkingViewModel: parkingViewModel)
+                ProfileFotoView(idplace: id, isStatus: isStatusArenda)
+                CardClientFormView(idplace: id, isStatus: isStatusArenda, viewModel: parkingViewModel)
+                DatePickerView(viewModel: parkingViewModel)
             }
-        WriteCardDetailView()
+        WriteCardDetailView
     }
 }
 
 extension CardParkingPlaceView{
-    private func ToolbarView()-> some View{
+    private var ToolbarView: some View{
         ZStack{
             if isCancelButton ?? true{
                 HStack{
@@ -61,7 +52,7 @@ extension CardParkingPlaceView{
 
                     Spacer()
 
-                    if isStatusArenda == true {
+                    if isStatusArenda {
                         if editMode?.wrappedValue == .inactive{
                             Button("Править") {
                                 editMode?.wrappedValue = .active
@@ -80,30 +71,29 @@ extension CardParkingPlaceView{
     }
 
     @ViewBuilder
-    private func WriteCardDetailView()->some View{
+    private var WriteCardDetailView: some View{
         HStack{
-            if (isStatusArenda ?? true){
+            if isStatusArenda{
                 arendaPlaceButton(isArenda: false, color: .red)
                     .overlay {
-                        iaAlert()
+                        parkingCancelAlert
                             .foregroundColor(.white)
                     }
                 arendaPlaceButton(isArenda: false, color: .green)
                     .overlay {
-                        isExtend()
+                        rentextendText
                     }
                 
             } else {
                 arendaPlaceButton(isArenda: true, color: .green)
                     .overlay {
-                        isExtend()
+                        rentextendText
                     }
             }
         }
         .padding()
     }
     
-    @ViewBuilder
     private func arendaPlaceButton(isArenda: Bool, color: Color)->some View{
         Button{
             if isArenda {
@@ -119,30 +109,30 @@ extension CardParkingPlaceView{
         }
     }
     
-    private func isExtend()-> some View{
+    private var rentextendText: some View{
         return VStack{
-            if parkingViewModel.getStatusRent(id: idPlace, context: viewContext){
-                Text(extendText)
+            if parkingViewModel.getStatusRent(idplace: id, context: viewContext){
+                Text("Продлить")
                     .foregroundColor(.white)
             } else{
-                Text(arendaText)
+                Text("Арендовать")
                     .foregroundColor(.white)
             }
         }
     }
     
-    private func iaAlert()->some View{
+    private var parkingCancelAlert: some View{
         return VStack{
-            Button(stopText) {
+            Button("Завершить") {
                 isAlert = true
             }
-            .alert(Text(warningText), isPresented: $isAlert, actions: {
-                Button(stopText) {
+            .alert(Text("Внимание"), isPresented: $isAlert, actions: {
+                Button("Завершить") {
                     setStatusRent(isArenda: false)
                 }
-                Button(cancelText, role: .cancel){}
+                Button("Отмена", role: .cancel){}
             }, message: {
-                Text(messageText)
+                Text("Вы действительно хотите завершить аренду")
             })
         }
     }

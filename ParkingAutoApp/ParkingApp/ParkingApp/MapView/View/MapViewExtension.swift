@@ -18,7 +18,7 @@ extension MapView{
         return view.sheet(isPresented: $isDragging) {
             //CardParkingPlaceView(parkings: parking)
             CardParkingPlaceView(
-                idPlace: parserMapViewModel.nodeTag,
+                id: parserMapViewModel.nodeTag,
                 isStatusArenda: isStatusArendaPlace() ? true : false,
                 isCancelButton: true
             ) //true

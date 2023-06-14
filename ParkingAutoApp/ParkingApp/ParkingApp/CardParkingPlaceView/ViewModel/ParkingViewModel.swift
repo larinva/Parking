@@ -12,18 +12,17 @@ import CoreData
 
 class ParkingViewModel: ObservableObject {
     @Published var data = ParkingPlaceModel()
-    @Published var isPicker: Bool = false
+//    @Published var isPicker: Bool = false
     @Published var datePicker = Date.now
     @Published var price = ""
     
     @Published private (set) var calendar = Calendar.current
     @Published private (set) var maskPhone = "+X-XXX-XXX-XX-XX"
-    @Published private var textPhone = ""
 }
 
 extension ParkingViewModel{
     //тот же день следующего месяца
-    func nextDayMonth() -> String {
+    var nextDayMonth: String {
         let dateComponent = calendar.dateComponents([.day], from: .now)
         let nextDate = calendar.nextDate(after: .now, matching: dateComponent, matchingPolicy: .strict)
         let formatted = nextDate?.formatted(date: .abbreviated, time: .omitted)
@@ -32,7 +31,7 @@ extension ParkingViewModel{
     }
     
     //оплата за месяц
-    func payOfMonth()->String{
+    var payOfMonth: String{
         price = ("3 000₽")
         return price
     }
@@ -51,24 +50,19 @@ extension ParkingViewModel{
     func maskPhoneBinding() -> Binding<String> {
         let textChangeBinding = Binding<String>(
             get: {
-                FilterNumberPhone.format(with: self.maskPhone, phone: self.textPhone)
+                FilterNumberPhone.format(with: self.maskPhone, phone: self.data.numberFone)
             },
             set: {
-                self.textPhone = $0
                 self.data.numberFone = $0
             }
         )
         return textChangeBinding
     }
-    
-    func loadNumberFone() -> () {
-        textPhone = data.numberFone
-    }
 }
 
 extension ParkingViewModel{
-    func loadCoreData(id: String, context: NSManagedObjectContext) -> () {
-        let place = Parking.load(idplace: id, cardClient: data, context: context)
+    func loadCoreData(idplace: String, context: NSManagedObjectContext) -> () {
+        let place = Parking.load(idplace: idplace, cardClient: data, context: context)
             data.idPlace = place.idPlace
             data.ovnerAuto = place.ovnerAuto
             data.numberFone = place.numberFone
@@ -80,25 +74,24 @@ extension ParkingViewModel{
             data.dateEnd = place.dateEnd
     }
     
-    func setStatusRent(_ id: String, _ isArenda: Bool, context: NSManagedObjectContext) -> () {
-        let arendaPlace = Parking.withParkingPlace(id: id , context: context)
+    func setStatusRent(_ idplace: String, _ isArenda: Bool, context: NSManagedObjectContext) -> () {
+        let arendaPlace = Parking.withParkingPlace(id: idplace , context: context)
         arendaPlace.isArenda = isArenda
         arendaPlace.places_?.isArenda = isArenda
         context.saveContext()
     }
     
-    func getStatusRent(id: String, context: NSManagedObjectContext)->Bool{
-        let place = Parking.withParkingPlace(id: id, context: context)
+    func getStatusRent(idplace: String, context: NSManagedObjectContext)->Bool{
+        let place = Parking.withParkingPlace(id: idplace, context: context)
         return place.isArenda
     }
     
     
     func addCoreData(idplace: String, context: NSManagedObjectContext){
         Parking.add(id: idplace, from: data, context: context)
-        print(data)
     }
     
-    func saveCoreData(id: String, context: NSManagedObjectContext) -> () {
-        Parking.update(id: id, from: data, in: context)
+    func saveCoreData(idplace: String, context: NSManagedObjectContext) -> () {
+        Parking.update(id: idplace, from: data, in: context)
     }
 }
