@@ -43,7 +43,7 @@ extension Parking: Comparable{
         newPlace.numberAuto = cardClient.numberAuto
         newPlace.price = cardClient.price
         newPlace.isDatePicker = cardClient.isDatePicker
-        newPlace.date = cardClient.date
+        newPlace.date_ = cardClient.date
         newPlace.dateEnd = cardClient.dateEnd
         
         newPlace.places = Places(context: context)
@@ -65,7 +65,7 @@ extension Parking: Comparable{
                 cardClient.numberAuto = parking.numberAuto
                 cardClient.isDatePicker = parking.isDatePicker
                 cardClient.price = parking.price
-                cardClient.date = parking.date ?? Date.now
+                cardClient.date = parking.date_ ?? Date.now
                 cardClient.dateEnd = parking.dateEnd ?? Date.now
             }
         return cardClient
@@ -80,7 +80,7 @@ extension Parking: Comparable{
         parking.numberAuto = cardClient.numberAuto
         parking.isDatePicker = cardClient.isDatePicker
         parking.price = cardClient.price
-        parking.date = cardClient.date
+        parking.date_ = cardClient.date
         parking.dateEnd = cardClient.dateEnd
 
         context.saveContext()
@@ -126,6 +126,11 @@ extension Parking: Comparable{
     var price: String{
         get{ price_ ?? "" }
         set{ price_ = newValue }
+    }
+    
+    var dete: Date{
+        get{ date_ ?? Date.now }
+        set{ date_ = newValue }
     }
     
     public static func < (lhs: Parking, rhs: Parking) -> Bool {

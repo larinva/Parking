@@ -25,21 +25,31 @@ struct SettingsView: View {
     }
     
     var body: some View {
-        
         NavigationStack{
-            List {
-                Section(header: Text( "Список парковочных мест")){
-                    ForEach(places) { place in
+            List(places) { place in
+                Section(header: Text("Список парковочных мест")){
+                    if place.isArenda{
+                        //                    Section(header: Text("Список парковочных мест")){
                         Text(String(describing: place.idPlace))
-                        Text(String(describing: place.isArenda))
-                        Text(String(describing: place.parking_?.date))
+                        Text(String(describing: place.parking_?.date_))
+                        StatusArendaView(isStatus: place.isArenda)
+                        //                    }
                     }
-                    .onDelete(perform: deleteItem(index: ))
+                    //                }
+//                    else{
+//                        Section(header: Text("Список мест не в аренде")) {
+//                        Text(String(describing: place.idPlace))
+//                        Text(String(describing: place.parking_?.date_ ?? Date.now ))
+//                        StatusArendaView(isStatus: place.isArenda)
+//                        }
+//                    }
                 }
             }
             .navigationTitle("Загрузка")
             .navigationBarItems(trailing: delete)
             .navigationBarItems(trailing: load)
+//                    .onDelete(perform: deleteItem(index: ))
+            .listStyle(.insetGrouped)
         }
     }
     

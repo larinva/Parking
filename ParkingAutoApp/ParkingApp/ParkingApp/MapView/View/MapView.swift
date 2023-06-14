@@ -39,7 +39,7 @@ struct MapView: View {
                     ZStack{
                         Image(scheme == .dark ? "sampleDark.png" : "sample.png")
                             .resizable()
-                            .aspectRatio(contentMode: .fill)
+                            .aspectRatio(contentMode: .fill) 
                         
                         SVGViewMap()
                             .onAppear{

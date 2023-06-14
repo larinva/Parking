@@ -29,6 +29,11 @@ extension Places{
         set{ parking_ = newValue }
     }
     
+//    var date: Parking{
+//        get{ parking_?.date ?? Parking }
+//        set{ date.date_ = newValue}
+//    }
+    
     static func fetchRequest1() -> NSFetchRequest<Places> {
         let request = NSFetchRequest<Places>(entityName: "Places")
         request.sortDescriptors = [NSSortDescriptor(key: "idPlace_", ascending: true)]
