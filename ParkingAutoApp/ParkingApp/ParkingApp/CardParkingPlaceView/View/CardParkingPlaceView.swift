@@ -22,7 +22,7 @@ struct CardParkingPlaceView: View {
     @State private var searchText = ""
     
     var id: String
-    var isStatusArenda: Bool
+    //var isStatusArenda: Bool
     var isCancelButton: Bool?
 
     //MARK: ViewModel
@@ -31,8 +31,8 @@ struct CardParkingPlaceView: View {
     var body: some View{
         ToolbarView
             Form{
-                ProfileFotoView(idplace: id, isStatus: isStatusArenda)
-                CardClientFormView(idplace: id, isStatus: isStatusArenda, viewModel: parkingViewModel)
+                ProfileFotoView(idplace: id, isStatus: parkingViewModel.getStatusRent(idplace: id, context: viewContext))
+                CardClientFormView(idplace: id, viewModel: parkingViewModel)
                 DatePickerView(viewModel: parkingViewModel)
             }
         WriteCardDetailView
@@ -52,7 +52,7 @@ extension CardParkingPlaceView{
 
                     Spacer()
 
-                    if isStatusArenda {
+                    if parkingViewModel.getStatusRent(idplace: id, context: viewContext) {
                         if editMode?.wrappedValue == .inactive{
                             Button("Править") {
                                 editMode?.wrappedValue = .active
@@ -73,7 +73,7 @@ extension CardParkingPlaceView{
     @ViewBuilder
     private var WriteCardDetailView: some View{
         HStack{
-            if isStatusArenda{
+            if parkingViewModel.getStatusRent(idplace: id, context: viewContext){
                 arendaPlaceButton(isArenda: false, color: .red)
                     .overlay {
                         parkingCancelAlert
@@ -101,6 +101,7 @@ extension CardParkingPlaceView{
                 addData()
             } else{
                 setStatusRent(isArenda: isArenda)
+                let _ = print("no add")
             }
         } label: {
             Capsule(style: .circular)

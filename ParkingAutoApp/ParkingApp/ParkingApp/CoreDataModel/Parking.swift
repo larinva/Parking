@@ -8,6 +8,40 @@
 import CoreData
 
 extension Parking: Comparable{
+    var ovnerAuto: String{
+        get{ ovnerAuto_ ?? "" }
+        set{ ovnerAuto_ = newValue }
+    }
+    
+    var numberFone: String{
+        get{ numberFone_ ?? "" }
+        set{ numberFone_ = newValue }
+    }
+    
+    var carBrand: String{
+        get{ carBrand_ ?? "" }
+        set{ carBrand_ = newValue }
+    }
+    
+    var numberAuto: String{
+        get{ numberAuto_ ?? "" }
+        set{ numberAuto_ = newValue }
+    }
+    
+    var places: Places{
+        get{ places_ ?? Places() }
+        set{ places_ = newValue }
+    }
+    
+    var price: String{
+        get{ price_ ?? "" }
+        set{ price_ = newValue }
+    }
+    
+    var dete: Date{
+        get{ date_ ?? Date.now }
+        set{ date_ = newValue }
+    }
     
     static func fetchRequest0(_ predicate: NSPredicate) -> NSFetchRequest<Parking> {
         let request = NSFetchRequest<Parking>(entityName: "Parking")
@@ -46,9 +80,9 @@ extension Parking: Comparable{
         newPlace.date_ = cardClient.date
         newPlace.dateEnd = cardClient.dateEnd
         
-        newPlace.places = Places(context: context)
+        /*newPlace.places = Places(context: context)
         newPlace.places.isArenda = true
-        newPlace.places.idPlace = id
+        newPlace.places.idPlace = id*/
         newPlace.idPlace = id
         newPlace.isArenda = true
         
@@ -97,40 +131,6 @@ extension Parking: Comparable{
             }
         }
         context.saveContext()
-    }
-    var ovnerAuto: String{
-        get{ ovnerAuto_ ?? "" }
-        set{ ovnerAuto_ = newValue }
-    }
-    
-    var numberFone: String{
-        get{ numberFone_ ?? "" }
-        set{ numberFone_ = newValue }
-    }
-    
-    var carBrand: String{
-        get{ carBrand_ ?? "" }
-        set{ carBrand_ = newValue }
-    }
-    
-    var numberAuto: String{
-        get{ numberAuto_ ?? "" }
-        set{ numberAuto_ = newValue }
-    }
-    
-    var places: Places{
-        get{ places_ ?? Places() }
-        set{ places_ = newValue }
-    }
-    
-    var price: String{
-        get{ price_ ?? "" }
-        set{ price_ = newValue }
-    }
-    
-    var dete: Date{
-        get{ date_ ?? Date.now }
-        set{ date_ = newValue }
     }
     
     public static func < (lhs: Parking, rhs: Parking) -> Bool {

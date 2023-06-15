@@ -10,7 +10,7 @@ import CoreData
 
 struct AutoView: View {
     @Environment(\.managedObjectContext) private var viewContext
-    @FetchRequest(fetchRequest: Parking.fetchRequest0(.none))
+    @FetchRequest(fetchRequest: Parking.fetchRequest0(.isArenda))
     private var parking: FetchedResults<Parking>
     
     @State private var isDetailInfo: Bool = false
@@ -35,6 +35,8 @@ struct AutoView: View {
                                 Text(PersonData.numberAuto + place.numberAuto)
                                 Text(PersonData.parkingPlace + " " + (place.idPlace ?? ""))
                                 StatusArendaView(isStatus: place.isArenda)
+                                
+                                let _ = print("AutoView \(place)")
                             }
                         }
                     }
@@ -43,7 +45,6 @@ struct AutoView: View {
             }//List
             .navigationDestination(for: Parking.self) { place in
                 CardParkingPlaceView(id: place.idPlace ?? "",
-                                     isStatusArenda: place.isArenda,
                                      isCancelButton: false) //false
                 
             }
@@ -51,20 +52,11 @@ struct AutoView: View {
             .searchable(text: $searchText)
             .onChange(of: searchText) { newValue in
                 parking.sortDescriptors = [SortDescriptor(\.numberFone_)]
-                parking.nsPredicate = !newValue.isEmpty ? Parking.searchPredicate(query: newValue, field: "numberFone_") : .all
+                parking.nsPredicate = !newValue.isEmpty ? Parking.searchPredicate(query: newValue, field: "numberFone_") : .isArenda
             }
             .navigationBarItems(trailing: delete)
-            
         }
     }
-    
-    //    var search: FetchedResults<Parking>{
-    //        if searchText.isEmpty{
-    //            return parking
-    //        } else{
-    //            return parking.filter { $0.numberFone.inc (searchText)}
-    //        }
-    //    }
     
     private func deleteItem(index: IndexSet){
         index.map { parking[$0] }.forEach(viewContext.delete)

@@ -25,4 +25,5 @@ extension NSManagedObjectContext{
 extension NSPredicate {
     static var all = NSPredicate(format: "TRUEPREDICATE")
     static var none = NSPredicate(format: "FALSEPREDICATE")
+    static var isArenda = NSPredicate(format: "%K = %@", "isArenda", "1")
 }

@@ -27,29 +27,33 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack{
             List(places) { place in
-                Section(header: Text("Список парковочных мест")){
+                //Section(header: Text("Список парковочных мест")){
                     if place.isArenda{
-                        //                    Section(header: Text("Список парковочных мест")){
-                        Text(String(describing: place.idPlace))
-                        Text(String(describing: place.parking_?.date_))
-                        StatusArendaView(isStatus: place.isArenda)
+//                    Section(header: Text("Список парковочных мест")){
+                        VStack(alignment: .leading){
+                            Text(String(describing: place.idPlace))
+                            Text(String(describing: place.parking_?.date_))
+                            StatusArendaView(isStatus: place.isArenda)
+                        }
+
                         //                    }
                     }
                     //                }
-//                    else{
+                if !place.isArenda{
 //                        Section(header: Text("Список мест не в аренде")) {
-//                        Text(String(describing: place.idPlace))
-//                        Text(String(describing: place.parking_?.date_ ?? Date.now ))
-//                        StatusArendaView(isStatus: place.isArenda)
-//                        }
-//                    }
+                    VStack(alignment: .leading){
+                        Text(String(describing: place.idPlace))
+                        Text(String(describing: place.parking_?.date_ ?? Date.now ))
+                        StatusArendaView(isStatus: place.isArenda)
+                    }
+                    //                    }
                 }
             }
             .navigationTitle("Загрузка")
             .navigationBarItems(trailing: delete)
             .navigationBarItems(trailing: load)
 //                    .onDelete(perform: deleteItem(index: ))
-            .listStyle(.insetGrouped)
+            //.listStyle(.insetGrouped)
         }
     }
     

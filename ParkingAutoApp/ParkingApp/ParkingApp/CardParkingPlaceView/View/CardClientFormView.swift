@@ -15,7 +15,7 @@ struct CardClientFormView: View {
     private let person = "person"
     
     var idplace: String
-    var isStatus: Bool 
+    //var isStatus: Bool 
     
     //MARK: - ViewModel
     @StateObject var viewModel: ParkingViewModel
@@ -35,7 +35,7 @@ extension CardClientFormView{
     @ViewBuilder
     private func InfoClientSectionView()-> some View{
         Section(header: Text(clientsCardText)){
-            if isStatus == false || editMode?.wrappedValue.isEditing == true{
+            if viewModel.getStatusRent(idplace: idplace, context: viewContext) == false || editMode?.wrappedValue.isEditing == true{
                 editFormView()
             }else{
                 downFormView()

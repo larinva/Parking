@@ -16,10 +16,8 @@ extension MapView{
     
     private func viewSheet()->some View{
         return view.sheet(isPresented: $isDragging) {
-            //CardParkingPlaceView(parkings: parking)
             CardParkingPlaceView(
-                id: parserMapViewModel.nodeTag,
-                isStatusArenda: isStatusArendaPlace() ? true : false,
+                id: svgid.nodeTag,
                 isCancelButton: true
             ) //true
         }
@@ -38,8 +36,9 @@ extension MapView{
 extension MapView{
     
     func isStatusArendaPlace() -> Bool {
-        let filter = parking.filter{ $0.idPlace == parserMapViewModel.nodeTag }
-        return filter.first?.isArenda == true
+        viewModel.getStatusRent(
+            idplace: svgid.nodeTag,
+            context: viewContext)
     }
     
     func selectedNode() {
@@ -48,11 +47,13 @@ extension MapView{
         } else {
             let filter = parking.filter{$0.isArenda}
             selectedNodesColor(nodeTag: filter.map{ $0.idPlace ?? ""})
+            //let _ = print(viewModel.getStatusRent(idplace: svgid.nodeTag, context: viewContext))
+            //let _ = print(filter)
         }
     }
     
     private func setNode() -> () {
-        for node in parserMapViewModel.nodeDict{
+        for node in svgid.nodeDict{
             onTapNode(nodeTag: node.ids ?? "")
         }
     }
@@ -72,7 +73,7 @@ extension MapView{
     private func selectedNodeColor(nodeTag : String) {
         if let shape = view.getNode(byId: nodeTag) as? SVGShape {
             shape.fill = SVGColor(r: 223, g: 35, b: 35, opacity: 1)
-            parserMapViewModel.nodeTag = nodeTag
+            svgid.nodeTag = nodeTag
         }
     }
     
