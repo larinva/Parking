@@ -36,7 +36,7 @@ struct AutoView: View {
                                 Text(PersonData.parkingPlace + " " + (place.idPlace ?? ""))
                                 StatusArendaView(isStatus: place.isArenda)
                                 
-                                let _ = print("AutoView \(place)")
+//                                let _ = print("AutoView \(place)")
                             }
                         }
                     }
@@ -45,6 +45,7 @@ struct AutoView: View {
             }//List
             .navigationDestination(for: Parking.self) { place in
                 CardParkingPlaceView(id: place.idPlace ?? "",
+                                     isStatusArenda: place.isArenda,
                                      isCancelButton: false) //false
                 
             }

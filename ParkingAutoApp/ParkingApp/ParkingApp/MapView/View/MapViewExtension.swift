@@ -18,6 +18,7 @@ extension MapView{
         return view.sheet(isPresented: $isDragging) {
             CardParkingPlaceView(
                 id: svgid.nodeTag,
+                isStatusArenda: isStatusArendaPlace(),
                 isCancelButton: true
             ) //true
         }

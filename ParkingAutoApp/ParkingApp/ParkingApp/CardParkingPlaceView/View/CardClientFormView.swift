@@ -18,7 +18,7 @@ struct CardClientFormView: View {
     //var isStatus: Bool 
     
     //MARK: - ViewModel
-    @StateObject var viewModel: ParkingViewModel
+    @ObservedObject var viewModel: ParkingViewModel
     
     @Environment(\.editMode) private var editMode
     
@@ -44,6 +44,7 @@ extension CardClientFormView{
         .onAppear{
              viewModel.loadCoreData(idplace: idplace,
                                            context: viewContext)
+//            print(viewModel.data)
         }
     }
 }

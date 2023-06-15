@@ -12,10 +12,10 @@ import SVGView
 struct MapView: View {
     @Environment(\.colorScheme) var scheme
     @Environment(\.managedObjectContext) var viewContext
-    //@FetchRequest(fetchRequest: Places.fetchRequest1()) var places: FetchedResults<Places>
     @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) var parking: FetchedResults<Parking>
+    
     @ObservedObject var svgid = ParserSVGViewModel()
-    @StateObject var viewModel = ParkingViewModel()
+    @ObservedObject var viewModel = ParkingViewModel()
     
     @State var isDragging = false
 

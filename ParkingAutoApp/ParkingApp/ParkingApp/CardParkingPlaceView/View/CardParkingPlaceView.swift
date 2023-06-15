@@ -9,6 +9,10 @@ import SwiftUI
 
 let size = UIScreen.main.bounds
 
+func filterPlaceId(idPlace: String, parking: FetchedResults<Parking>)-> [FetchedResults<Parking>.Element]{
+    let filter = parking.filter{ $0.idPlace == idPlace }
+    return filter
+}
 
 struct CardParkingPlaceView: View {
     @Environment(\.dismiss) private var dismiss
@@ -22,20 +26,28 @@ struct CardParkingPlaceView: View {
     @State private var searchText = ""
     
     var id: String
-    //var isStatusArenda: Bool
+    var isStatusArenda: Bool
     var isCancelButton: Bool?
 
     //MARK: ViewModel
-    @StateObject var parkingViewModel = ParkingViewModel()
+    @ObservedObject var parkingViewModel = ParkingViewModel()
 
     var body: some View{
         ToolbarView
             Form{
-                ProfileFotoView(idplace: id, isStatus: parkingViewModel.getStatusRent(idplace: id, context: viewContext))
+                ProfileFotoView(
+                    idplace: id,
+                    isStatus: isStatusArenda)
+
                 CardClientFormView(idplace: id, viewModel: parkingViewModel)
                 DatePickerView(viewModel: parkingViewModel)
+
+//                let _ = print("JJJJJJJJJJJJJJJJJJJJJJJJJ \(parkingViewModel.getStatusRent(idplace: id, context: viewContext))")
+//                let _ = print("AAAAAAAAAAAAAAAAAAAAAAAAA \(filterPlaceId(idPlace: id, parking: parking))")
             }
-        WriteCardDetailView
+//        WriteCardDetailView()
+        
+        arendaPlace()
     }
 }
 
@@ -52,7 +64,7 @@ extension CardParkingPlaceView{
 
                     Spacer()
 
-                    if parkingViewModel.getStatusRent(idplace: id, context: viewContext) {
+                    if isStatusArenda {
                         if editMode?.wrappedValue == .inactive{
                             Button("Править") {
                                 editMode?.wrappedValue = .active
@@ -69,11 +81,31 @@ extension CardParkingPlaceView{
             }
         }
     }
+    
+    private func arendaPlace()-> some View{
+        HStack{
+            if isStatusArenda == false{
+                arendaPlaceButton(isArenda: true, color: .green)
+                    .overlay {
+                        rentextendText(true)
+                    }
+            } else{
+                arendaPlaceButton(isArenda: false, color: .red)
+                    .overlay {
+                        parkingCancelAlert()
+                    }
+                arendaPlaceButton(isArenda: isStatusArenda, color: .green)
+                    .overlay {
+                        rentextendText(isStatusArenda)
+                    }
+        }
+        }
+    }
 
     @ViewBuilder
-    private var WriteCardDetailView: some View{
+    /*private func WriteCardDetailView()-> some View{
         HStack{
-            if parkingViewModel.getStatusRent(idplace: id, context: viewContext){
+            if isStatusArenda{
                 arendaPlaceButton(isArenda: false, color: .red)
                     .overlay {
                         parkingCancelAlert
@@ -81,27 +113,31 @@ extension CardParkingPlaceView{
                     }
                 arendaPlaceButton(isArenda: false, color: .green)
                     .overlay {
-                        rentextendText
+                        rentextendText()
                     }
-                
-            } else {
+                let _ = print("WriteCardDetailView() true")
+            }
+            else {
                 arendaPlaceButton(isArenda: true, color: .green)
                     .overlay {
-                        rentextendText
+                        rentextendText()
                     }
+                let _ = print("WriteCardDetailView() false")
             }
         }
         .padding()
-    }
+    }*/
     
     private func arendaPlaceButton(isArenda: Bool, color: Color)->some View{
         Button{
             if isArenda {
                 setStatusRent(isArenda: isArenda)
-                addData()
+                let _ = print("добавить \(isArenda)")
+//                addData()
             } else{
-                setStatusRent(isArenda: isArenda)
-                let _ = print("no add")
+//                setStatusRent(isArenda: isArenda)
+                // продлить аренду парковочного места
+                let _ = print("no add \(isArenda)")
             }
         } label: {
             Capsule(style: .circular)
@@ -110,19 +146,21 @@ extension CardParkingPlaceView{
         }
     }
     
-    private var rentextendText: some View{
+    private func rentextendText(_ status: Bool)-> some View{
         return VStack{
-            if parkingViewModel.getStatusRent(idplace: id, context: viewContext){
+            if status{
+                let _ = print("продлить")
                 Text("Продлить")
                     .foregroundColor(.white)
             } else{
+                let _ = print("арендовать")
                 Text("Арендовать")
                     .foregroundColor(.white)
             }
         }
     }
     
-    private var parkingCancelAlert: some View{
+    private func parkingCancelAlert()-> some View{
         return VStack{
             Button("Завершить") {
                 isAlert = true
@@ -140,3 +178,4 @@ extension CardParkingPlaceView{
 }
 
 
+//parkingViewModel.getStatusRent(idplace: id, context: viewContext)
