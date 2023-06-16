@@ -133,6 +133,13 @@ extension Parking: Comparable{
         context.saveContext()
     }
     
+    static func setStatusRent(_ idplace: String, _ isArenda: Bool, context: NSManagedObjectContext) -> (){
+        let arendaPlace = Parking.withParkingPlace(id: idplace , context: context)
+        arendaPlace.isArenda = isArenda
+        context.saveContext()
+        print(arendaPlace)
+    }
+    
     public static func < (lhs: Parking, rhs: Parking) -> Bool {
         lhs.ovnerAuto < rhs.ovnerAuto
     }

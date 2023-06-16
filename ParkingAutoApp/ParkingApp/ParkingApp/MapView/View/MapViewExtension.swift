@@ -37,9 +37,12 @@ extension MapView{
 extension MapView{
     
     func isStatusArendaPlace() -> Bool {
-        viewModel.getStatusRent(
+        /*viewModel.getStatusRent(
             idplace: svgid.nodeTag,
-            context: viewContext)
+            context: viewContext)*/
+        
+        let filter = parking.filter{ $0.idPlace == svgid.nodeTag }
+        return filter.first?.isArenda == true
     }
     
     func selectedNode() {
@@ -48,8 +51,6 @@ extension MapView{
         } else {
             let filter = parking.filter{$0.isArenda}
             selectedNodesColor(nodeTag: filter.map{ $0.idPlace ?? ""})
-            //let _ = print(viewModel.getStatusRent(idplace: svgid.nodeTag, context: viewContext))
-            //let _ = print(filter)
         }
     }
     
@@ -85,6 +86,12 @@ extension MapView{
             }
         }
     }
+    
+    private func filterPlaceId(idPlace: String, parking: FetchedResults<Parking>)-> [FetchedResults<Parking>.Element]{
+        let filter = parking.filter{ $0.idPlace == idPlace }
+        return filter
+    }
+
     
     /*private func textNode()-> some View{
         return ForEach (parse.nodeDict){id in

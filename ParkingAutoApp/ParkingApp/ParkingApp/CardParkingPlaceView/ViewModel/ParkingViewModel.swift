@@ -75,10 +75,7 @@ extension ParkingViewModel{
     }
     
     func setStatusRent(_ idplace: String, _ isArenda: Bool, context: NSManagedObjectContext) -> () {
-        let arendaPlace = Parking.withParkingPlace(id: idplace , context: context)
-        arendaPlace.isArenda = isArenda
-        //arendaPlace.places_?.isArenda = isArenda
-        context.saveContext()
+        Parking.setStatusRent(idplace, isArenda, context: context)
     }
     
     func getStatusRent(idplace: String, context: NSManagedObjectContext)->Bool{

@@ -8,15 +8,9 @@
 import SwiftUI
 
 struct ProfileFotoView: View {
-    //Core Data
-//    @Environment(\.managedObjectContext) var viewContext
-    
     var idplace: String
-    
-    //var title: String
     var isStatus: Bool
-//    @StateObject var viewModel: ParkingViewModel
-    
+ 
     var body: some View {
         
         HStack(spacing: 20){
@@ -32,7 +26,6 @@ struct ProfileFotoView: View {
             
             VStack(alignment: .leading, spacing: 8){
                 StatusArendaView(isStatus: isStatus)
-                let _ = print("StatusArendaView \( isStatus)")
                 Text(PersonData.parkingPlace + " " + idplace)
                     .font(.title3)
                     .bold()
