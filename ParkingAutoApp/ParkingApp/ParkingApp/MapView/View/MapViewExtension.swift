@@ -18,7 +18,7 @@ extension MapView{
         return view.sheet(isPresented: $isDragging) {
             CardParkingPlaceView(
                 id: svgid.nodeTag,
-                isStatusArenda: isStatusArendaPlace(),
+//                isStatusArenda: isStatusArendaPlace(),
                 isCancelButton: true
             ) //true
         }
@@ -37,10 +37,11 @@ extension MapView{
 extension MapView{
     
     func isStatusArendaPlace() -> Bool {
-        /*viewModel.getStatusRent(
-            idplace: svgid.nodeTag,
-            context: viewContext)*/
-        
+//        let _ = print("MapExtension \(viewModel.getStatusRent(idplace: svgid.nodeTag, context: viewContext))")
+//        
+//        return viewModel.getStatusRent(
+//            idplace: svgid.nodeTag,
+//            context: viewContext)
         let filter = parking.filter{ $0.idPlace == svgid.nodeTag }
         return filter.first?.isArenda == true
     }

@@ -12,10 +12,21 @@ import Foundation
 extension CardParkingPlaceView{
     
     func setStatusRent(isArenda: Bool){
-        parkingViewModel.setStatusRent(
-            id, isArenda,
-            context: viewContext
-        )
+        if isArenda == true {
+            print("CardParkingPlaceView \(isArenda)")
+            addData()
+            parkingViewModel.setStatusRent(
+                id, isArenda,
+                context: viewContext
+            )
+            
+        }else {
+            print("CardParkingPlaceView true \(isArenda)")
+            parkingViewModel.setStatusRent(
+                id, isArenda,
+                context: viewContext
+            )
+        }
     }
     
     func addData(){

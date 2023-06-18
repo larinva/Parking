@@ -44,7 +44,6 @@ extension CardClientFormView{
         .onAppear{
              viewModel.loadCoreData(idplace: idplace,
                                            context: viewContext)
-//            print(viewModel.data)
         }
     }
 }
@@ -74,6 +73,7 @@ extension CardClientFormView{
     private func downFormView()-> some View{
         return Section{
             Text(viewModel.data.ovnerAuto)
+            Label(viewModel.data.ovnerAuto, systemImage: "person")
             Text(viewModel.data.numberFone)
             Text(viewModel.data.carBrand)
             Text(viewModel.data.numberAuto)

@@ -137,7 +137,7 @@ extension Parking: Comparable{
         let arendaPlace = Parking.withParkingPlace(id: idplace , context: context)
         arendaPlace.isArenda = isArenda
         context.saveContext()
-        print(arendaPlace)
+//        print("parking \(arendaPlace)")
     }
     
     public static func < (lhs: Parking, rhs: Parking) -> Bool {

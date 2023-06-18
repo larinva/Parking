@@ -7,22 +7,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "DFA5CFF7-31BE-45EB-B776-97AD4E4FDE92"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ParkingApp/AutoView/AutoView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "body"
-            landmarkType = "24">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "45E5172D-2806-4860-9CDD-A3E339399ACC"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -190,10 +174,10 @@
             filePath = "ParkingApp/CardParkingPlaceView/View/CardParkingPlaceView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "arendaPlaceButton(isArenda:color:)"
-            landmarkType = "7">
+            startingLineNumber = "166"
+            endingLineNumber = "166"
+            landmarkName = "rentextendText"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -206,26 +190,122 @@
             filePath = "ParkingApp/CardParkingPlaceView/View/CardParkingPlaceView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "153"
-            endingLineNumber = "153"
-            landmarkName = "rentextendText(_:)"
-            landmarkType = "7">
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "parkingCancelAlert"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "9570B6FD-E558-4867-8B1A-9E85090BDAB3"
+            uuid = "5C1EFA53-30CA-466B-A5A0-4CF78D2DEDF6"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ParkingApp/CardParkingPlaceView/View/CardParkingPlaceView.swift"
+            filePath = "ParkingApp/AutoView/AutoView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "157"
-            endingLineNumber = "157"
-            landmarkName = "parkingCancelAlert()"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "body"
+            landmarkType = "24">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "DEBC33D7-3078-4B06-8BA7-F1BE98A9575E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParkingApp/AutoView/AutoView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "28"
+            endingLineNumber = "28"
+            landmarkName = "body"
+            landmarkType = "24">
+            <Locations>
+               <Location
+                  uuid = "DEBC33D7-3078-4B06-8BA7-F1BE98A9575E - 2cdb710d4eaeabee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationBarItems&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(trailing: &#x3c4;_1_0) -&gt; some&gt;&gt;.0 in ParkingApp.AutoView.body.getter : some"
+                  moduleName = "ParkingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vacheslavbook/Documents/WorkingCinemaApp/Parking/ParkingAutoApp/ParkingApp/ParkingApp/AutoView/AutoView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "440">
+               </Location>
+               <Location
+                  uuid = "DEBC33D7-3078-4B06-8BA7-F1BE98A9575E - a39acceff68f19d4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (ParkingApp.Parking) -&gt; SwiftUI.VStack&lt;SwiftUI.NavigationLink&lt;SwiftUI.VStack&lt;SwiftUI.TupleView&lt;(SwiftUI.Text, SwiftUI.Text, SwiftUI.Text, SwiftUI.Text, SwiftUI.Text, ParkingApp.StatusArendaView)&gt;&gt;, Swift.Never&gt;&gt; in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.DynamicViewContent.onDelete(perform: Swift.Optional&lt;(Foundation.IndexSet) -&gt; ()&gt;) -&gt; some&gt;&gt;.0 in closure #1 () -&gt; &lt;&lt;opaque return type of SwiftUI.View.navigationBarItems&lt;&#x3c4;_0_0 where &#x3c4;_1_0: SwiftUI.View&gt;(trailing: &#x3c4;_1_0) -&gt; some&gt;&gt;.0 in ParkingApp.AutoView.body.getter : some"
+                  moduleName = "ParkingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vacheslavbook/Documents/WorkingCinemaApp/Parking/ParkingAutoApp/ParkingApp/ParkingApp/AutoView/AutoView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "29"
+                  endingLineNumber = "29"
+                  offsetFromSymbolStart = "196">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "92861057-ACF4-4733-94E1-10E76AC079E2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ParkingApp/MapView/View/MapViewExtension.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "isStatusArendaPlace()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "92861057-ACF4-4733-94E1-10E76AC079E2 - d09da91dcc9c6165"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ParkingApp.MapView.isStatusArendaPlace() -&gt; Swift.Bool"
+                  moduleName = "ParkingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vacheslavbook/Documents/WorkingCinemaApp/Parking/ParkingAutoApp/ParkingApp/ParkingApp/MapView/View/MapViewExtension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "200">
+               </Location>
+               <Location
+                  uuid = "92861057-ACF4-4733-94E1-10E76AC079E2 - 9a628172ee853fc8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (ParkingApp.Parking) -&gt; Swift.Bool in ParkingApp.MapView.isStatusArendaPlace() -&gt; Swift.Bool"
+                  moduleName = "ParkingApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/vacheslavbook/Documents/WorkingCinemaApp/Parking/ParkingAutoApp/ParkingApp/ParkingApp/MapView/View/MapViewExtension.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "44"
+                  endingLineNumber = "44"
+                  offsetFromSymbolStart = "108">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

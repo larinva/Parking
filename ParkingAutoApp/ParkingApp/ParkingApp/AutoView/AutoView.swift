@@ -45,9 +45,9 @@ struct AutoView: View {
             }//List
             .navigationDestination(for: Parking.self) { place in
                 CardParkingPlaceView(id: place.idPlace ?? "",
-                                     isStatusArenda: place.isArenda,
+//                                     isStatusArenda: place.isArenda,
                                      isCancelButton: false) //false
-                
+                let _ = print("autoVew \(place.isArenda)")
             }
             .navigationTitle(PersonData.listClients)
             .searchable(text: $searchText)

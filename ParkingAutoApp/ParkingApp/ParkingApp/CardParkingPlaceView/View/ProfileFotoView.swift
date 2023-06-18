@@ -26,6 +26,7 @@ struct ProfileFotoView: View {
             
             VStack(alignment: .leading, spacing: 8){
                 StatusArendaView(isStatus: isStatus)
+                let _ = print("Profile \(isStatus)")
                 Text(PersonData.parkingPlace + " " + idplace)
                     .font(.title3)
                     .bold()

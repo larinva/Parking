@@ -21,14 +21,14 @@ struct CardParkingPlaceView: View {
     
     //Core Data
     @Environment(\.managedObjectContext) var viewContext
-    @FetchRequest(fetchRequest: Parking.fetchRequest0(.all)) var parking: FetchedResults<Parking>
+    @FetchRequest(fetchRequest: Parking.fetchRequest0(.isArenda)) var parking: FetchedResults<Parking>
     
     @State private var isAlert: Bool = false
     @State private var searchText = ""
     @State private var statusRent: StatusRent = .rent
-    
+  
     var id: String
-    var isStatusArenda: Bool
+//    var isStatusArenda: Bool
     var isCancelButton: Bool?
 
     //MARK: ViewModel
@@ -39,7 +39,7 @@ struct CardParkingPlaceView: View {
             Form{
                 ProfileFotoView(
                     idplace: id,
-                    isStatus: isStatusArenda)
+                    isStatus: parkingViewModel.getStatusRent(idplace: id, context: viewContext))
                 CardClientFormView(
                     idplace: id,
                     viewModel: parkingViewModel)
@@ -47,8 +47,6 @@ struct CardParkingPlaceView: View {
                     viewModel: parkingViewModel)
 
             }
-//        WriteCardDetailView()
-        
         arendaPlace()
     }
 }
@@ -66,7 +64,7 @@ extension CardParkingPlaceView{
 
                     Spacer()
 
-                    if isStatusArenda {
+                    if parkingViewModel.getStatusRent(idplace: id, context: viewContext) {
                         if editMode?.wrappedValue == .inactive{
                             Button("Править") {
                                 editMode?.wrappedValue = .active
@@ -84,56 +82,86 @@ extension CardParkingPlaceView{
         }
     }
     
-    @ViewBuilder
     private func arendaPlace()-> some View{
         HStack{
-            switch isStatusArenda{
-            case true:
-                arendaPlaceButton(isArenda: false, color: .red)
-                    .overlay {
-                        parkingCancelAlert
-                    }
-                arendaPlaceButton(isArenda: false, color: .green)
-                    .overlay {
-                        rentextendText
-                    }
-            case false:
-                arendaPlaceButton(isArenda: true, color: .green)
-                    .overlay {
-                        rentextendText
-                    }
-            }
+            
+//            let _ = print("ppppppppppppp \(parkingViewModel.getStatusRent(idplace: id, context: viewContext))")
+//            let _ = print("parking \(parking)")
+//
+            Button{
+                setStatusRent(isArenda: false)
+            } label: {
+                parkingCancelAlert
+            }.buttonStyle(RedButtonStyle())
+
+            Button{
+                setStatusRent(isArenda: true)
+//                addData()
+            } label: {
+                rentextendText
+            }.buttonStyle(GreenButtonStyle())
+//
+//            switch isStatusArenda{
+//            case true:
+//                arendaPlaceButton(isArenda: false, color: .red)
+//                    .overlay {
+//                        parkingCancelAlert
+//                    }
+//                arendaPlaceButton(isArenda: false, color: .green)
+//                    .overlay {
+//                        rentextendText
+//                    }
+////                let _ = print("truearendaplace \(isStatusArenda)")
+//            case false:
+//                arendaPlaceButton(isArenda: true, color: .green)
+//                    .overlay {
+//                        rentextendText
+//                    }
+////                let _ = print("falsearendaplace \(isStatusArenda)")
+//            }
         }
         .padding()
+        .buttonStyle(.automatic)
     }
 
-    private func arendaPlaceButton(isArenda: Bool, color: Color)->some View{
+    /*private func arendaPlaceButton(isArenda: Bool, color: Color)->some View{
         Button{
-            switch !isArenda{
+//            let _ = print(parking)
+            
+//            if isArenda{
+//                setStatusRent(isArenda: isArenda)
+////                let _ = print("true000 \(isArenda)")
+////                addData()
+//            } else{
+//                setStatusRent(isArenda: isArenda)
+//
+//                // продлить аренду парковочного места
+////                let _ = print("false00 \(isArenda)")
+//            }
+            
+            switch isStatusArenda{
             case true:
-                setStatusRent(isArenda: false)
-                let _ = print("true000 \(isArenda)")
+                setStatusRent(isArenda: isStatusArenda)
+                let _ = print("true000 \(isStatusArenda)")
             case false:
-                //setStatusRent(isArenda: isArenda)
+                setStatusRent(isArenda: isStatusArenda)
                 addData()
                 // продлить аренду парковочного места
-                let _ = print("false00 \(true)")
+                let _ = print("false00 \(isStatusArenda)")
             }
         } label: {
             Capsule(style: .circular)
                 .fill(color)
                 .frame(width: size.width * 0.40, height: 40)
         }
-    }
+    }*/
     
     private var rentextendText: some View{
         return VStack{
-            if isStatusArenda{
+            if parkingViewModel.getStatusRent(idplace: id, context: viewContext){
                 Text("Продлить")
-                    .foregroundColor(.white)
             } else{
                 Text("Арендовать")
-                    .foregroundColor(.white)
             }
         }
     }
@@ -155,5 +183,22 @@ extension CardParkingPlaceView{
     }
 }
 
+struct GreenButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: size.width * 0.40, height: 40)
+            .background(Color.green)
+            .clipShape(Capsule(style: .circular))
+            .foregroundColor(.white)
+    }
+}
 
-//parkingViewModel.getStatusRent(idplace: id, context: viewContext)
+struct RedButtonStyle: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .frame(width: size.width * 0.40, height: 40)
+            .background(Color.red)
+            .clipShape(Capsule(style: .circular))
+            .foregroundColor(.white)
+    }
+}
