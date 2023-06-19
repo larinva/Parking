@@ -88,7 +88,7 @@ extension ParkingViewModel{
         Parking.add(id: idplace, from: data, context: context)
     }
     
-    func saveCoreData(idplace: String, context: NSManagedObjectContext) -> () {
-        Parking.update(id: idplace, from: data, in: context)
+    func updateCoreData(idplace: String, isArenda: Bool, context: NSManagedObjectContext) -> () {
+        Parking.update(id: idplace, from: data, isArenda: isArenda, in: context)
     }
 }

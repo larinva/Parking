@@ -15,17 +15,23 @@ extension CardParkingPlaceView{
         if isArenda == true {
             print("CardParkingPlaceView \(isArenda)")
             addData()
-            parkingViewModel.setStatusRent(
+            /*parkingViewModel.setStatusRent(
                 id, isArenda,
                 context: viewContext
-            )
+            )*/
             
         }else {
             print("CardParkingPlaceView true \(isArenda)")
-            parkingViewModel.setStatusRent(
-                id, isArenda,
+            parkingViewModel.updateCoreData(
+                idplace: id,
+                isArenda: isArenda,
                 context: viewContext
             )
+            
+            /*parkingViewModel.setStatusRent(
+                id, isArenda,
+                context: viewContext
+            )*/
         }
     }
     
@@ -37,8 +43,9 @@ extension CardParkingPlaceView{
     }
     
     func saveData(){
-        parkingViewModel.saveCoreData(
+        parkingViewModel.updateCoreData(
             idplace: id,
+            isArenda: isStatusArenda,
             context: viewContext
         )
     }

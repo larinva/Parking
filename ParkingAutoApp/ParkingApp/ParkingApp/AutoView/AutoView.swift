@@ -16,6 +16,8 @@ struct AutoView: View {
     @State private var isDetailInfo: Bool = false
     @State private var searchText = ""
     
+    @ObservedObject var modelView = ParkingViewModel()
+    
     var delete: some View{
         Button("delete") {
             Parking.delete(in: viewContext)
@@ -36,18 +38,18 @@ struct AutoView: View {
                                 Text(PersonData.parkingPlace + " " + (place.idPlace ?? ""))
                                 StatusArendaView(isStatus: place.isArenda)
                                 
-//                                let _ = print("AutoView \(place)")
+                                let _ = print(modelView.getStatusRent(idplace: place.idPlace ?? "", context: viewContext))
                             }
                         }
                     }
-                    
-                }.onDelete(perform: deleteItem(index:))
+                }
+                .onDelete(perform: deleteItem(index:))
             }//List
             .navigationDestination(for: Parking.self) { place in
                 CardParkingPlaceView(id: place.idPlace ?? "",
-//                                     isStatusArenda: place.isArenda,
+                                     isStatusArenda: place.isArenda,
                                      isCancelButton: false) //false
-                let _ = print("autoVew \(place.isArenda)")
+                //let _ = print("autoVew \(place)")
             }
             .navigationTitle(PersonData.listClients)
             .searchable(text: $searchText)

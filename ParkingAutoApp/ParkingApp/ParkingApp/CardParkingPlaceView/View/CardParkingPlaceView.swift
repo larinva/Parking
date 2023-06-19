@@ -9,7 +9,6 @@ import SwiftUI
 
 let size = UIScreen.main.bounds
 
-
 enum StatusRent{
     case rent
     case free
@@ -21,14 +20,14 @@ struct CardParkingPlaceView: View {
     
     //Core Data
     @Environment(\.managedObjectContext) var viewContext
-    @FetchRequest(fetchRequest: Parking.fetchRequest0(.isArenda)) var parking: FetchedResults<Parking>
+    //@FetchRequest(fetchRequest: Parking.fetchRequest0(.isArenda)) var parking: FetchedResults<Parking>
     
     @State private var isAlert: Bool = false
     @State private var searchText = ""
     @State private var statusRent: StatusRent = .rent
   
     var id: String
-//    var isStatusArenda: Bool
+    var isStatusArenda: Bool
     var isCancelButton: Bool?
 
     //MARK: ViewModel
@@ -39,12 +38,12 @@ struct CardParkingPlaceView: View {
             Form{
                 ProfileFotoView(
                     idplace: id,
-                    isStatus: parkingViewModel.getStatusRent(idplace: id, context: viewContext))
+                    isStatus: isStatusArenda)
                 CardClientFormView(
                     idplace: id,
                     viewModel: parkingViewModel)
-                DatePickerView(
-                    viewModel: parkingViewModel)
+                /*DatePickerView(
+                    viewModel: parkingViewModel)*/
 
             }
         arendaPlace()
@@ -84,19 +83,20 @@ extension CardParkingPlaceView{
     
     private func arendaPlace()-> some View{
         HStack{
+        
+            //let _ = print("parking \(parking)")
             
-//            let _ = print("ppppppppppppp \(parkingViewModel.getStatusRent(idplace: id, context: viewContext))")
-//            let _ = print("parking \(parking)")
-//
             Button{
-                setStatusRent(isArenda: false)
+                //setStatusRent(isArenda: false)
+                parkingViewModel.updateCoreData(idplace: id, isArenda: false, context: viewContext)
             } label: {
-                parkingCancelAlert
+                //parkingCancelAlert
+                Text("Cancel")
             }.buttonStyle(RedButtonStyle())
 
             Button{
-                setStatusRent(isArenda: true)
-//                addData()
+                //setStatusRent(isArenda: true)
+                parkingViewModel.updateCoreData(idplace: id, isArenda: true, context: viewContext)
             } label: {
                 rentextendText
             }.buttonStyle(GreenButtonStyle())
@@ -169,7 +169,8 @@ extension CardParkingPlaceView{
     private var parkingCancelAlert: some View{
         return VStack{
             Button("Завершить") {
-                isAlert = true
+                //isAlert = true
+                //isAlert.toggle()
             }
             .alert(Text("Внимание"), isPresented: $isAlert, actions: {
                 Button("Завершить") {

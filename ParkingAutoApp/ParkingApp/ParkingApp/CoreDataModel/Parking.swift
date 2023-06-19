@@ -79,10 +79,6 @@ extension Parking: Comparable{
         newPlace.isDatePicker = cardClient.isDatePicker
         newPlace.date_ = cardClient.date
         newPlace.dateEnd = cardClient.dateEnd
-        
-        /*newPlace.places = Places(context: context)
-        newPlace.places.isArenda = true
-        newPlace.places.idPlace = id*/
         newPlace.idPlace = id
         newPlace.isArenda = true
         
@@ -105,7 +101,7 @@ extension Parking: Comparable{
         return cardClient
     }
     
-    static func update(id: String, from cardClient: ParkingPlaceModel, in context: NSManagedObjectContext){
+    static func update(id: String, from cardClient: ParkingPlaceModel, isArenda: Bool, in context: NSManagedObjectContext){
         let parking = withParkingPlace(id: id, context: context)
         parking.idPlace = id
         parking.ovnerAuto = cardClient.ovnerAuto
@@ -116,6 +112,9 @@ extension Parking: Comparable{
         parking.price = cardClient.price
         parking.date_ = cardClient.date
         parking.dateEnd = cardClient.dateEnd
+        parking.isArenda = isArenda
+        
+        print("fajd;lsfjldajslkgjlfkjglfsdjgk \(isArenda)")
 
         context.saveContext()
     }
