@@ -20,9 +20,10 @@ struct HomeView: View {
                 .tabItem {
                     Label("Авто", systemImage: "car")
                 }
-            SettingsView()
+            NoficationView()
                 .tabItem {
-                    Label("Настройки", systemImage: "ellipsis.circle.fill")
+                    Label("Уведомления", systemImage: "ellipsis.circle.fill")
+//                    Label("Настройки", systemImage: "ellipsis.circle.fill")
                 }
         }
     }

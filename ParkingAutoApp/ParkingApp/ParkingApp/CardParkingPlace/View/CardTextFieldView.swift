@@ -10,25 +10,14 @@ import SwiftUI
 struct CardTextFieldView: View{
     var image: String
     var data: String
-    
-    @State var text = ""
-    
-
+    var text: Binding<String>
     
     var body: some View{
-        var _text = Binding<String> (
-            get: {
-                self.text.lowercased()
-        },
-            set: {
-                self.text = $0
-        }
-    )
         HStack{
             Image(systemName: image)
                 .resizable()
                 .imageStyle()
-            TextField(data, text: _text)
+            TextField(data, text: text)
         }
     }
 }

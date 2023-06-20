@@ -13,7 +13,7 @@
     <entity name="Parking" representedClassName="Parking" syncable="YES" codeGenerationType="class">
         <attribute name="carBrand_" optional="YES" attributeType="String"/>
         <attribute name="date_" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="dateEnd" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="dateEnd_" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="foto" optional="YES" attributeType="String"/>
         <attribute name="idPlace" optional="YES" attributeType="String"/>
         <attribute name="isArenda" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>

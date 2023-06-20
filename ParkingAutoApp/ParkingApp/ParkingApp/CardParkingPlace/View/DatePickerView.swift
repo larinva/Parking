@@ -31,8 +31,8 @@ struct DatePickerView: View {
 
 extension DatePickerView{
     private var startDate: Date{
-         let date = viewModel.calendar.startOfDay(for: Date.now)
-         return date
+//         let date = viewModel.calendar.startOfDay(for: Date.now)
+        Date.now
      }
     
     private var endDate: Date{
@@ -45,7 +45,7 @@ extension DatePickerView{
             Text("Оплачено до ")
             Spacer()
             VStack{
-                Text("\(viewModel.nextDayMonth)")
+                Text("\(viewModel.nextDayMonth.datestring)")
             }
             .edgesIgnoringSafeArea(.all)
             .foregroundColor(.primary)
@@ -58,9 +58,8 @@ extension DatePickerView{
     
     private var DatePayView: some View {
         return DatePicker ("Оплачено до ", selection: isPicker ? $viewModel.datePicker : $viewModel.data.dateEnd, displayedComponents: .date)
-        .onChange(of: endDate) { newValue in
+            .onChange(of: viewModel.data.dateEnd) { newValue in
             viewModel.data.date = startDate
-            viewModel.data.dateEnd = newValue
             viewModel.price = viewModel.payOfMonth
             viewModel.payByDay(dateStart: startDate, dateEnd: newValue)
         }
@@ -77,6 +76,7 @@ extension DatePickerView{
                 if isPicker{
                     viewModel.price = viewModel.payOfMonth
                     viewModel.data.isDatePicker = newValue
+                    viewModel.data.dateEnd = viewModel.nextDayMonth
                 } else{
                     viewModel.payByDay(dateStart: startDate, dateEnd: endDate)
                     viewModel.datePicker = startDate

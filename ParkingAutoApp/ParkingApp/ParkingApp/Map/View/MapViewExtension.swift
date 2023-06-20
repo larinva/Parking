@@ -51,7 +51,7 @@ extension MapView{
             print("base no")
         } else {
             let filter = parking.filter{$0.isArenda}
-            selectedNodesColor(nodeTag: filter.map{ $0.idPlace ?? ""})
+            selectedNodesColor(idplace: filter.map{ $0.idPlace ?? ""})
         }
     }
     
@@ -68,20 +68,20 @@ extension MapView{
             self.isDragging = true
             
             withAnimation {
-                self.selectedNodeColor(nodeTag: nodeTag)
+                self.selectedNodeColor(idplace: nodeTag)
             }
         }
     }
     
-    private func selectedNodeColor(nodeTag : String) {
-        if let shape = view.getNode(byId: nodeTag) as? SVGShape {
+    private func selectedNodeColor(idplace : String) {
+        if let shape = view.getNode(byId: idplace) as? SVGShape {
             shape.fill = SVGColor(r: 223, g: 35, b: 35, opacity: 1)
-            svgid.nodeTag = nodeTag
+            svgid.nodeTag = idplace
         }
     }
     
-    private func selectedNodesColor(nodeTag : [String]) {
-        for tag in nodeTag{
+    private func selectedNodesColor(idplace : [String]) {
+        for tag in idplace{
             if let shape = view.getNode(byId: tag) as? SVGShape {
                 shape.fill = SVGColor(r: 223, g: 35, b: 35, opacity: 1)
             }

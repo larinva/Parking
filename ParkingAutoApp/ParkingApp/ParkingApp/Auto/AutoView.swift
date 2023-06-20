@@ -25,6 +25,15 @@ struct AutoView: View {
     }
     
     var body: some View {
+//        let searchBinding = Binding<String>(
+//            get: {
+//                FilterNumberPhone.format(with: modelView.data.numberFone, phone: modelView.maskPhone)
+//            },
+//            set: {
+//                searchText = $0
+//                print($0)
+//            }
+//        )
         NavigationStack{
             List{
                 ForEach(parking) { place in
@@ -53,6 +62,7 @@ struct AutoView: View {
             .onChange(of: searchText) { newValue in
                 parking.sortDescriptors = [SortDescriptor(\.numberFone_)]
                 parking.nsPredicate = !newValue.isEmpty ? Parking.searchPredicate(query: newValue, field: "numberFone_") : .isArenda
+                print(newValue)
             }
             .navigationBarItems(trailing: delete)
         }

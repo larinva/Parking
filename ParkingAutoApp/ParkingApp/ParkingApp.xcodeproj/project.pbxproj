@@ -37,6 +37,8 @@
 		92DF89C5299172620036CBEA /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF89C4299172620036CBEA /* SettingsView.swift */; };
 		92DF89C8299172B60036CBEA /* AutoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DF89C7299172B60036CBEA /* AutoView.swift */; };
 		92DFE72529B120E90082506F /* MapParkengin.svg in Resources */ = {isa = PBXBuildFile; fileRef = 92DFE72429B120E90082506F /* MapParkengin.svg */; };
+		92FC89272A421A3600600ADC /* NoficationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FC89262A421A3600600ADC /* NoficationView.swift */; };
+		92FC89292A4231A900600ADC /* FoundationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FC89282A4231A900600ADC /* FoundationExtension.swift */; };
 		92FF4DA7299569B000607B5F /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FF4DA6299569B000607B5F /* Places.swift */; };
 		92FF4DAB29956E7000607B5F /* LoadPlaces.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92FF4DAA29956E7000607B5F /* LoadPlaces.swift */; };
 /* End PBXBuildFile section */
@@ -73,6 +75,8 @@
 		92DF89C4299172620036CBEA /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		92DF89C7299172B60036CBEA /* AutoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoView.swift; sourceTree = "<group>"; };
 		92DFE72429B120E90082506F /* MapParkengin.svg */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = MapParkengin.svg; sourceTree = "<group>"; };
+		92FC89262A421A3600600ADC /* NoficationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoficationView.swift; sourceTree = "<group>"; };
+		92FC89282A4231A900600ADC /* FoundationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationExtension.swift; sourceTree = "<group>"; };
 		92FF4DA6299569B000607B5F /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
 		92FF4DAA29956E7000607B5F /* LoadPlaces.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadPlaces.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -109,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				8094D9662A050AC700E986F9 /* StatusArendaView.swift */,
+				92FC89282A4231A900600ADC /* FoundationExtension.swift */,
 				92C46A7A2A0F948F00660DDE /* ParkingModified.swift */,
 				92D546492A14011200E49DD8 /* PersonData.swift */,
 			);
@@ -145,15 +150,16 @@
 		92DF898A29915BEC0036CBEA /* ParkingApp */ = {
 			isa = PBXGroup;
 			children = (
+				92FC89252A421A1000600ADC /* Nofication */,
 				8094D9652A050A7D00E986F9 /* Helper */,
 				92DE8BA429F5378700904AB8 /* PhoneMask */,
 				92FF4DA929956A3100607B5F /* Persistens */,
 				92DF89BB29915EF90036CBEA /* CoreDataModel */,
-				92FF4DA8299569E200607B5F /* HomeView */,
-				92DF899F29915C300036CBEA /* MapView */,
-				92DF89C6299172790036CBEA /* AutoView */,
-				92DF89C32991723C0036CBEA /* SettingsView */,
-				92DF89A829915C3B0036CBEA /* CardParkingPlaceView */,
+				92FF4DA8299569E200607B5F /* Home */,
+				92DF899F29915C300036CBEA /* Map */,
+				92DF89C6299172790036CBEA /* Auto */,
+				92DF89C32991723C0036CBEA /* Settings */,
+				92DF89A829915C3B0036CBEA /* CardParkingPlace */,
 				92DF898B29915BEC0036CBEA /* ParkingApp.swift */,
 				92DF898F29915BED0036CBEA /* Assets.xcassets */,
 				92DFE72429B120E90082506F /* MapParkengin.svg */,
@@ -171,24 +177,24 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		92DF899F29915C300036CBEA /* MapView */ = {
+		92DF899F29915C300036CBEA /* Map */ = {
 			isa = PBXGroup;
 			children = (
 				92DF89C029916DDF0036CBEA /* Model */,
 				92DF89C129916DEF0036CBEA /* ViewModel */,
 				92DF89C229916E110036CBEA /* View */,
 			);
-			path = MapView;
+			path = Map;
 			sourceTree = "<group>";
 		};
-		92DF89A829915C3B0036CBEA /* CardParkingPlaceView */ = {
+		92DF89A829915C3B0036CBEA /* CardParkingPlace */ = {
 			isa = PBXGroup;
 			children = (
 				800F95D629C2E603001DCBED /* ViewModel */,
 				800F95D329C2E575001DCBED /* Model */,
 				92DF89A929915C3B0036CBEA /* View */,
 			);
-			path = CardParkingPlaceView;
+			path = CardParkingPlace;
 			sourceTree = "<group>";
 		};
 		92DF89A929915C3B0036CBEA /* View */ = {
@@ -239,28 +245,36 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		92DF89C32991723C0036CBEA /* SettingsView */ = {
+		92DF89C32991723C0036CBEA /* Settings */ = {
 			isa = PBXGroup;
 			children = (
 				92DF89C4299172620036CBEA /* SettingsView.swift */,
 			);
-			path = SettingsView;
+			path = Settings;
 			sourceTree = "<group>";
 		};
-		92DF89C6299172790036CBEA /* AutoView */ = {
+		92DF89C6299172790036CBEA /* Auto */ = {
 			isa = PBXGroup;
 			children = (
 				92DF89C7299172B60036CBEA /* AutoView.swift */,
 			);
-			path = AutoView;
+			path = Auto;
 			sourceTree = "<group>";
 		};
-		92FF4DA8299569E200607B5F /* HomeView */ = {
+		92FC89252A421A1000600ADC /* Nofication */ = {
+			isa = PBXGroup;
+			children = (
+				92FC89262A421A3600600ADC /* NoficationView.swift */,
+			);
+			path = Nofication;
+			sourceTree = "<group>";
+		};
+		92FF4DA8299569E200607B5F /* Home */ = {
 			isa = PBXGroup;
 			children = (
 				92DF89BE29916D8D0036CBEA /* HomeView.swift */,
 			);
-			path = HomeView;
+			path = Home;
 			sourceTree = "<group>";
 		};
 		92FF4DA929956A3100607B5F /* Persistens */ = {
@@ -389,10 +403,12 @@
 				807F2840299DF867003E9B9D /* ParkingApp.xcdatamodeld in Sources */,
 				800F95D529C2E5E4001DCBED /* ParkingPlaceModel.swift in Sources */,
 				92DF89A629915C300036CBEA /* MapView.swift in Sources */,
+				92FC89272A421A3600600ADC /* NoficationView.swift in Sources */,
 				8094D9672A050AC700E986F9 /* StatusArendaView.swift in Sources */,
 				92DF89B329915C3B0036CBEA /* ProfileFotoView.swift in Sources */,
 				92DE8BAA29F53F8A00904AB8 /* FilterNumberPhone.swift in Sources */,
 				8032569D2A209A320045F711 /* CardClientFormView.swift in Sources */,
+				92FC89292A4231A900600ADC /* FoundationExtension.swift in Sources */,
 				92FF4DAB29956E7000607B5F /* LoadPlaces.swift in Sources */,
 				92DF89B029915C3B0036CBEA /* CardParkingPlaceView.swift in Sources */,
 				92C46A7B2A0F948F00660DDE /* ParkingModified.swift in Sources */,

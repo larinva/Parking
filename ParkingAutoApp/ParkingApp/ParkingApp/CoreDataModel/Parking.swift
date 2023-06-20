@@ -43,6 +43,11 @@ extension Parking: Comparable{
         set{ date_ = newValue }
     }
     
+    var deteEnd: Date{
+        get{ dateEnd_ ?? Date.now }
+        set{ dateEnd_ = newValue }
+    }
+    
     static func fetchRequest0(_ predicate: NSPredicate) -> NSFetchRequest<Parking> {
         let request = NSFetchRequest<Parking>(entityName: "Parking")
         request.predicate = predicate
@@ -78,7 +83,7 @@ extension Parking: Comparable{
         newPlace.price = cardClient.price
         newPlace.isDatePicker = cardClient.isDatePicker
         newPlace.date_ = cardClient.date
-        newPlace.dateEnd = cardClient.dateEnd
+        newPlace.dateEnd_ = cardClient.dateEnd
         newPlace.idPlace = id
         newPlace.isArenda = true
         
@@ -96,7 +101,7 @@ extension Parking: Comparable{
                 cardClient.isDatePicker = parking.isDatePicker
                 cardClient.price = parking.price
                 cardClient.date = parking.date_ ?? Date.now
-                cardClient.dateEnd = parking.dateEnd ?? Date.now
+                cardClient.dateEnd = parking.dateEnd_ ?? Date.now
             }
         return cardClient
     }
@@ -111,7 +116,7 @@ extension Parking: Comparable{
         parking.isDatePicker = cardClient.isDatePicker
         parking.price = cardClient.price
         parking.date_ = cardClient.date
-        parking.dateEnd = cardClient.dateEnd
+        parking.dateEnd_ = cardClient.dateEnd
         parking.isArenda = isArenda
 
         context.saveContext()

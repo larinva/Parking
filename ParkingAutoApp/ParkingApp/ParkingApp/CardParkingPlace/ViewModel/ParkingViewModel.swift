@@ -12,7 +12,6 @@ import CoreData
 
 class ParkingViewModel: ObservableObject {
     @Published var data = ParkingPlaceModel()
-//    @Published var isPicker: Bool = false
     @Published var datePicker = Date.now
     @Published var price = ""
     
@@ -22,12 +21,10 @@ class ParkingViewModel: ObservableObject {
 
 extension ParkingViewModel{
     //тот же день следующего месяца
-    var nextDayMonth: String {
+    var nextDayMonth: Date {
         let dateComponent = calendar.dateComponents([.day], from: .now)
         let nextDate = calendar.nextDate(after: .now, matching: dateComponent, matchingPolicy: .strict)
-        let formatted = nextDate?.formatted(date: .abbreviated, time: .omitted)
-        
-        return formatted ?? ""
+        return nextDate ?? Date.now
     }
     
     //оплата за месяц
@@ -78,7 +75,6 @@ extension ParkingViewModel{
         let place = Parking.withParkingPlace(id: idplace, context: context)
         return place.isArenda
     }
-    
     
     func addCoreData(idplace: String, context: NSManagedObjectContext){
         Parking.add(id: idplace, from: data, context: context)

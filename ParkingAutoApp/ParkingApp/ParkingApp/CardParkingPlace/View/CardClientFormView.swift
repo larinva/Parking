@@ -55,19 +55,19 @@ extension CardClientFormView{
         return Section{
             CardTextFieldView(image: personImage,
                               data: PersonData.ovnerAuto,
-                              text: viewModel.data.ovnerAuto)
+                              text: $viewModel.data.ovnerAuto)
             
-            /*CardTextFieldView(image: phone,
+            CardTextFieldView(image: phone,
                               data: PersonData.numberFone,
-                              text: viewModel.maskPhoneBinding())*/
+                              text: viewModel.maskPhoneBinding())
             
             CardTextFieldView(image: car,
                               data: PersonData.carBrand,
-                              text: viewModel.data.carBrand)
+                              text: $viewModel.data.carBrand)
             
             CardTextFieldView(image: person,
                               data: PersonData.numberAuto,
-                              text: viewModel.data.numberAuto)
+                              text: $viewModel.data.numberAuto)
         }
     }
     

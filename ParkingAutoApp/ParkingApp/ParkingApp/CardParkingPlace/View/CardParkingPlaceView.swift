@@ -41,9 +41,8 @@ struct CardParkingPlaceView: View {
                 CardClientFormView(
                     idplace: id,
                     viewModel: parkingViewModel)
-               /* DatePickerView(
-                    viewModel: parkingViewModel)*/
-
+               DatePickerView(
+                    viewModel: parkingViewModel)
             }
         ArendaPlaceView()
     }
