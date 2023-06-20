@@ -42,8 +42,9 @@ extension CardClientFormView{
             }
         }
         .onAppear{
-             viewModel.loadCoreData(idplace: idplace,
-                                           context: viewContext)
+             viewModel.loadCoreData(
+                idplace: idplace,
+                context: viewContext)
         }
     }
 }
@@ -54,26 +55,25 @@ extension CardClientFormView{
         return Section{
             CardTextFieldView(image: personImage,
                               data: PersonData.ovnerAuto,
-                              text: $viewModel.data.ovnerAuto)
+                              text: viewModel.data.ovnerAuto)
             
-            CardTextFieldView(image: phone,
+            /*CardTextFieldView(image: phone,
                               data: PersonData.numberFone,
-                              text: viewModel.maskPhoneBinding())
+                              text: viewModel.maskPhoneBinding())*/
             
             CardTextFieldView(image: car,
                               data: PersonData.carBrand,
-                              text: $viewModel.data.carBrand)
+                              text: viewModel.data.carBrand)
             
             CardTextFieldView(image: person,
                               data: PersonData.numberAuto,
-                              text: $viewModel.data.numberAuto)
+                              text: viewModel.data.numberAuto)
         }
     }
     
     private func downFormView()-> some View{
         return Section{
             Text(viewModel.data.ovnerAuto)
-            Label(viewModel.data.ovnerAuto, systemImage: "person")
             Text(viewModel.data.numberFone)
             Text(viewModel.data.carBrand)
             Text(viewModel.data.numberAuto)

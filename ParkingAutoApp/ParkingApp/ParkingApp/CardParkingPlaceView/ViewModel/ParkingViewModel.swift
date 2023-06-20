@@ -74,10 +74,6 @@ extension ParkingViewModel{
             data.dateEnd = place.dateEnd
     }
     
-//    func setStatusRent(_ idplace: String, _ isArenda: Bool, context: NSManagedObjectContext) -> () {
-//        Parking.setStatusRent(idplace, isArenda, context: context)
-//    }
-//
     func getStatusRent(idplace: String, context: NSManagedObjectContext)->Bool{
         let place = Parking.withParkingPlace(id: idplace, context: context)
         return place.isArenda
