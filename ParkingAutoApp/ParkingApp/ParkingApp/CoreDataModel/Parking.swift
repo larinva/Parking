@@ -113,8 +113,6 @@ extension Parking: Comparable{
         parking.date_ = cardClient.date
         parking.dateEnd = cardClient.dateEnd
         parking.isArenda = isArenda
-        
-        print("fajd;lsfjldajslkgjlfkjglfsdjgk \(isArenda)")
 
         context.saveContext()
     }
@@ -132,12 +130,11 @@ extension Parking: Comparable{
         context.saveContext()
     }
     
-    static func setStatusRent(_ idplace: String, _ isArenda: Bool, context: NSManagedObjectContext) -> (){
-        let arendaPlace = Parking.withParkingPlace(id: idplace , context: context)
-        arendaPlace.isArenda = isArenda
-        context.saveContext()
-//        print("parking \(arendaPlace)")
-    }
+//    static func setStatusRent(_ idplace: String, _ isArenda: Bool, context: NSManagedObjectContext) -> (){
+//        let arendaPlace = Parking.withParkingPlace(id: idplace , context: context)
+//        arendaPlace.isArenda = isArenda
+//        context.saveContext()
+//    }
     
     public static func < (lhs: Parking, rhs: Parking) -> Bool {
         lhs.ovnerAuto < rhs.ovnerAuto

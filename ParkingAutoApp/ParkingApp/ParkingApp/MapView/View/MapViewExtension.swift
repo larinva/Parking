@@ -27,7 +27,9 @@ extension MapView{
 
 extension MapView{
     mutating func loadMapView() -> () {
-        let url = Bundle.main.url(forResource: "MapParkengin", withExtension: "svg")
+        let url = Bundle.main.url(
+            forResource: "MapParkengin",
+            withExtension: "svg")
         if let url = url {
             view = SVGView(contentsOf: url)
         }
@@ -36,9 +38,7 @@ extension MapView{
 
 extension MapView{
     
-    func isStatusArendaPlace() -> Bool {
-//        let _ = print("MapExtension \(viewModel.getStatusRent(idplace: svgid.nodeTag, context: viewContext))")
-//        
+    func isStatusArendaPlace() -> Bool {       
 //        return viewModel.getStatusRent(
 //            idplace: svgid.nodeTag,
 //            context: viewContext)

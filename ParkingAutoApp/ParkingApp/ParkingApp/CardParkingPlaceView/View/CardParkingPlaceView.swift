@@ -20,8 +20,7 @@ struct CardParkingPlaceView: View {
     
     //Core Data
     @Environment(\.managedObjectContext) var viewContext
-    //@FetchRequest(fetchRequest: Parking.fetchRequest0(.isArenda)) var parking: FetchedResults<Parking>
-    
+
     @State private var isAlert: Bool = false
     @State private var searchText = ""
     @State private var statusRent: StatusRent = .rent
@@ -42,15 +41,16 @@ struct CardParkingPlaceView: View {
                 CardClientFormView(
                     idplace: id,
                     viewModel: parkingViewModel)
-                /*DatePickerView(
-                    viewModel: parkingViewModel)*/
+                DatePickerView(
+                    viewModel: parkingViewModel)
 
             }
-        arendaPlace()
+        ArendaPlaceView()
     }
 }
 
 extension CardParkingPlaceView{
+    @ViewBuilder
     private var ToolbarView: some View{
         ZStack{
             if isCancelButton ?? true{
@@ -63,7 +63,7 @@ extension CardParkingPlaceView{
 
                     Spacer()
 
-                    if parkingViewModel.getStatusRent(idplace: id, context: viewContext) {
+                    if isStatusArenda {
                         if editMode?.wrappedValue == .inactive{
                             Button("Править") {
                                 editMode?.wrappedValue = .active
@@ -71,7 +71,11 @@ extension CardParkingPlaceView{
                         } else {
                             Button("Готово") {
                                 editMode?.wrappedValue = .inactive
-                                saveData()
+                                parkingViewModel.updateCoreData(
+                                            idplace: id,
+                                            isArenda: isStatusArenda,
+                                            context: viewContext
+                                        )
                             }
                         }
                     }
@@ -81,81 +85,24 @@ extension CardParkingPlaceView{
         }
     }
     
-    private func arendaPlace()-> some View{
+    @ViewBuilder
+    private func ArendaPlaceView()-> some View{
         HStack{
-        
-            //let _ = print("parking \(parking)")
-            
             Button{
-                //setStatusRent(isArenda: false)
-                parkingViewModel.updateCoreData(idplace: id, isArenda: false, context: viewContext)
             } label: {
-                //parkingCancelAlert
-                Text("Cancel")
+                parkingCancelAlert
             }.buttonStyle(RedButtonStyle())
 
             Button{
-                //setStatusRent(isArenda: true)
                 parkingViewModel.updateCoreData(idplace: id, isArenda: true, context: viewContext)
             } label: {
                 rentextendText
             }.buttonStyle(GreenButtonStyle())
-//
-//            switch isStatusArenda{
-//            case true:
-//                arendaPlaceButton(isArenda: false, color: .red)
-//                    .overlay {
-//                        parkingCancelAlert
-//                    }
-//                arendaPlaceButton(isArenda: false, color: .green)
-//                    .overlay {
-//                        rentextendText
-//                    }
-////                let _ = print("truearendaplace \(isStatusArenda)")
-//            case false:
-//                arendaPlaceButton(isArenda: true, color: .green)
-//                    .overlay {
-//                        rentextendText
-//                    }
-////                let _ = print("falsearendaplace \(isStatusArenda)")
-//            }
         }
         .padding()
         .buttonStyle(.automatic)
     }
 
-    /*private func arendaPlaceButton(isArenda: Bool, color: Color)->some View{
-        Button{
-//            let _ = print(parking)
-            
-//            if isArenda{
-//                setStatusRent(isArenda: isArenda)
-////                let _ = print("true000 \(isArenda)")
-////                addData()
-//            } else{
-//                setStatusRent(isArenda: isArenda)
-//
-//                // продлить аренду парковочного места
-////                let _ = print("false00 \(isArenda)")
-//            }
-            
-            switch isStatusArenda{
-            case true:
-                setStatusRent(isArenda: isStatusArenda)
-                let _ = print("true000 \(isStatusArenda)")
-            case false:
-                setStatusRent(isArenda: isStatusArenda)
-                addData()
-                // продлить аренду парковочного места
-                let _ = print("false00 \(isStatusArenda)")
-            }
-        } label: {
-            Capsule(style: .circular)
-                .fill(color)
-                .frame(width: size.width * 0.40, height: 40)
-        }
-    }*/
-    
     private var rentextendText: some View{
         return VStack{
             if parkingViewModel.getStatusRent(idplace: id, context: viewContext){
@@ -169,12 +116,14 @@ extension CardParkingPlaceView{
     private var parkingCancelAlert: some View{
         return VStack{
             Button("Завершить") {
-                //isAlert = true
-                //isAlert.toggle()
+                isAlert = true
             }
             .alert(Text("Внимание"), isPresented: $isAlert, actions: {
                 Button("Завершить") {
-                    setStatusRent(isArenda: false)
+                    parkingViewModel.updateCoreData(
+                        idplace: id,
+                        isArenda: false,
+                        context: viewContext)
                 }
                 Button("Отмена", role: .cancel){}
             }, message: {

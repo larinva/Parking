@@ -19,7 +19,6 @@
 		92A6926529CEF7DF00F22E39 /* DatePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92A6926429CEF7DF00F22E39 /* DatePickerView.swift */; };
 		92C46A7B2A0F948F00660DDE /* ParkingModified.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92C46A7A2A0F948F00660DDE /* ParkingModified.swift */; };
 		92D5464A2A14011200E49DD8 /* PersonData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D546492A14011200E49DD8 /* PersonData.swift */; };
-		92D5464E2A2924CE00E49DD8 /* CardParkingPlaceViewExtensionCoreData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D5464D2A2924CE00E49DD8 /* CardParkingPlaceViewExtensionCoreData.swift */; };
 		92DE8BA329F52DD700904AB8 /* FormatterNumberPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */; };
 		92DE8BA629F537CC00904AB8 /* NumberPhoneMaskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA529F537CC00904AB8 /* NumberPhoneMaskView.swift */; };
 		92DE8BA829F5384D00904AB8 /* TextFieldContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92DE8BA729F5384D00904AB8 /* TextFieldContainer.swift */; };
@@ -54,7 +53,6 @@
 		92A6926429CEF7DF00F22E39 /* DatePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerView.swift; sourceTree = "<group>"; };
 		92C46A7A2A0F948F00660DDE /* ParkingModified.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParkingModified.swift; sourceTree = "<group>"; };
 		92D546492A14011200E49DD8 /* PersonData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonData.swift; sourceTree = "<group>"; };
-		92D5464D2A2924CE00E49DD8 /* CardParkingPlaceViewExtensionCoreData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardParkingPlaceViewExtensionCoreData.swift; sourceTree = "<group>"; };
 		92DE8BA229F52DD700904AB8 /* FormatterNumberPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatterNumberPhone.swift; sourceTree = "<group>"; };
 		92DE8BA529F537CC00904AB8 /* NumberPhoneMaskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NumberPhoneMaskView.swift; sourceTree = "<group>"; };
 		92DE8BA729F5384D00904AB8 /* TextFieldContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldContainer.swift; sourceTree = "<group>"; };
@@ -200,7 +198,6 @@
 				8032569C2A209A320045F711 /* CardClientFormView.swift */,
 				92A6926429CEF7DF00F22E39 /* DatePickerView.swift */,
 				92DF89AD29915C3B0036CBEA /* ProfileFotoView.swift */,
-				92D5464D2A2924CE00E49DD8 /* CardParkingPlaceViewExtensionCoreData.swift */,
 				9260B3E82A3471F200B8CD50 /* CardTextFieldView.swift */,
 			);
 			path = View;
@@ -396,7 +393,6 @@
 				92DF89B329915C3B0036CBEA /* ProfileFotoView.swift in Sources */,
 				92DE8BAA29F53F8A00904AB8 /* FilterNumberPhone.swift in Sources */,
 				8032569D2A209A320045F711 /* CardClientFormView.swift in Sources */,
-				92D5464E2A2924CE00E49DD8 /* CardParkingPlaceViewExtensionCoreData.swift in Sources */,
 				92FF4DAB29956E7000607B5F /* LoadPlaces.swift in Sources */,
 				92DF89B029915C3B0036CBEA /* CardParkingPlaceView.swift in Sources */,
 				92C46A7B2A0F948F00660DDE /* ParkingModified.swift in Sources */,

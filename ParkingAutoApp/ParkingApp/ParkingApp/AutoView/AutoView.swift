@@ -38,7 +38,7 @@ struct AutoView: View {
                                 Text(PersonData.parkingPlace + " " + (place.idPlace ?? ""))
                                 StatusArendaView(isStatus: place.isArenda)
                                 
-                                let _ = print(modelView.getStatusRent(idplace: place.idPlace ?? "", context: viewContext))
+//                                let _ = print(modelView.getStatusRent(idplace: place.idPlace ?? "", context: viewContext))
                             }
                         }
                     }
@@ -47,7 +47,7 @@ struct AutoView: View {
             }//List
             .navigationDestination(for: Parking.self) { place in
                 CardParkingPlaceView(id: place.idPlace ?? "",
-                                     isStatusArenda: place.isArenda,
+                                     isStatusArenda: modelView.getStatusRent(idplace: place.idPlace ?? "", context: viewContext),
                                      isCancelButton: false) //false
                 //let _ = print("autoVew \(place)")
             }

@@ -174,8 +174,8 @@
             filePath = "ParkingApp/CardParkingPlaceView/View/CardParkingPlaceView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "166"
-            endingLineNumber = "166"
+            startingLineNumber = "113"
+            endingLineNumber = "113"
             landmarkName = "rentextendText"
             landmarkType = "24">
          </BreakpointContent>
@@ -190,8 +190,8 @@
             filePath = "ParkingApp/CardParkingPlaceView/View/CardParkingPlaceView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "130"
+            endingLineNumber = "130"
             landmarkName = "parkingCancelAlert"
             landmarkType = "24">
          </BreakpointContent>
