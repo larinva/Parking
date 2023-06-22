@@ -17,13 +17,18 @@ class NoficationModelView: ObservableObject {
     
     func dateDifference(_ dateEnd: Date) -> Int {
         let component = calendar.dateComponents([.day], from: currentDate, to: dateEnd)
-        return component.day ?? 0
+        return (component.day ?? 0)
     }
     
     func dateInterval(_ dateEnd: Date) -> Date {
-        let interval = calendar.dateInterval(of: Calendar.Component.month, for: dateEnd)
-        let start = interval?.start
-        0r0eturn start ?? Date.now
+        let interval = calendar.dateInterval(of: .day, for: dateEnd)?.end
+//        let start = interval?.start
+        return interval ?? Date.now
+    }
+    
+    func dateInterval0(_ dateEnd: Date) -> Date {
+        let interval = calendar.date(bySetting: .day, value: 1, of: dateEnd)
+        return interval ?? Date.now
     }
 }
 
@@ -36,10 +41,12 @@ struct NoficationView: View {
             Text("Текущая дата \(viewModel.currentDate.datemenu)")
             List(parking){ place in
                 Text("Место \(place.idPlace ?? "")")
-                Text("Дата \(place.deteEnd.datemenu)")
+                Text("Дата нач \(place.dete.datemenu)")
+                Text("Дата кон \(place.deteEnd.datemenu)")
                 Text("Разница дат \(viewModel.dateDifference(place.deteEnd))")
                     .foregroundColor(.red)
-                Text("Интервал дат \(viewModel.dateInterval(place.deteEnd))")
+                Text("Интервал дат \(viewModel.dateInterval0(place.deteEnd))")
+                    .foregroundColor(.green)
             }
         }
     }
